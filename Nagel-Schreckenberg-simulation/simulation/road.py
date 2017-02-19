@@ -67,6 +67,7 @@ class Road:
     def distanceToNextThing(self, pos):
         """Counts distance between given pos and next object (car or obstacle), takes into considerations stops (speedLimit set to 0)"""
         return self.__distanceToNextThing((pos[0]+1, pos[1]))
+
     def __distanceToNextThing(self, pos):
         if pos[0] >= self.getLength():
             return self.getLength() # heaven
@@ -103,6 +104,9 @@ class Road:
                 return self.lanes[oneMoreLane][pos[0]] == None
 
     def inBounds(self, pos):
+        """
+        定められた道路の範囲内にいるか
+        """
         return pos[0] >= 0 and pos[1] >= 0 and pos[0] < self.getLength() and pos[1] < self.getLanesCount()
 
     def clearAt(self, pos):

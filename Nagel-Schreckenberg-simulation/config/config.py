@@ -22,8 +22,8 @@ maxSpeed = 5
 #何の長さだ？
 maxLength = 10000
 
-speedLimits = [ SpeedLimit( range=((100,1),(100,1)), limit=0, ticks=0, active=False),
-        SpeedLimit( range=((130, 0), (170,0)), limit=0, ticks=0)
+speedLimits = [SpeedLimit( range=((100,1),(100,1)), limit=0, ticks=0, active=False),
+        SpeedLimit(range=((130, 0), (170,0)), limit=0, ticks=0)
         ]
 
 """

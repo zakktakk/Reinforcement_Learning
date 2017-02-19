@@ -13,13 +13,13 @@ class SimulationManager:
         self.stepsMade = 0
 
     def update(self, dt):
-        self.acc += dt * self.timeFactor
+        self.acc += dt * self.timeFactor #timeFactorは進むフレームに比例する
         limit = 0
         if self.acc >= self.updateFrame:
             self.acc = self.acc % (self.updateFrame + 0) #accは実際に進むフレーム数かな
             self.makeStep()
 
-    def makeSteps(self, steps):
+    def makeSteps(self, steps): #n steps進める
         for x in range(steps):
             self.makeStep()
 
