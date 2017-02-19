@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest, random
 from simulation.road import Road
 from simulation.car import Car

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from simulation.speedLimits import *
 from simulation.trafficGenerators import * 
 

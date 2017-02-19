@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 
 class Car:
@@ -33,15 +34,18 @@ class Car:
 
     def willingToChangeUp(self):
         return self.road.possibleLaneChangeUp(self.pos) and self.__willingToChangeLane(self.pos[1], self.pos[1] - 1)
+
     def willingToChangeDown(self):
         return self.road.possibleLaneChangeDown(self.pos) and self.__willingToChangeLane(self.pos[1], self.pos[1] + 1)
 
     def __willingToChangeLane(self, sourceLane, destLane):
         srcLaneSpeed = self.road.getMaxSpeedAt( (self.pos[0], sourceLane) )
         destLaneSpeed = self.road.getMaxSpeedAt( (self.pos[0], destLane) )
-        if destLaneSpeed <= srcLaneSpeed: return False
+        if destLaneSpeed <= srcLaneSpeed:
+            return False
         prevCar = self.road.findPrevCar( (self.pos[0], destLane) )
-        if prevCar == None: return True
+        if prevCar == None:
+            return True
         else:
             distanceToPrevCar = self.pos[0] - prevCar.pos[0]
             return distanceToPrevCar > prevCar.velocity

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SpeedLimits:
     def __init__(self, speedLimits, maxSpeed):
         self.speedLimits = speedLimits

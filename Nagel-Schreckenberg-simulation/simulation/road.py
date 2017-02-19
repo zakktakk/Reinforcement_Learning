@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import simulation.speedLimits, random
 from functools import reduce
 from simulation.car import Car

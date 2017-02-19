@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest, simulation.road, pygame
 from simulationManager import *
 from unittest.mock import Mock

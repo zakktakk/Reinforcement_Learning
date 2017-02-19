@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import unittest, functools
 from simulation.road import Road
 from simulation.car import Car
