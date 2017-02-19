@@ -21,18 +21,19 @@ class SpeedLimits:
 class SpeedLimit:
     def createObstacle(pos):
         return SpeedLimit( range=(pos,pos), limit=0, ticks=0)
+
     def __init__(self, range, limit, ticks, active=True):
-        self.lanes = (range[0][1], range[1][1])
-        self.xPos = (range[0][0], range[1][0])
+        self.lanes = (range[0][1], range[1][1]) #どのレーンか
+        self.xPos = (range[0][0], range[1][0]) #レーン上のどのポジションか
         self.speedLimit = limit
         self.ticks = ticks
         self.active = active
         self.acc = 0
 
     def inRange(self, pos):
-        return (self.lanes[0] <= pos[1] <= self.lanes[1]) and (self.xPos[0] <= pos[0] <= self.xPos[1])
+        return (self.lanes[0] <= pos[1] <= self.lanes[1]) and (self.xPos[0] <= pos[0] <= self.xPos[1]) #speedlimitの領域内にいるか
 
-    def update(self):
+    def update(self): #TODO 何だこれ 
         if self.ticks > 0:
             self.acc += 1
             if self.acc >= self.ticks:

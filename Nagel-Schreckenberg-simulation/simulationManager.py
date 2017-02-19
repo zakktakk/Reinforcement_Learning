@@ -16,11 +16,12 @@ class SimulationManager:
         self.acc += dt * self.timeFactor
         limit = 0
         if self.acc >= self.updateFrame:
-            self.acc = self.acc % (self.updateFrame + 0)
+            self.acc = self.acc % (self.updateFrame + 0) #accは実際に進むフレーム数かな
             self.makeStep()
 
     def makeSteps(self, steps):
-        for x in range(steps): self.makeStep()
+        for x in range(steps):
+            self.makeStep()
 
     def makeStep(self):
         self.trafficGenerator.generate(self.road)

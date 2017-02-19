@@ -48,7 +48,7 @@ class Road:
         return self.__pushCars(amount, lanes)
 
     def __pushCars(self, amount, lanes):
-        if not amount or not lanes:
+        if not amount or not lanes: #amountが0じゃないかつlanesが空じゃない
             return 0
         else:
             lane = lanes.pop()
@@ -112,6 +112,7 @@ class Road:
         return all(self.placeObject(entity) for entity in entities)
 
     def placeObject(self, entity):
+        #車が置けたらそこに配置してtrueを返す
         if (not self.inBounds(entity.pos)
                 or self.lanes[entity.pos[1]][entity.pos[0]] != None
                 or self.getSpeedLimitAt(entity.pos) == 0): return False
