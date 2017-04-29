@@ -20,3 +20,6 @@
 
 進化ゲームの種類
 チキンゲーム，タカ・ハトゲーム，囚人のジレンマ，繰り返し囚人のジレンマ，最後通牒ゲーム，公共財ゲーム，ワクチン接種ゲーム，気候変動のジレンマ
+
+囚人のジレンマゲームの種類
+evolutionary prisoners dilmma, spatial prisoners dilmma, iterated prisoners dilmma, 
