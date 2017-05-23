@@ -13,17 +13,13 @@
 
 import panda as pd
 import numpy as np
+import Agent.Agent
 
-class Satisficing_Agent:
+class Satisficing_Agent(Agent.Agent):
     def __init__(self, agent_id, neighbors, state_set, action_set,R_max, lmd=0.95):
-        self.agent_id = agent_id
-        self.neighbors = neighbors
         self.lmd =lmd
-        self.state_set = state_set
-        self.action_set = action_set
+        super().__init__(agent_id, neighbors, state_set, action_set)
         self.R_max = R_max
-        self.reward_lst = [] #長さ制限つける？
-        self.prev_action = None
         self.asp = random.uniform(R_max, 2*R_max)
         
     def re_init(self):
@@ -31,9 +27,6 @@ class Satisficing_Agent:
         self.total_r = 0
         self.asp = random.uniform(R_max, 2*R_max)
         
-    def get_neighbors(self):
-        return self.neighbors
-    
     def update_q(self, reward): #便宜上_qにしてるけど変えたほうがいい
         self.reward_lst.append(reward)
         self.asp = self.asp * self.lmd + (1-self.lmd) * reward

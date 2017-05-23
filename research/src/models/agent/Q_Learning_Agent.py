@@ -13,19 +13,14 @@
 
 import pandas as pd
 import numpy as np
+import Agent.Agent
 
-class Q_Learning_Agent:
+class Q_Learning_Agent(Agent.Agent):
     def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.95):
-        self.agent_id = agent_id
-        self.neighbors = neighbors
-        self.action_set = action_set #action文字列の集合
-        self.state_set = state_set #state文字列の集合
+        super().__init__(agent_id, neighbors, state_set, action_set)
         self.gamma = gamma
-        self.reward_lst = []
-        self.prev_action = None
         self.action_counter = np.zeros(len(action_set))
         self.n_act = 0
-        self.current_state = 0 #この初期値は妥当かな？
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
         self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))), index=self.action_set, columns=self.state_set)
         
@@ -33,9 +28,6 @@ class Q_Learning_Agent:
         self.reward_lst = []
         self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))), index=self.action_set, columns=self.state_set)
         
-    def get_neighbors(self):
-        return self.neighbors
-    
     def update_q(self, state, reward):
         a = self.action_set[self.prev_action] #今回行うアクション
         alpha = 1/(10+0.01*self.action_counter[self.prev_action])

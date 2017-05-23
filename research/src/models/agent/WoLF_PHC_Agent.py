@@ -11,18 +11,12 @@
 
 import panda as pd
 import numpy as np
+import Agent.Agent
 
-class WoLF_PHC_Agent:
+class WoLF_PHC_Agent(Agent.Agent):
     def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.9):
-        self.agent_id = agent_id
-        self.neighbors = neighbors
-        self.action_set = action_set #action文字列の集合
-        self.state_set = state_set #state文字列の集合
+        super().__init__(agent_id, neighbors, state_set, action_set)
         self.gamma = gamma
-        self.reward_lst = [] #長さ制限つける？
-        self.prev_action = None
-        self.current_state = 0 #今は1カラムだけだから0にしてるけど問題あり!!
-        
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
         self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
                                     index=self.action_set, columns=self.state_set)
@@ -43,9 +37,6 @@ class WoLF_PHC_Agent:
         self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
                                     index=self.action_set, columns=self.state_set)
         
-    def get_neighbors(self):
-        return self.neighbors
-
     def q_mean(self, pi_table, q_table):
         return np.sum(np.array(pi_table[self.current_state])*np.array(q_table[self.current_state]))
     
