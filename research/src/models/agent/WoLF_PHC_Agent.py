@@ -32,14 +32,17 @@ class WoLF_PHC_Agent(Agent.Agent):
         self.pi_d_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
                                        index=self.action_set, columns=self.state_set)
         
+    
     def re_init(self):
         self.reward_lst = []
         self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
                                     index=self.action_set, columns=self.state_set)
-        
+
+
     def q_mean(self, pi_table, q_table):
         return np.sum(np.array(pi_table[self.current_state])*np.array(q_table[self.current_state]))
     
+
     def update_q(self, state, reward):
         a = self.action_set[self.prev_action] #今回行うアクション
         alpha = 1/(10+0.01*self.count_table[self.current_state][a])
@@ -53,6 +56,7 @@ class WoLF_PHC_Agent(Agent.Agent):
         #update estimate of average policy pi dash
         self.C[self.current_state] += 1
         self.pi_d_table[self.current_state] += (self.pi_table[self.current_state]-self.pi_d_table[self.current_state])/self.C[self.current_state][0]
+
         #update pi and constrain it to legal probability distribution
         if self.q_mean(self.pi_table, self.q_table) > self.q_mean(self.pi_d_table, self.q_table):
             delta = delta_w / self.C[self.current_state][0]
@@ -67,11 +71,13 @@ class WoLF_PHC_Agent(Agent.Agent):
         self.pi_table[self.current_state] /= np.nansum(np.array(self.pi_table[self.current_state]))
         self.current_state = state
         
-    def act(self, state, rand=False):
-        if rand:
+
+    def act(self, state, random=False):
+        if random:
             action = 0
         else:
             action = np.random.choice(np.arange(len(self.action_set)), p=np.array(self.pi_table[state]))
+
         self.prev_action = action
         self.count_table[state][self.action_set[action]] += 1
         return self.prev_action #0 もしくは 1を返す, 0->coop, 1->comp

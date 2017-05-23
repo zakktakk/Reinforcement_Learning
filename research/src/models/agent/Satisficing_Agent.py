@@ -36,5 +36,6 @@ class Satisficing_Agent(Agent.Agent):
             action = np.random.choice(np.arange(len(self.action_set)))
         else:
             action = self.prev_action
+        
         self.prev_action = action
         return self.prev_action #0 もしくは 1を返す, 0->coop, 1->comp

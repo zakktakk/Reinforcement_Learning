@@ -4,9 +4,6 @@
 # last update : 05/23/2017
 # description : エージェントの親モデル
 
-# TODO
-# 引数の調整
-
 class Agent(object):
     def __init__(self, agent_id, neighbors, state_set, action_set):
         self.agent_id = agent_id
@@ -17,14 +14,14 @@ class Agent(object):
         self.prev_action = None
         self.current_state = 0
 
-    def re_init(self):
+    def re_init(self, *args, **kwargs):
         pass
 
     def get_neighbors(self):
         return self.neighbors
     
-    def update_q(self, state, reward):
+    def update_q(self, *args, **kwargs):
         pass
 
-    def act(self, state, random=False):
+    def act(self, *args, **kwargs):
         pass
