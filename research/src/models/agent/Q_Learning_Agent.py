@@ -13,9 +13,11 @@
 
 import pandas as pd
 import numpy as np
-import Agent.Agent
+import sys
+from agent.policy import eps_greedy
+from agent.Agent import Agent
 
-class Q_Learning_Agent(Agent.Agent):
+class Q_Learning_Agent(Agent):
     def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.95):
         super().__init__(agent_id, neighbors, state_set, action_set)
         self.gamma = gamma

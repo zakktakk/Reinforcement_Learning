@@ -10,7 +10,6 @@
 #   - マルチエージェント学習, 高玉圭樹
 
 import numpy as np
-import warning
 
 __all__ = ["softmax_boltzman", "softmax_roulette", "eps_greedy", "greedy"]
 

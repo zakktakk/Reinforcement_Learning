@@ -9,11 +9,11 @@
 # Reference
 # http://studentnet.cs.manchester.ac.uk/resources/library/3rd-year-projects/2015/yifei.wang-6.pdf, p14
 
-import panda as pd
+import pandas as pd
 import numpy as np
-import Agent.Agent
+from agent.Agent import Agent
 
-class WoLF_PHC_Agent(Agent.Agent):
+class WoLF_PHC_Agent(Agent):
     def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.9):
         super().__init__(agent_id, neighbors, state_set, action_set)
         self.gamma = gamma

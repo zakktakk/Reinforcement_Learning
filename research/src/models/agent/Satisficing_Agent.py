@@ -11,11 +11,11 @@
 # ↑のやつ下で参照してるのとは結構違うんだけど下信頼していいのだろうか
 # https://kaigi.org/jsai/webprogram/2014/pdf/654.pdf
 
-import panda as pd
+import pandas as pd
 import numpy as np
-import Agent.Agent
+from agent.Agent import Agent
 
-class Satisficing_Agent(Agent.Agent):
+class Satisficing_Agent(Agent):
     def __init__(self, agent_id, neighbors, state_set, action_set,R_max, lmd=0.95):
         self.lmd =lmd
         super().__init__(agent_id, neighbors, state_set, action_set)
