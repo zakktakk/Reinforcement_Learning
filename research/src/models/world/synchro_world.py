@@ -20,6 +20,7 @@ from payoff_matrix import *
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import warnings
+from tqdm import tqdm
 warnings.filterwarnings('ignore') #warning表示なし
 
 from agent.Q_Learning_Agent import Q_Learning_Agent
@@ -38,12 +39,12 @@ class synchro_world:
 
     def report_meta_info(self, f_name, other=None):
         with open(f_name, "w") as f:
-            f.write("繰り返し回数 : "+str(self.n_round))
-            f.write("エージェント数 : "+str(self.n_agent))
-            f.write("エッジ数 : "+str(self.n_edges))
-            f.write("ネットワーク種類 : "+self.G_alg)
-            f.write("利得行列 : "+self.game_name)
-            f.write("強化学習アルゴリズム : "+self.rl_alg)
+            f.write("繰り返し回数 : "+str(self.n_round)+"\n")
+            f.write("エージェント数 : "+str(self.n_agent)+"\n")
+            f.write("エッジ数 : "+str(self.n_edges)+"\n")
+            f.write("ネットワーク種類 : "+self.G_alg+"\n")
+            f.write("利得行列 : "+self.game_name+"\n")
+            f.write("強化学習アルゴリズム : "+self.rl_alg+"\n")
             if other is not None:
                 f.write("その他の条件 : "+other)
 
@@ -52,6 +53,7 @@ class synchro_world:
         @description ネットワークモデルの定義
         @param n_agent エージェントの数
         """
+
         self.G_alg, self.G = "complete_graph", nx.complete_graph(n_agent) #define network
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
@@ -68,6 +70,7 @@ class synchro_world:
         @param f_name save file name
         @param w_degree draw graph dependent on the node degree
         """
+
         #行動によって色分けしてるけど別ので分類するなら変えよう
         color = ["r" if self.G.node[n]["action"] == 0 else "b" if self.G.node[n]["action"] == 1 else "g" for n in self.G.nodes()]
         if w_degree:
@@ -84,6 +87,8 @@ class synchro_world:
     def run(self):
         rand = True
         for i in range(self.n_round):
+            if i % 100 == 0:
+                print('iter : '+str(i))
             #全エージェントが同期的に行動選択
             if i == len(self.payoff_matrix)*5: #初期のランダム行動
                 rand=False
@@ -113,13 +118,11 @@ class synchro_world:
 
 if __name__ == "__main__":
     RESULT_DIR = "../../../results/"
-    RESULT_NAME = RESULD_DIR+'hoge_'
-    for i in range(10):
-        print("iter:"+str(i))
-        W = synchro_world(100, 10000, prisoners_dilemma()) #妥当なエージェント数はいくつか
-        W.run()
-        W.save_average_reward(RESULT_NAME+str(i)+"_ave.csv")
-        W.save_coop_per(RESULT_NAME+str(i)+"_per.csv")
-        W.draw_network(f_name=RESULT_NAME+str(i)+"_fig.png", w_degree=True)
-        W.report_meta_info(f_name=RESULT_NAME+str(i)+"_meta.txt")
+    RESULT_NAME = RESULT_DIR+'chicken_q'
+    W = synchro_world(100, 10000, chicken_game()) #妥当なエージェント数はいくつか
+    W.run()
+    W.save_average_reward(RESULT_NAME+"_ave.csv")
+    W.save_coop_per(RESULT_NAME+"_per.csv")
+    W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
+    W.report_meta_info(f_name=RESULT_NAME+"_meta.txt")
     print('save done!!')

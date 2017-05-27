@@ -38,7 +38,7 @@ class Q_Learning_Agent(Agent):
         self.q_table[self.current_state][a] += alpha*(reward+self.gamma*np.nanmax(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.current_state][a]) #q_table[state][action]
         self.current_state = state
         
-    def act(self, state, random=False):
+    def act(self, state, random=False): 
         if random:
             action = np.random.choice(np.arange(len(self.action_set)))
         else:
