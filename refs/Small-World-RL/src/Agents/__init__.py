@@ -1,6 +1,0 @@
-"""
-Agents
-"""
-
-from Agent import *
-
