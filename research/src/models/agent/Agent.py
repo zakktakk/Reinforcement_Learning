@@ -12,7 +12,9 @@ class Agent(object):
         self.state_set = state_set #state文字列の集合
         self.reward_lst = []
         self.prev_action = None
-        self.current_state = 0
+        self.c_state = 0
+        self.len_a = len(action_set)
+        self.len_s = len(state_set)
 
     def re_init(self, *args, **kwargs):
         pass

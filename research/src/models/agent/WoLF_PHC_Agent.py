@@ -18,58 +18,60 @@ class WoLF_PHC_Agent(Agent):
         super().__init__(agent_id, neighbors, state_set, action_set)
         self.gamma = gamma
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
-        self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
+        self.q_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
                                     index=self.action_set, columns=self.state_set)
 
-        self.pi_table = pd.DataFrame(np.ones((len(action_set), len(state_set)))/len(action_set),
+        self.pi_table = pd.DataFrame(np.ones((self.len_a, self.len_s))/self.len_a,
                                      index=self.action_set, columns=self.state_set)
         
-        self.count_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
+        self.count_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
                                         index=self.action_set, columns=self.state_set)
         
-        self.C = pd.DataFrame(np.zeros(len(state_set)), columns=self.state_set)
+        self.C = pd.DataFrame(np.zeros(self.len_s), columns=self.state_set)
         
-        self.pi_d_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
+        self.pi_d_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
                                        index=self.action_set, columns=self.state_set)
         
     
     def re_init(self):
         self.reward_lst = []
-        self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))),
+        self.q_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
                                     index=self.action_set, columns=self.state_set)
 
 
     def q_mean(self, pi_table, q_table):
-        return np.sum(np.array(pi_table[self.current_state])*np.array(q_table[self.current_state]))
+        return np.sum(np.array(pi_table[self.c_state])*np.array(q_table[self.c_state]))
     
 
     def update_q(self, state, reward):
         a = self.action_set[self.prev_action] #今回行うアクション
-        alpha = 1/(10+0.01*self.count_table[self.current_state][a])
-        delta_w = 1/(10+self.count_table[self.current_state][a])
+        alpha = 1/(10+0.01*self.count_table[self.c_state][a])
+        delta_w = 1/(10+self.count_table[self.c_state][a])
         delta_l = 4*delta_w
         self.reward_lst.append(reward)
         
         #update q table
-        self.q_table[self.current_state][a] += alpha/(self.C[self.current_state]+1)*(reward+self.gamma*np.nanmax(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.current_state][a]) #q_table[state][action]
+        self.q_table[self.c_state][a] += alpha/(self.C[self.c_state]+1)*(reward+self.gamma*np.nanmax(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.c_state][a]) #q_table[state][action]
         
         #update estimate of average policy pi dash
-        self.C[self.current_state] += 1
-        self.pi_d_table[self.current_state] += (self.pi_table[self.current_state]-self.pi_d_table[self.current_state])/self.C[self.current_state][0]
+        self.C[self.c_state] += 1
+        self.pi_d_table[self.c_state] += (self.pi_table[self.c_state]-self.pi_d_table[self.c_state])/self.C[self.c_state][0]
 
         #update pi and constrain it to legal probability distribution
         if self.q_mean(self.pi_table, self.q_table) > self.q_mean(self.pi_d_table, self.q_table):
-            delta = delta_w / self.C[self.current_state][0]
+            delta = delta_w / self.C[self.c_state][0]
         else:
-            delta = delta_l / self.C[self.current_state][0]
+            delta = delta_l / self.C[self.c_state][0]
         
-        if self.prev_action == np.nanargmax(np.array(self.q_table[self.current_state])):
-            self.pi_table[self.current_state][a] += delta
+        if self.prev_action == np.nanargmax(np.array(self.q_table[self.c_state])):
+            self.pi_table[self.c_state][a] += delta
         else:
-            self.pi_table[self.current_state][a] -= delta / (len(self.action_set)-1)
+            self.pi_table[self.c_state][a] -= delta / (len(self.action_set)-1)
         
-        self.pi_table[self.current_state] /= np.nansum(np.array(self.pi_table[self.current_state]))
-        self.current_state = state
+        self.pi_table[self.c_state] /= np.nansum(np.array(self.pi_table[self.c_state]))
+
+        #update current state
+        self.c_state = state
         
 
     def act(self, state, random=False):

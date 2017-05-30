@@ -18,41 +18,46 @@ class MQubed_Agent(Agent):
         super().__init__(agent_id, neighbors, state_set, action_set)
         self.alpha = alpha
         self.gamma = gamma
-        self.n_init_act = n_init_act
-        self.r_max_est = 0
-        self.r_min_est = 0
-        self.n_act = 0
+        self.n_init_act = n_init_act #初期行動を何回行うか
+        self.n_act = 0 #actionを何回行ったか
 
-        self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))), index=self.action_set, columns=self.state_set)
-        self.v_table = pd.DataFrame(np.zeros(len(state_set)), columns=self.state_set)
+        #行動価値関数
+        self.q_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)), index=self.action_set, columns=self.state_set)
 
-        self.pi_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))), index=self.action_set, columns=self.state_set)
+        #価値関数
+        self.v_table = pd.DataFrame(np.zeros(self.len_s), columns=self.state_set)
+
+        #方策
+        self.pi_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)), index=self.action_set, columns=self.state_set)
+
+        #minimax方策のための報酬テーブル
+        self.mini_r_table = pd.DataFrame(np.zeros((self.len_a, self.len_s))), 
 
     def re_init(self):
         self.n_act = 0
         self.reward_lst = []
-        self.q_table = pd.DataFrame(np.zeros((len(action_set), len(state_set))), index=self.action_set, columns=self.state_set)
+        self.q_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)), index=self.action_set, columns=self.state_set)
 
-    def init_act():
+    def init_act(self):
         #これ相手の戦略は自分と同じという仮定のもとで行うのか？
         """
         @description 初期行動を表す. ランダムに行動し，報酬のminmaxを推定
-        @param 
+        @return ランダム行動
         """
-        #miはminimax value
-        pass
+        #minimaxテーブルの学習を行う -> TODO これはinit_actが終了しても行うからactに入れてしまっていいのでは?
+        return np.random.choice(np.arange(self.len_a))
 
-    def estimate_minimax():
-        pass
-
+    def minimax_act(self):
+        # 現在の状態に基づいてminimax戦略を返す
+        return np.nanargmax(np.array(self.mini_r_table)[self.c_state])
     
     def update_q(self, state, reward):
         a = self.action_set[self.prev_action]
         self.reward_lst.append(reward)
 
         #update q table
-        self.q_table[self.current_state][a] += alpha*(reward+self.gamma*np.nanmax(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.current_state][a]) #q_table[state][action]
+        self.q_table[self.c_state][a] += alpha*(reward+self.gamma*np.nanmax(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.c_state][a]) #q_table[state][action]
 
-        self.current_state = state
+        self.c_state = state
 
         self.v_table
