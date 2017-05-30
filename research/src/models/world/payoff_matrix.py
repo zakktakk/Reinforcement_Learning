@@ -3,6 +3,10 @@
 # last update : 05/23/2017
 # description : 利得行列の定義
 
+# TODO
+# payoff matrixはnormarizeされる必要ある？
+# Q learningの収束性の必要条件に含まれるっぽいことが"Lenient frequency adjusted Q-Learningに書いてある"
+
 # Reference
 #   - J.W.Crandall, M.A.Goodrich, "Learning to compete, compromise, and cooperate in repeated general-sum games", In ICML, 2005
 

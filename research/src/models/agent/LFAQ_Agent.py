@@ -1,43 +1,50 @@
 #-*- coding: utf-8 -*-
 
 # author : Takuro Yamazaki
-# last update : 05/23/2017
-# description : Q学習エージェントモデル
-
-# TODO
-#   - reward_lstの長さ制限
-#   - 適格度トレースの実装(メモリ機能)
+# last update : 05/30/2017
+# description : Lenient frequency adjusted Q-learning エージェントモデル
 
 # Reference
-#   - J.W.Crandall, M.A.Goodrich, "Learning to compete, compromise, and cooperate in repeated general-sum games", In ICML, 2005
+#   - D. Bloembergen, M. Kaisers, K. Tuyls, "Lenient Frequency Adjusted Q-Learning", In Belgian/Netherlands Artificial Intelligence Conference, 2010
 
 import pandas as pd
 import numpy as np
 import sys
-from agent.policy import eps_greedy
+from agent.policy import eps_greedy, softmax_boltzman
 from agent.Agent import Agent
 
-class Q_Learning_Agent(Agent):
-    def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.95):
+class LFAQ_Agent(Agent):
+    def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.95, beta=0.1):
         super().__init__(agent_id, neighbors, state_set, action_set)
         self.gamma = gamma
         self.action_counter = np.zeros(self.len_a)
         self.n_act = 0
+        self.beta = beta
         
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
         self.q_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)), index=self.action_set, columns=self.state_set)
         
+
     def re_init(self):
         self.reward_lst = []
         self.q_table = pd.DataFrame(np.zeros((self.len_a, self.len_s)), index=self.action_set, columns=self.state_set)
         
+
     def update_q(self, state, reward):
-        a = self.action_set[self.prev_action] #今回行うアクション
-        alpha = 1/(10+0.01*self.action_counter[self.prev_action])
+        a = self.action_set[self.prev_action]
+        alpha = 1/(10+0.01*self.action_counter[self.prev_action]) #先行研究に準じたalpha
         self.reward_lst.append(reward)
-        self.q_table[self.c_state][a] += alpha*(reward+self.gamma*np.nanmax(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.c_state][a]) #q_table[state][action]
-        self.c_state = state
         
+        xi = softmax_boltzman(self.q_table[state])[self.prev_action]
+        fa_val = np.min(1, self.beta/xi)
+
+        #q tableの更新
+        self.q_table[self.c_state][a] += fa_val*alpha*(reward+self.gamma*np.nanman(np.array(self.q_table[state], dtype=np.float64))-self.q_table[self.c_state][a])
+
+        #状態の更新
+        self.c_state = state
+
+
     def act(self, state, random=False, reduction=False):
         if random:
             action = np.random.choice(np.arange(self.len_a))
