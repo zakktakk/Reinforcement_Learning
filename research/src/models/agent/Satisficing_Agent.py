@@ -21,21 +21,16 @@ class Satisficing_Agent(Agent):
         super().__init__(agent_id, neighbors, state_set, action_set)
         self.R_max = R_max
         self.asp = random.uniform(R_max, 2*R_max)
-        
-    def re_init(self):
-        self.reward_lst = []
-        self.total_r = 0
-        self.asp = random.uniform(R_max, 2*R_max)
-        
+
     def update_q(self, reward): #便宜上_qにしてるけど変えたほうがいい
         self.reward_lst.append(reward)
         self.asp = self.asp * self.lmd + (1-self.lmd) * reward
-            
+
     def act(self, state, random=False):
         if random or self.reward_lst[-1]<self.asp:
             action = np.random.choice(np.arange(len(self.action_set)))
         else:
             action = self.prev_action
-        
+
         self.prev_action = action
-        return self.prev_action #0 もしくは 1を返す, 0->coop, 1->comp
+        return action #0 もしくは 1を返す, 0->coop, 1->comp

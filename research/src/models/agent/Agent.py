@@ -16,12 +16,9 @@ class Agent(object):
         self.len_a = len(action_set)
         self.len_s = len(state_set)
 
-    def re_init(self, *args, **kwargs):
-        pass
-
     def get_neighbors(self):
         return self.neighbors
-    
+
     def update_q(self, *args, **kwargs):
         pass
 
