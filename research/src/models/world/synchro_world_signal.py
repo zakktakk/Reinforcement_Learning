@@ -54,16 +54,17 @@ class synchro_world:
         @param n_agent エージェントの数
         """
 
-        self.G_alg, self.G = "complete", nx.complete_graph(n_agent) #define network
+        self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
         
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
             self.n_edges += len(neighbors)
-            agent = eval(self.rl_alg)(n, sorted(neighbors), [0], self.action_name) #エージェントの定義を変えるのはここ
+            agent = eval(self.rl_alg)(n, sorted(neighbors), np.arange(len(neighbors)+1), self.action_name) #エージェントの定義を変えるのはここ
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
+            self.G.node[n]["n_signal"] = 0 #状態の初期値は0
 
     def draw_network(self, f_name=None, w_degree=False):
         """
@@ -71,6 +72,7 @@ class synchro_world:
         @param f_name save file name
         @param w_degree draw graph dependent on the node degree
         """
+
         #行動によって色分けしてるけど別ので分類するなら変えよう
         color = ["r" if self.G.node[n]["action"] == 0 else "b" if self.G.node[n]["action"] == 1 else "g" for n in self.G.nodes()]
         if w_degree:
@@ -93,7 +95,7 @@ class synchro_world:
             if i == len(self.payoff_matrix)*5: #初期のランダム行動
                 rand=False
             for n in  self.G.nodes():
-                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand, reduction=True) #reduction=Trueで減衰
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(self.G.node[n]["n_signal"], random=rand, reduction=True) #reduction=Trueで減衰
                 self.agent_action_table[n][i] = self.G.node[n]["action"]
 
             #報酬計算&Q値更新
@@ -101,14 +103,18 @@ class synchro_world:
                 neighbors = self.G.node[n]["agent"].get_neighbors()
                 n_action = self.G.node[n]["action"]
                 n_reward = 0
+                n_signal = 0
                 for ne in neighbors:
                     ne_action = self.G.node[ne]["action"]
+                    if ne_action==0 or ne_action==2:
+                        n_signal += 1
                     n_reward += self.payoff_matrix[n_action][ne_action][0]
                 
                 self.G.node[n]["reward"] = n_reward
                 self.agent_payoff_table[n][i] = n_reward/len(neighbors)
-                self.G.node[n]["agent"].update_q(0, n_reward)
-                #self.G.node[n]["agent"].update_q(n_reward)
+                self.G.node[n]["agent"].update_q(self.G.node[n]["n_signal"], n_reward)
+                self.G.node[n]["n_signal"] = n_signal
+
 
     def save_average_reward(self, f_name):
         #write(f_name,"a")で追記
@@ -117,18 +123,16 @@ class synchro_world:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-all_ = ["prisoners_dilemma"]
-
+def prisoners_dilemma_sig():
+    return "prisoners_dilemma_sig", np.array(['cs', 'c', 'ds', 'd']),np.array([[(3,3),(3,3),(0,5),(0,5)],[(3,3),(3,3),(0,5),(0,5)],[(5,0),(5,0),(1,1),(1,1)],[(5,0),(5,0),(1,1),(1,1)]])
 
 if __name__ == "__main__":
     RESULT_DIR = "../../../results/"
-    for n in all_:
-        RESULT_NAME = RESULT_DIR+n+'_q_red_ini0.3'
-        print(n)
-        W = synchro_world(100, 10000, eval(n)()) #妥当なエージェント数はいくつか
-        W.run()
-        W.save_average_reward(RESULT_NAME+"_ave.csv")
-        W.save_coop_per(RESULT_NAME+"_per.csv")
-        W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
-        W.report_meta_info(f_name=RESULT_NAME+"_meta.txt")
-        print('save done!!')
+    RESULT_NAME = RESULT_DIR+'_q_reduc_signal_ws'
+    W = synchro_world(100, 10000, prisoners_dilemma_sig()) #妥当なエージェント数はいくつか
+    W.run()
+    W.save_average_reward(RESULT_NAME+"_ave.csv")
+    W.save_coop_per(RESULT_NAME+"_per.csv")
+    W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
+    W.report_meta_info(f_name=RESULT_NAME+"_meta.txt", other="シグナル")
+    print('save done!!')
