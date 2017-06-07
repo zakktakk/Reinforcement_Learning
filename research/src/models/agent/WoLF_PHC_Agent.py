@@ -67,7 +67,7 @@ class WoLF_PHC_Agent(Agent):
         self.c_st = state
 
 
-    def act(self, state):
+    def act(self, state, random=True):
         action = np.random.choice(np.arange(len(self.action_set)), p=np.array(self.pi_tb[state]))
 
         self.prev_action = action

@@ -9,7 +9,7 @@
 # - ネットワークの種類
 # - エージェントの種類
 # - エッジ数
-# - 利得行列の種類 
+# - 利得行列の種類
 # - その他の条件(初期行動制約など)
 
 import numpy as np
@@ -22,7 +22,7 @@ plt.style.use('ggplot')
 import warnings
 from tqdm import tqdm
 warnings.filterwarnings('ignore') #warning表示なし
-
+from numba import jit
 from agent.Q_Learning_Agent import Q_Learning_Agent
 #from agent.Satisficing_Agent import Satisficing_Agent
 #from agent.WoLF_PHC_Agent import WoLF_PHC_Agent
@@ -61,7 +61,7 @@ class synchro_world:
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
             self.n_edges += len(neighbors)
-            agent = eval(self.rl_alg)(n, sorted(neighbors), [0], self.action_name) #エージェントの定義を変えるのはここ
+            agent = eval(self.rl_alg)(n, np.array(sorted(neighbors)), np.array([0]), self.action_name) #エージェントの定義を変えるのはここ
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
@@ -83,21 +83,22 @@ class synchro_world:
             plt.show()
         else:
             plt.savefig(f_name)
-            
+    
     def run(self):
         rand = True
+        nodes = self.G.nodes()
         for i in range(self.n_round):
-            if i % 100 == 0:
+            if i % 1000 == 0:
                 print('iter : '+str(i))
             #全エージェントが同期的に行動選択
             if i == len(self.payoff_matrix)*5: #初期のランダム行動
                 rand=False
-            for n in  self.G.nodes():
-                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand, reduction=True) #reduction=Trueで減衰
+            for n in nodes:
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand) #reduction=Trueで減衰
                 self.agent_action_table[n][i] = self.G.node[n]["action"]
 
             #報酬計算&Q値更新
-            for n in self.G.nodes():
+            for n in nodes:
                 neighbors = self.G.node[n]["agent"].get_neighbors()
                 n_action = self.G.node[n]["action"]
                 n_reward = 0
@@ -117,18 +118,19 @@ class synchro_world:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-all_ = ["prisoners_dilemma"]
+#all_ = ["matching_pennies", "coodination_game", "stag_hunt", "prisoners_dilemma", "chicken_game", "tricky_game"]
 
+all_ = ["tricky_game"]
 
 if __name__ == "__main__":
     RESULT_DIR = "../../../results/"
     for n in all_:
-        RESULT_NAME = RESULT_DIR+n+'_q_red_ini0.3'
+        RESULT_NAME = RESULT_DIR+n+'_wolf_phc_'
         print(n)
-        W = synchro_world(100, 10000, eval(n)()) #妥当なエージェント数はいくつか
+        W = synchro_world(100, 1000, eval(n)()) #妥当なエージェント数はいくつか
         W.run()
-        W.save_average_reward(RESULT_NAME+"_ave.csv")
-        W.save_coop_per(RESULT_NAME+"_per.csv")
-        W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
-        W.report_meta_info(f_name=RESULT_NAME+"_meta.txt")
+        #W.save_average_reward(RESULT_NAME+"_ave.csv")
+        #W.save_coop_per(RESULT_NAME+"_per.csv")
+        #W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
+        #W.report_meta_info(f_name=RESULT_NAME+"_meta.txt")
         print('save done!!')
