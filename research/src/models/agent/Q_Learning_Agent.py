@@ -47,5 +47,5 @@ class Q_Learning_Agent(Agent):
         self.prev_action = action
         self.n_strategy[action] += 1
         self.n_act += 1
-
+        
         return action #0 もしくは 1を返す, 0->coop, 1->comp

@@ -17,8 +17,13 @@ import sys
 import networkx as nx
 sys.path.append("../")
 from payoff_matrix import *
+
+import matplotlib
+matplotlib.use("Agg") #prevent no display error
+
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
+
 import warnings
 from tqdm import tqdm
 warnings.filterwarnings('ignore') #warning表示なし
@@ -53,8 +58,9 @@ class synchro_world:
         @description ネットワークモデルの定義
         @param n_agent エージェントの数
         """
-
-        self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
+        self.G_alg, self.G = "ba", nx.barabasi_albert_graph(n_agent, 30) #define network
+        #self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
+        #self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
 
@@ -123,16 +129,17 @@ class synchro_world:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-def prisoners_dilemma_sig():
-    return "prisoners_dilemma_sig", np.array(['cs', 'c', 'ds', 'd']),np.array([[(3,3),(3,3),(0,5),(0,5)],[(3,3),(3,3),(0,5),(0,5)],[(5,0),(5,0),(1,1),(1,1)],[(5,0),(5,0),(1,1),(1,1)]])
+all_ = ["prisoners_dilemma_sig", "matching_pennies_sig", "coodination_game_sig", "stag_hunt_sig", "chicken_game_sig", "tricky_game_sig"]
 
 if __name__ == "__main__":
     RESULT_DIR = "../../../results/"
-    RESULT_NAME = RESULT_DIR+'_q_reduc_signal_ws'
-    W = synchro_world(100, 10000, prisoners_dilemma_sig()) #妥当なエージェント数はいくつか
-    W.run()
-    W.save_average_reward(RESULT_NAME+"_ave.csv")
-    W.save_coop_per(RESULT_NAME+"_per.csv")
-    W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
-    W.report_meta_info(f_name=RESULT_NAME+"_meta.txt", other="シグナル")
-    print('save done!!')
+    for n in all_:
+        print(n)
+        RESULT_NAME = RESULT_DIR+n+'_q_reduc_signal_ba'
+        W = synchro_world(100, 10000, eval(n)()) #妥当なエージェント数はいくつか
+        W.run()
+        W.save_average_reward(RESULT_NAME+"_ave.csv")
+        W.save_coop_per(RESULT_NAME+"_per.csv")
+        W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
+        W.report_meta_info(f_name=RESULT_NAME+"_meta.txt", other="シグナル")
+        print('save done!!')

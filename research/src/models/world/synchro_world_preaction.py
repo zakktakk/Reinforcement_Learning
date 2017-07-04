@@ -123,9 +123,6 @@ class synchro_world:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-def prisoners_dilemma_sig():
-    return "prisoners_dilemma_pre", np.array(['cs', 'c', 'ds', 'd']),np.array([[(3,3),(3,3),(0,5),(0,5)],[(3,3),(3,3),(0,5),(0,5)],[(5,0),(5,0),(1,1),(1,1)],[(5,0),(5,0),(1,1),(1,1)]])
-
 if __name__ == "__main__":
     RESULT_DIR = "../../../results/"
     RESULT_NAME = RESULT_DIR+'_q_reduc_preaction_ws'
