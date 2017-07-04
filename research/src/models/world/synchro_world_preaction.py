@@ -9,7 +9,7 @@
 # - ネットワークの種類
 # - エージェントの種類
 # - エッジ数
-# - 利得行列の種類 
+# - 利得行列の種類
 # - その他の条件(初期行動制約など)
 
 import numpy as np
@@ -57,7 +57,7 @@ class synchro_world:
         self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
-        
+
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
             self.n_edges += len(neighbors)
@@ -85,7 +85,7 @@ class synchro_world:
             plt.show()
         else:
             plt.savefig(f_name)
-            
+
     def run(self):
         rand = True
         for i in range(self.n_round):
@@ -109,7 +109,7 @@ class synchro_world:
                     if ne_action==0 or ne_action==2:
                         n_signal += 1
                     n_reward += self.payoff_matrix[n_action][ne_action][0]
-                
+
                 self.G.node[n]["reward"] = n_reward
                 self.agent_payoff_table[n][i] = n_reward/len(neighbors)
                 self.G.node[n]["agent"].update_q(self.G.node[n]["n_signal"], n_reward)
