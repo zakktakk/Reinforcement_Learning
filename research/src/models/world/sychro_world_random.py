@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# last update : 05/23/2017
-# description : 同時プレイの世界
+# last update : 07/06/2017
+# description : エッジの数によるsignal意思決定ゲームの学習差を検証する
 
 # データに記述すべきメタデータ
 # - 繰り返し回数
@@ -58,9 +58,7 @@ class synchro_world_signal:
         @description ネットワークモデルの定義
         @param n_agent エージェントの数
         """
-        self.G_alg, self.G = "ba", nx.barabasi_albert_graph(n_agent, 30) #define network
-        #self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
-        #self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
+        self.G_alg, self.G = "random", nx.random_regular_graph(d=50, n=n_agent)
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
 
@@ -129,13 +127,13 @@ class synchro_world_signal:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-all_ = ["prisoners_dilemma_sig", "matching_pennies_sig", "coodination_game_sig", "stag_hunt_sig", "chicken_game_sig", "tricky_game_sig"]
+all_ = ["prisoners_dilemma_sig"]
 
 if __name__ == "__main__":
-    RESULT_DIR = "../../../results/"
+    RESULT_DIR = "../../../results/50/"
     for n in all_:
         print(n)
-        RESULT_NAME = RESULT_DIR+n+'_q_reduc_signal_ba'
+        RESULT_NAME = RESULT_DIR+n+'_q_reduc_signal_random_50'
         W = synchro_world_signal(100, 10000, eval(n)()) #妥当なエージェント数はいくつか
         W.run()
         W.save_average_reward(RESULT_NAME+"_ave.csv")

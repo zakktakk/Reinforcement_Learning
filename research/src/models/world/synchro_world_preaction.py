@@ -1,7 +1,10 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
 # last update : 06/15/2017
-# description : 同時プレイの世界
+# description : 一つ前の行動を知らせる(関係してるだけで意味を知っているわけではない), 数だけ知覚できる
+# TODO coop側の人しかsignal出せないかつ，signal出す出さないは選択可能，signalはコストがかかる -> バランス取らないと初期の行動で行動割合の偏りが生じるぞ
+# 分離させてシグナルを発信する人にランダムにリンクを張り替えるを加える？
+# :thinking: signalとactionは別で学習したほうが良い？
 
 #データに記述すべきメタデータ
 # - 繰り返し回数
@@ -12,23 +15,28 @@
 # - 利得行列の種類
 # - その他の条件(初期行動制約など)
 
-import numpy as np
 import sys
-import networkx as nx
 sys.path.append("../")
-from payoff_matrix import *
-import matplotlib.pyplot as plt
-plt.style.use('ggplot')
 import warnings
-from tqdm import tqdm
 warnings.filterwarnings('ignore') #warning表示なし
 
+import pandas as pd
+import numpy as np
+import networkx as nx
+
+import matplotlib
+matplotlib.use("Agg") #prevent no display error
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+
+from tqdm import tqdm
+
+from payoff_matrix import *
 from agent.Q_Learning_Agent import Q_Learning_Agent
 #from agent.Satisficing_Agent import Satisficing_Agent
 #from agent.WoLF_PHC_Agent import WoLF_PHC_Agent
-import pandas as pd
 
-class synchro_world:
+class synchro_world_preaction:
     def __init__(self, n_agent, n_round, payoff_matrix):
         self.n_agent = n_agent
         self.n_round = n_round
@@ -54,7 +62,9 @@ class synchro_world:
         @param n_agent エージェントの数
         """
 
-        self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
+        #self.G_alg, self.G = "ba", nx.barabasi_albert_graph(n_agent, 30) #define network
+        self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
+        #self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
 
@@ -89,7 +99,7 @@ class synchro_world:
     def run(self):
         rand = True
         for i in range(self.n_round):
-            if i % 100 == 0:
+            if i % 1000 == 0:
                 print('iter : '+str(i))
             #全エージェントが同期的に行動選択
             if i == len(self.payoff_matrix)*5: #初期のランダム行動
@@ -106,7 +116,7 @@ class synchro_world:
                 n_signal = 0
                 for ne in neighbors:
                     ne_action = self.G.node[ne]["action"]
-                    if ne_action==0 or ne_action==2:
+                    if ne_action == 0:
                         n_signal += 1
                     n_reward += self.payoff_matrix[n_action][ne_action][0]
 
@@ -123,13 +133,17 @@ class synchro_world:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
+all_ = ["prisoners_dilemma", "matching_pennies", "coodination_game", "stag_hunt", "chicken_game", "tricky_game"]
+
 if __name__ == "__main__":
-    RESULT_DIR = "../../../results/"
-    RESULT_NAME = RESULT_DIR+'_q_reduc_preaction_ws'
-    W = synchro_world(100, 10000, prisoners_dilemma_pre()) #妥当なエージェント数はいくつか
-    W.run()
-    W.save_average_reward(RESULT_NAME+"_ave.csv")
-    W.save_coop_per(RESULT_NAME+"_per.csv")
-    W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
-    W.report_meta_info(f_name=RESULT_NAME+"_meta.txt", other="前の行動")
-    print('save done!!')
+    RESULT_DIR = "../../../results/preaction/"
+    for n in all_:
+        print(n)
+        RESULT_NAME = RESULT_DIR+n+'_q_reduc_preaction_complete'
+        W = synchro_world_preaction(100, 10000, eval(n)()) #妥当なエージェント数はいくつか
+        W.run()
+        W.save_average_reward(RESULT_NAME+"_ave.csv")
+        W.save_coop_per(RESULT_NAME+"_per.csv")
+        W.draw_network(f_name=RESULT_NAME+"_fig.png", w_degree=True)
+        W.report_meta_info(f_name=RESULT_NAME+"_meta.txt", other="前の行動")
+        print('save done!!')
