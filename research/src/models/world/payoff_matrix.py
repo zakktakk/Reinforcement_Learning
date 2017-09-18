@@ -1,6 +1,5 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# last update : 05/23/2017
 # description : 利得行列の定義
 
 # TODO
@@ -11,51 +10,93 @@
 #   - J.W.Crandall, M.A.Goodrich, "Learning to compete, compromise, and cooperate in repeated general-sum games", In ICML, 2005
 
 import numpy as np
+
 __all__ = ["rock_paper_scissors", "shapleys_game", "matching_pennies", "coodination_game", "stag_hunt",
            "prisoners_dilemma", "chicken_game", "tricky_game", "matching_pennies_sig", "coodination_game_sig",
            "stag_hunt_sig", "prisoners_dilemma_sig", "chicken_game_sig", "tricky_game_sig"]
 
+
 def rock_paper_scissors():
-    return "rock_paper_scissors", np.array(['r', 'p', 's']), np.array([[(0,0),(-1,1),(1,-1)],[(1,-1),(0,0),(-1,1)],[(-1,1),(1,-1),(0,0)]])
+    return "rock_paper_scissors", {'r': [(0, 0), (-1, 1), (1, -1)],
+                                   'p': [(1, -1), (0, 0), (-1, 1)],
+                                   's': [(-1, 1), (1, -1), (0, 0)]}
+
 
 def shapleys_game():
-    return "shapleys_game", np.array(['a', 'b', 'c']), np.array([[(0,0),(0,1),(1,0)],[(1,0),(0,0),(0,1)],[(0,1),(1,0),(0,0)]])
+    return "shapleys_game", {'a': [(0, 0), (0, 1), (1, 0)],
+                             'b': [(1, 0), (0, 0), (0, 1)],
+                             'c': [(0, 1), (1, 0), (0, 0)]}
+
 
 def matching_pennies():
-    return "matching_pennies", np.array(['a', 'b']), np.array([[(1,-1), (-1,1)],[(-1,1), (1,-1)]])
+    return "matching_pennies", {'a': [(1, -1), (-1, 1)],
+                                'b': [(-1, 1), (1, -1)]}
+
 
 def coodination_game():
-    return "coodination_game", np.array(['a', 'b']),np.array([[(2,2), (0,0)],[(0,0), (4,4)]])
+    return "coodination_game", {'a': [(2, 2), (0, 0)],
+                                'b': [(0, 0), (4, 4)]}
+
 
 def stag_hunt():
-    return "stag_hunt", np.array(['a', 'b']),np.array([[(2,2), (3,-5)],[(-5,3), (4,4)]])
+    return "stag_hunt", {'a': [(2, 2), (3, -5)],
+                         'b': [(-5, 3), (4, 4)]}
+
 
 def prisoners_dilemma():
-    return "prisoners_dilemma", np.array(['c', 'd']),np.array([[(3,3), (0,5)],[(5,0), (1,1)]])
+    return "prisoners_dilemma", {'c': [(3, 3), (0, 5)],
+                                 'd': [(5, 0), (1, 1)]}
+
 
 def chicken_game():
-    return "chicken_game", np.array(['c', 'd']),np.array([[(3,3), (2,3.5)],[(3.5,2), (1,1)]])
+    return "chicken_game", {'c': [(3, 3), (2, 3.5)],
+                            'd': [(3.5, 2), (1, 1)]}
+
 
 def tricky_game():
-    return "tricky_game", np.array(['a', 'b']),np.array([[(0,3), (3,2)],[(1,0), (2,1)]])
+    return "tricky_game", {'a': [(0, 3), (3, 2)],
+                           'b': [(1, 0), (2, 1)]}
 
 
 ###########payoff matrix for signaling###########
 # 無コストのシグナル
 def prisoners_dilemma_sig():
-    return "prisoners_dilemma_sig", np.array(['cs', 'c', 'ds', 'd']),np.array([[(3,3),(3,3),(0,5),(0,5)],[(3,3),(3,3),(0,5),(0,5)],[(5,0),(5,0),(1,1),(1,1)],[(5,0),(5,0),(1,1),(1,1)]])
+    return "prisoners_dilemma_sig", {'cs': [(3, 3), (3, 3), (0, 5), (0, 5)],
+                                     'c': [(3, 3), (3, 3), (0, 5), (0, 5)],
+                                     'ds': [(5, 0), (5, 0), (1, 1), (1, 1)],
+                                     'd': [(5, 0), (5, 0), (1, 1), (1, 1)]}
+
 
 def matching_pennies_sig():
-    return "matching_pennies_sig", np.array(['as', 'a', 'bs', 'b']), np.array([[(1,-1),(1,-1),(-1,1),(-1,1)],[(1,-1),(1,-1),(-1,1),(-1,1)],[(-1,1),(-1,1),(1,-1),(1,-1)],[(-1,1),(-1,1),(1,-1),(1,-1)]])
+    return "matching_pennies_sig", {'as': [(1, -1), (1, -1), (-1, 1), (-1, 1)],
+                                    'a': [(1, -1), (1, -1), (-1, 1), (-1, 1)],
+                                    'bs': [(-1, 1), (-1, 1), (1, -1), (1, -1)],
+                                    'b': [(-1, 1), (-1, 1), (1, -1), (1, -1)]}
+
 
 def coodination_game_sig():
-    return "coodination_game_sig", np.array(['as', 'a', 'bs', 'b']),np.array([[(2,2),(2,2),(0,0),(0,0)],[(2,2),(2,2),(0,0),(0,0)],[(0,0),(0,0),(4,4),(4,4)],[(0,0),(0,0),(4,4),(4,4)]])
+    return "coodination_game_sig", {'as': [(2, 2), (2, 2), (0, 0), (0, 0)],
+                                    'a': [(2, 2), (2, 2), (0, 0), (0, 0)],
+                                    'bs': [(0, 0), (0, 0), (4, 4), (4, 4)],
+                                    'b': [(0, 0), (0, 0), (4, 4), (4, 4)]}
+
 
 def stag_hunt_sig():
-    return "stag_hunt_sig", np.array(['as', 'a', 'bs', 'b']),np.array([[(2,2),(2,2),(3,-5),(3,-5)],[(2,2),(2,2),(3,-5),(3,-5)],[(-5,3),(-5,3),(4,4),(4,4)],[(-5,3),(-5,3),(4,4),(4,4)]])
+    return "stag_hunt_sig", {'as': [(2, 2), (2, 2), (3, -5), (3, -5)],
+                             'a': [(2, 2), (2, 2), (3, -5), (3, -5)],
+                             'bs': [(-5, 3), (-5, 3), (4, 4), (4, 4)],
+                             'b': [(-5, 3), (-5, 3), (4, 4), (4, 4)]}
+
 
 def chicken_game_sig():
-    return "chicken_game_sig", np.array(['cs', 'c', 'ds', 'd']),np.array([[(3,3),(3,3),(2,3.5),(2,3.5)],[(3,3),(3,3),(2,3.5),(2,3.5)],[(3.5,2),(3.5,2),(1,1),(1,1)],[(3.5,2),(3.5,2),(1,1),(1,1)]])
+    return "chicken_game_sig", {'cs': [(3, 3), (3, 3), (2, 3.5), (2, 3.5)],
+                                'c': [(3, 3), (3, 3), (2, 3.5), (2, 3.5)],
+                                'ds': [(3.5, 2), (3.5, 2), (1, 1), (1, 1)],
+                                'd': [(3.5, 2), (3.5, 2), (1, 1), (1, 1)]}
+
 
 def tricky_game_sig():
-    return "tricky_game_sig", np.array(['as', 'a', 'bs', 'b']),np.array([[(0,3),(0,3),(3,2),(3,2)],[(0,3),(0,3),(3,2),(3,2)],[(1,0),(1,0),(2,1),(2,1)],[(1,0),(1,0),(2,1),(2,1)]])
+    return "tricky_game_sig", {'as': [(0, 3), (0, 3), (3, 2), (3, 2)],
+                               'a': [(0, 3), (0, 3), (3, 2), (3, 2)],
+                               'bs': [(1, 0), (1, 0), (2, 1), (2, 1)],
+                               'b': [(1, 0), (1, 0), (2, 1), (2, 1)]}

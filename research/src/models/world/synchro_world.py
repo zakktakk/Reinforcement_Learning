@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# last update : 05/23/2017
 # description : 同時プレイの世界
 #
 # データに記述すべきメタデータ
@@ -15,6 +14,7 @@
 import numpy as np
 import sys
 import networkx as nx
+import _pickle as cPickle
 sys.path.append("../")
 from payoff_matrix import *
 
@@ -57,14 +57,15 @@ class synchro_world:
         @description ネットワークモデルの定義
         @param n_agent エージェントの数
         """
-        self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
+        # self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
+        self.G_alg, self.G = "ba", nx.barabasi_albert_graph(n_agent, 70)
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent"  # rl alg name
 
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
             self.n_edges += len(neighbors)
-            agent = eval(self.rl_alg)(n, np.array(sorted(neighbors)), np.array([0]), self.action_name)  # エージェントの定義を変えるのはここ
+            agent = eval(self.rl_alg)(n, np.array(sorted(neighbors)), np.array(["0"]), self.action_name)  # エージェントの定義を変えるのはここ
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
@@ -121,13 +122,18 @@ class synchro_world:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-# all_ = ["matching_pennies", "coodination_game", "stag_hunt", "prisoners_dilemma", "chicken_game", "tricky_game"]
+    def save_pickle(self, f_name):
+        with open(f_name, 'wb') as w_f:
+            cPickle.dump(self.__dict__, )
 
-all_ = ["matching_pennies"]
+
+
+all_ = ["matching_pennies", "coodination_game", "stag_hunt", "prisoners_dilemma", "chicken_game", "tricky_game"]
+
 if __name__ == "__main__":
-    RESULT_DIR = "../../../results/"
+    RESULT_DIR = "../../../results/Q_reduction/ba70"
     for n in all_:
-        RESULT_NAME = RESULT_DIR+n+'_q_'
+        RESULT_NAME = RESULT_DIR+n+'_q_reduc_ba70'
         print(n)
         W = synchro_world(100, 10000, eval(n)())  # 妥当なエージェント数はいくつか
         W.run()

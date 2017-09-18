@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*-
 
 # author : Takuro Yamazaki
-# last update : 05/23/2017
 # description : Satisficing algorithmエージェントモデル
 
 # TODO
@@ -11,27 +10,39 @@
 # ↑のやつ下で参照してるのとは結構違うんだけど下信頼していいのだろうか
 # https://kaigi.org/jsai/webprogram/2014/pdf/654.pdf
 
-import pandas as pd
-import numpy as np
 import random
-from agent.Agent import Agent
+import numpy as np
+
+from .Agent import Agent
 
 class Satisficing_Agent(Agent):
-    def __init__(self, agent_id, neighbors, state_set, action_set,R_max, lmd=0.95):
+    def __init__(self, id_: int, neighbors: np.ndarray, states: np.ndarray, actions: np.ndarray, R_max:float, lmd:float=0.95):
         self.lmd =lmd
-        super().__init__(agent_id, neighbors, state_set, action_set)
+        super().__init__(id_, neighbors, states, actions)
         self.R_max = R_max
         self.asp = random.uniform(R_max, 2*R_max)
 
-    def update_q(self, reward): #便宜上_qにしてるけど変えたほうがいい
+
+    def update(self, reward:float) -> None:
+        """
+        :param reward: float, reward value
+        :return: None
+        """
         self.reward_lst.append(reward)
         self.asp = self.asp * self.lmd + (1-self.lmd) * reward
 
-    def act(self, state, random=False):
-        if random or self.reward_lst[-1]<self.asp:
-            action = np.random.choice(np.arange(len(self.action_set)))
+
+    def act(self, state: str, random: bool=False) -> str:
+        """
+        :param state: string, state
+        :param random: boolean, random action or not
+        :return: str, selected action
+        """
+        if random or self.reward_lst[-1] < self.asp:
+            # ランダムか閾値を超えない
+            action = np.random.choice(self.actions)
         else:
             action = self.prev_action
 
         self.prev_action = action
-        return action #0 もしくは 1を返す, 0->coop, 1->comp
+        return action

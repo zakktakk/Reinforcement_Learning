@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*-
 
 # author : Takuro Yamazaki
-# last update : 05/23/2017
 # description : WoLF-PHCエージェントモデル
 
 # TODO
@@ -11,65 +10,72 @@
 
 import pandas as pd
 import numpy as np
-from agent.Agent import Agent
+from .Agent import Agent
 
 class WoLF_PHC_Agent(Agent):
-    def __init__(self, agent_id, neighbors, state_set, action_set, gamma=0.9):
-        super().__init__(agent_id, neighbors, state_set, action_set)
+    def __init__(self, id_: int, neighbors: np.ndarray, states: np.ndarray, actions: np.ndarray, gamma:float=0.9):
+        super().__init__(id_, neighbors, states, actions)
+        len_s = len(states)
+        len_a = len(actions)
         self.gamma = gamma
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
-        self.q_tb = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
-                                    index=self.action_set, columns=self.state_set)
+        self.q_table = pd.DataFrame(np.zeros((len_a, len_s)),index=actions, columns=states, dtype=np.float64)
 
-        self.pi_tb = pd.DataFrame(np.ones((self.len_a, self.len_s))/self.len_a,
-                                     index=self.action_set, columns=self.state_set)
+        self.count_table = self.q_table.copy()
+        self.pi_d_table = self.q_table.copy()
 
-        self.count_tb = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
-                                        index=self.action_set, columns=self.state_set)
+        self.pi_table = pd.DataFrame(np.ones((len_a, len_s))/len_a,
+                                     index=actions, columns=states)
 
-        self.C = pd.DataFrame(np.zeros(self.len_s), columns=self.state_set)
-
-        self.pi_d_tb = pd.DataFrame(np.zeros((self.len_a, self.len_s)),
-                                       index=self.action_set, columns=self.state_set)
-
-    def q_mean(self, pi_tb, q_tb):
-        return np.sum(np.array(pi_tb[self.c_st])*np.array(q_tb[self.c_st]))
+        self.C = pd.DataFrame(np.zeros(len_s), columns=self.states)
 
 
-    def update_q(self, state, reward):
-        a = self.action_set[self.prev_action] #今回行うアクション
-        alpha = 1/(10+0.01*self.count_tb[self.c_st][a])
-        delta_w = 1/(10+self.count_tb[self.c_st][a])
+    def q_mean(self, pi_table, q_table):
+        return np.sum(np.array(pi_table[self.current_state])*np.array(q_table[self.current_state]))
+
+
+    def update(self, state: str, reward: float) -> None:
+        a = self.prev_action
+        s = self.current_state
+
+        alpha = 1/(10+0.01*self.count_table[s][a])
+        delta_w = 1/(10+self.count_table[s][a])
         delta_l = 4*delta_w
         self.reward_lst.append(reward)
 
-        #update q tb
-        self.q_tb[self.c_st][a] += alpha/(self.C[self.c_st]+1)*(reward+self.gamma*np.nanmax(np.array(self.q_tb[state], dtype=np.float64))-self.q_tb[self.c_st][a]) #q_tb[state][action]
+        # update q table
+        self.q_table[s][a] += alpha/(self.C[s]+1)*(reward+self.gamma*self.q_table[state].max()-self.q_table[s][a])
 
-        #update estimate of average policy pi dash
-        self.C[self.c_st] += 1
-        self.pi_d_tb[self.c_st] += (self.pi_tb[self.c_st]-self.pi_d_tb[self.c_st])/self.C[self.c_st][0]
 
-        #update pi and constrain it to legal probability distribution
-        if self.q_mean(self.pi_tb, self.q_tb) > self.q_mean(self.pi_d_tb, self.q_tb):
-            delta = delta_w / self.C[self.c_st][0]
+        # update estimate of average policy pi dash
+        self.C[s] += 1
+        self.pi_d_table[s] += (self.pi_table[s]-self.pi_d_table[s])/self.C[s][0]
+
+
+        # update pi and constrain it to legal probability distribution
+        if self.q_mean(self.pi_table, self.q_table) > self.q_mean(self.pi_d_table, self.q_table):
+            delta = delta_w / self.C[s][0]
         else:
-            delta = delta_l / self.C[self.c_st][0]
+            delta = delta_l / self.C[s][0]
 
-        if self.prev_action == np.nanargmax(np.array(self.q_tb[self.c_st])):
-            self.pi_tb[self.c_st][a] += delta
+
+        if self.prev_action == self.actions[self.q_table[s].argmax()]: # 怪しい
+            self.pi_table[s][a] += delta
         else:
-            self.pi_tb[self.c_st][a] -= delta / (len(self.action_set)-1)
-
-        self.pi_tb[self.c_st] /= np.nansum(np.array(self.pi_tb[self.c_st]))
-
-        #update current state
-        self.c_st = state
+            self.pi_table[s][a] -= delta / (len(self.actions)-1)
 
 
-    def act(self, state, random=True):
-        action = np.random.choice(np.arange(len(self.action_set)), p=np.array(self.pi_tb[state]))
+        self.pi_table[s] /= self.pi_table[s].sum()
+
+        # update current state
+        self.current_state = state
+
+
+
+    def act(self, state:str, random=True) -> str:
+        action = np.random.choice(self.actions, p=np.array(self.pi_table[state]))
 
         self.prev_action = action
-        self.count_tb[state][self.action_set[action]] += 1
-        return action #0 もしくは 1を返す, 0->coop, 1->comp
+        self.count_table[state][action] += 1
+
+        return action

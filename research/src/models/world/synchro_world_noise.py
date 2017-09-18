@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# last update : 05/23/2017
-# description : 同時プレイの世界
+# last update : 07/06/2017
+# description : noise条件下での動作
 
 # データに記述すべきメタデータ
 # - 繰り返し回数
@@ -34,13 +34,14 @@ from agent.Q_Learning_Agent import Q_Learning_Agent
 import pandas as pd
 
 class synchro_world_signal:
-    def __init__(self, n_agent, n_round, payoff_matrix):
+    def __init__(self, n_agent, n_round, payoff_matrix, p_noise):
         self.n_agent = n_agent
         self.n_round = n_round
         self.game_name, self.action_name, self.payoff_matrix = payoff_matrix
         self.create_network(n_agent)
         self.agent_action_table = pd.DataFrame(np.zeros((n_round, n_agent)))
         self.agent_payoff_table = pd.DataFrame(np.zeros((n_round, n_agent)))
+        self.p_noise = p_noise
 
     def report_meta_info(self, f_name, other=None):
         with open(f_name, "w") as f:
@@ -58,10 +59,9 @@ class synchro_world_signal:
         @description ネットワークモデルの定義
         @param n_agent エージェントの数
         """
-        #self.G_alg, self.G = "ba", nx.barabasi_albert_graph(n_agent, 70) #define network
-        #self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
+        # self.G_alg, self.G = "ba", nx.barabasi_albert_graph(n_agent, 30) #define network
+        self.G_alg, self.G = "complete", nx.complete_graph(n_agent)
         #self.G_alg, self.G = "wattz", nx.watts_strogatz_graph(n_agent, 30, p=0.5) #define network
-        self.G_alg, self.G = "random", nx.random_regular_graph(42, n_agent)
         self.n_edges = 0
         self.rl_alg = "Q_Learning_Agent" #rl alg name
 
@@ -113,8 +113,17 @@ class synchro_world_signal:
                 n_signal = 0
                 for ne in neighbors:
                     ne_action = self.G.node[ne]["action"]
+
+                    #noisyなsignal
+                    val_noise = np.random.rand()
+                    noise = (self.p_noise < val_noise) # Trueだったらnoise環境
                     if ne_action==0 or ne_action==2:
-                        n_signal += 1
+                        if not noise: # 正しく伝えわる
+                            n_signal += 1
+                    else:
+                        if noise: # 間違って伝わる
+                            n_signal += 1
+
                     n_reward += self.payoff_matrix[n_action][ne_action][0]
 
                 self.G.node[n]["reward"] = n_reward
@@ -130,16 +139,14 @@ class synchro_world_signal:
     def save_coop_per(self, f_name):
         self.agent_action_table.apply(lambda x:len(x[x==0])/len(x), axis=1).to_csv(f_name, header=False, index=False)
 
-# all_ = ["prisoners_dilemma_sig", "matching_pennies_sig", "coodination_game_sig", "stag_hunt_sig", "chicken_game_sig", "tricky_game_sig"]
-
 all_ = ["prisoners_dilemma_sig"]
 
 if __name__ == "__main__":
-    RESULT_DIR = "../../../results/Q_reduction/signal/0704game/random42/"
+    RESULT_DIR = "../../../results/Q_reduction/noise/0.5/"
     for n in all_:
         print(n)
-        RESULT_NAME = RESULT_DIR+n+'_q_reduc_signal_ra42'
-        W = synchro_world_signal(100, 10000, eval(n)()) #妥当なエージェント数はいくつか
+        RESULT_NAME = RESULT_DIR+n+'_q_reduc_signal_complete_n0.5'
+        W = synchro_world_signal(100, 10000, eval(n)(), 0.5) #妥当なエージェント数はいくつか
         W.run()
         W.save_average_reward(RESULT_NAME+"_ave.csv")
         W.save_coop_per(RESULT_NAME+"_per.csv")

@@ -1,0 +1,4 @@
+Lehrer, Wagner, "Rational Consensus in Science and Society",  D. Reidel Publishing Company, Dordrecht, 1981.
+
+重み付きソーシャルグラフ上での意見形成のモデル
+各エージェントは複数選択肢への選好を持っており，他エージェントとのコミュニケーションを通じてその選好を変化させる．選好の変化は隣接エージェントの意見とそのエージェントへの信頼度によって決まる．
