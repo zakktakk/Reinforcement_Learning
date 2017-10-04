@@ -1,0 +1,6 @@
+繰り返し回数 : 10000
+エージェント数 : 100
+エッジ数 : 4200
+ネットワーク種類 : barabasi_albert_graph
+利得行列 : tricky_game
+強化学習アルゴリズム : Q_Learning_Agent

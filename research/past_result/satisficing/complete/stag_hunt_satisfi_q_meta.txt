@@ -1,0 +1,6 @@
+繰り返し回数 : 10000
+エージェント数 : 100
+エッジ数 : 9900
+ネットワーク種類 : complete_graph
+利得行列 : stag_hunt
+強化学習アルゴリズム : Satisficing_Agent

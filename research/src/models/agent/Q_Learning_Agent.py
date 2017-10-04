@@ -22,7 +22,7 @@ class Q_Learning_Agent(Agent):
     def __init__(self, id_: int, neighbors: np.ndarray, states: np.ndarray, actions: np.ndarray, gamma: float=0.95) -> None:
         super().__init__(id_, neighbors, states, actions)
 
-        self.gamma = gamma
+        self.__gamma = gamma
         self.n_each_action = pd.Series([0]*len(actions), index=actions)
         self.n_round = 0
 
@@ -45,7 +45,7 @@ class Q_Learning_Agent(Agent):
         self.reward_lst.append(reward)
 
         # update q function
-        self.q_table[s][a] += alpha * (reward+self.gamma*self.q_table[state].max()-self.q_table[s][a])
+        self.q_table[s][a] += alpha * (reward+self.__gamma*self.q_table[state].max()-self.q_table[s][a])
 
         self.current_state = state
 
@@ -58,7 +58,7 @@ class Q_Learning_Agent(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.actions)
+            action = np.random.choice(self.__actions)
         else:
             q_row = self.q_table[state]
             if reduction:
@@ -66,7 +66,7 @@ class Q_Learning_Agent(Agent):
             else:
                 action_id = eps_greedy(q_row, eps=0.1) #eps 固定
 
-            action = self.actions[action_id]
+            action = self.__actions[action_id]
 
         self.prev_action = action
         self.n_each_action[action] += 1

@@ -19,7 +19,6 @@ class Satisficing_Agent(Agent):
     def __init__(self, id_: int, neighbors: np.ndarray, states: np.ndarray, actions: np.ndarray, R_max:float, lmd:float=0.95):
         self.lmd =lmd
         super().__init__(id_, neighbors, states, actions)
-        self.R_max = R_max
         self.asp = random.uniform(R_max, 2*R_max)
 
 
@@ -40,7 +39,7 @@ class Satisficing_Agent(Agent):
         """
         if random or self.reward_lst[-1] < self.asp:
             # ランダムか閾値を超えない
-            action = np.random.choice(self.actions)
+            action = np.random.choice(self.__actions)
         else:
             action = self.prev_action
 

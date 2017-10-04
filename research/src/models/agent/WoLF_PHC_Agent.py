@@ -17,8 +17,8 @@ class WoLF_PHC_Agent(Agent):
         super().__init__(id_, neighbors, states, actions)
         len_s = len(states)
         len_a = len(actions)
-        self.gamma = gamma
-        #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
+        self.__gamma = gamma
+        #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする -> これ実装する？
         self.q_table = pd.DataFrame(np.zeros((len_a, len_s)),index=actions, columns=states, dtype=np.float64)
 
         self.count_table = self.q_table.copy()
@@ -30,11 +30,22 @@ class WoLF_PHC_Agent(Agent):
         self.C = pd.DataFrame(np.zeros(len_s), columns=self.states)
 
 
-    def q_mean(self, pi_table, q_table):
+    def __q_mean(self, pi_table: pd.DataFrame, q_table: pd.DataFrame) -> float:
+        """
+        :param pi_table: pandas dataframe, pi value table
+        :param q_table: pandas dataframe, q value table
+        :return: pi * q summuation value
+        """
         return np.sum(np.array(pi_table[self.current_state])*np.array(q_table[self.current_state]))
 
 
     def update(self, state: str, reward: float) -> None:
+        """
+
+        :param state: string, state
+        :param reward: float, reward value
+        :return: None
+        """
         a = self.prev_action
         s = self.current_state
 
@@ -44,7 +55,7 @@ class WoLF_PHC_Agent(Agent):
         self.reward_lst.append(reward)
 
         # update q table
-        self.q_table[s][a] += alpha/(self.C[s]+1)*(reward+self.gamma*self.q_table[state].max()-self.q_table[s][a])
+        self.q_table[s][a] += alpha/(self.C[s]+1)*(reward+self.__gamma*self.q_table[state].max()-self.q_table[s][a])
 
 
         # update estimate of average policy pi dash
@@ -53,16 +64,16 @@ class WoLF_PHC_Agent(Agent):
 
 
         # update pi and constrain it to legal probability distribution
-        if self.q_mean(self.pi_table, self.q_table) > self.q_mean(self.pi_d_table, self.q_table):
+        if self.__q_mean(self.pi_table, self.q_table) > self.__q_mean(self.pi_d_table, self.q_table):
             delta = delta_w / self.C[s][0]
         else:
             delta = delta_l / self.C[s][0]
 
 
-        if self.prev_action == self.actions[self.q_table[s].argmax()]: # 怪しい
+        if self.prev_action == self.__actions[self.q_table[s].argmax()]: # 怪しい
             self.pi_table[s][a] += delta
         else:
-            self.pi_table[s][a] -= delta / (len(self.actions)-1)
+            self.pi_table[s][a] -= delta / (len(self.__actions)-1)
 
 
         self.pi_table[s] /= self.pi_table[s].sum()
@@ -73,7 +84,12 @@ class WoLF_PHC_Agent(Agent):
 
 
     def act(self, state:str, random=True) -> str:
-        action = np.random.choice(self.actions, p=np.array(self.pi_table[state]))
+        """
+        :param state: string, state
+        :param random: boolean, random action or not
+        :return: str, selected action
+        """
+        action = np.random.choice(self.__actions, p=np.array(self.pi_table[state]))
 
         self.prev_action = action
         self.count_table[state][action] += 1

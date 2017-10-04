@@ -6,10 +6,9 @@
 # payoff matrixはnormarizeされる必要ある？
 # Q learningの収束性の必要条件に含まれるっぽいことが"Lenient frequency adjusted Q-Learningに書いてある"
 
-# Reference
-#   - J.W.Crandall, M.A.Goodrich, "Learning to compete, compromise, and cooperate in repeated general-sum games", In ICML, 2005
 
 import numpy as np
+import pandas as pd
 
 __all__ = ["rock_paper_scissors", "shapleys_game", "matching_pennies", "coodination_game", "stag_hunt",
            "prisoners_dilemma", "chicken_game", "tricky_game", "matching_pennies_sig", "coodination_game_sig",
@@ -17,86 +16,88 @@ __all__ = ["rock_paper_scissors", "shapleys_game", "matching_pennies", "coodinat
 
 
 def rock_paper_scissors():
-    return "rock_paper_scissors", {'r': [(0, 0), (-1, 1), (1, -1)],
-                                   'p': [(1, -1), (0, 0), (-1, 1)],
-                                   's': [(-1, 1), (1, -1), (0, 0)]}
+    return "rock_paper_scissors", pd.DataFrame(np.array([[0, -1, 1],
+                                                         [1, 0, -1],
+                                                         [-1, 1, 0]]),
+                                               index=list('rps'), columns=list('rps'))
 
 
 def shapleys_game():
-    return "shapleys_game", {'a': [(0, 0), (0, 1), (1, 0)],
-                             'b': [(1, 0), (0, 0), (0, 1)],
-                             'c': [(0, 1), (1, 0), (0, 0)]}
+    return "shapleys_game", pd.DataFrame(np.array([[0, 0, 1],
+                                                  [1, 0, 0],
+                                                  [0, 1, 0]]),
+                                         index=list('abc'), columns=list('abc'))
 
 
 def matching_pennies():
-    return "matching_pennies", {'a': [(1, -1), (-1, 1)],
-                                'b': [(-1, 1), (1, -1)]}
+    return "matching_pennies", pd.DataFrame(np.array([[1, -1],[-1, 1]]), index=list('ab'), columns=list('ab'))
 
 
 def coodination_game():
-    return "coodination_game", {'a': [(2, 2), (0, 0)],
-                                'b': [(0, 0), (4, 4)]}
+    return "coodination_game", pd.DataFrame(np.array([[2, 0], [0, 4]]), index=list('ab'), columns=list('ab'))
 
 
 def stag_hunt():
-    return "stag_hunt", {'a': [(2, 2), (3, -5)],
-                         'b': [(-5, 3), (4, 4)]}
+    return "stag_hunt", pd.DataFrame(np.array([[2, 3], [-5, 4]]), index=list('ab'), columns=list('ab'))
 
 
 def prisoners_dilemma():
-    return "prisoners_dilemma", {'c': [(3, 3), (0, 5)],
-                                 'd': [(5, 0), (1, 1)]}
+    return "prisoners_dilemma", pd.DataFrame(np.array([[3, 0],[5, 1]]),index=list('cd'), columns=list('cd'))
 
 
 def chicken_game():
-    return "chicken_game", {'c': [(3, 3), (2, 3.5)],
-                            'd': [(3.5, 2), (1, 1)]}
+    return "chicken_game", pd.DataFrame(np.array([[3, 2], [3.5, 1]]), index=list('cd'), columns=list('cd'))
 
 
 def tricky_game():
-    return "tricky_game", {'a': [(0, 3), (3, 2)],
-                           'b': [(1, 0), (2, 1)]}
+    return "tricky_game", pd.DataFrame(np.array([[0, 3], [1, 2]]), index=list('ab'), columns=list('ab'))
 
 
 ###########payoff matrix for signaling###########
 # 無コストのシグナル
 def prisoners_dilemma_sig():
-    return "prisoners_dilemma_sig", {'cs': [(3, 3), (3, 3), (0, 5), (0, 5)],
-                                     'c': [(3, 3), (3, 3), (0, 5), (0, 5)],
-                                     'ds': [(5, 0), (5, 0), (1, 1), (1, 1)],
-                                     'd': [(5, 0), (5, 0), (1, 1), (1, 1)]}
+    return "prisoners_dilemma_sig", pd.DataFrame(np.array([[3, 3, 0, 0],
+                                                           [3, 3, 0, 0],
+                                                           [5, 5, 1, 1],
+                                                           [5, 5, 1, 1]]),
+                                                index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd'])
 
 
 def matching_pennies_sig():
-    return "matching_pennies_sig", {'as': [(1, -1), (1, -1), (-1, 1), (-1, 1)],
-                                    'a': [(1, -1), (1, -1), (-1, 1), (-1, 1)],
-                                    'bs': [(-1, 1), (-1, 1), (1, -1), (1, -1)],
-                                    'b': [(-1, 1), (-1, 1), (1, -1), (1, -1)]}
+    return "matching_pennies_sig", pd.DataFrame(np.array([[1, 1, -1, -1],
+                                                          [1, 1, -1, -1],
+                                                          [-1, -1, 1, 1],
+                                                          [-1, -1, 1, 1]]),
+                                                index=['as', 'a', 'bs', 'b'], columns=['as', 'a', 'bs', 'b'])
 
 
 def coodination_game_sig():
-    return "coodination_game_sig", {'as': [(2, 2), (2, 2), (0, 0), (0, 0)],
-                                    'a': [(2, 2), (2, 2), (0, 0), (0, 0)],
-                                    'bs': [(0, 0), (0, 0), (4, 4), (4, 4)],
-                                    'b': [(0, 0), (0, 0), (4, 4), (4, 4)]}
+    return "coodination_game_sig", pd.DataFrame(np.array([[2, 2, 0, 0],
+                                                          [2, 2, 0, 0],
+                                                          [0, 0, 4, 4],
+                                                          [0, 0, 4, 4]]),
+                                                index = ['as', 'a', 'bs', 'b'], columns = ['as', 'a', 'bs', 'b'])
 
 
 def stag_hunt_sig():
-    return "stag_hunt_sig", {'as': [(2, 2), (2, 2), (3, -5), (3, -5)],
-                             'a': [(2, 2), (2, 2), (3, -5), (3, -5)],
-                             'bs': [(-5, 3), (-5, 3), (4, 4), (4, 4)],
-                             'b': [(-5, 3), (-5, 3), (4, 4), (4, 4)]}
+    return "stag_hunt_sig", pd.DataFrame(np.array([[2, 2, 3, 3],
+                                                   [2, 2, 3, 3],
+                                                   [-5, -5, 4, 4],
+                                                   [-5, -5, 4, 4]]),
+                                         index=['as', 'a', 'bs', 'b'], columns=['as', 'a', 'bs', 'b'])
 
 
 def chicken_game_sig():
-    return "chicken_game_sig", {'cs': [(3, 3), (3, 3), (2, 3.5), (2, 3.5)],
-                                'c': [(3, 3), (3, 3), (2, 3.5), (2, 3.5)],
-                                'ds': [(3.5, 2), (3.5, 2), (1, 1), (1, 1)],
-                                'd': [(3.5, 2), (3.5, 2), (1, 1), (1, 1)]}
+    return "chicken_game_sig", pd.DataFrame(np.array([[3, 3, 2, 2],
+                                                      [3, 3, 2, 2],
+                                                      [3.5, 3.5, 1, 1],
+                                                      [3.5, 3.5, 1, 1]]),
+                                            index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd'])
 
 
 def tricky_game_sig():
-    return "tricky_game_sig", {'as': [(0, 3), (0, 3), (3, 2), (3, 2)],
-                               'a': [(0, 3), (0, 3), (3, 2), (3, 2)],
-                               'bs': [(1, 0), (1, 0), (2, 1), (2, 1)],
-                               'b': [(1, 0), (1, 0), (2, 1), (2, 1)]}
+    return "tricky_game_sig", pd.DataFrame(np.array([[0, 0, 3, 3],
+                                                     [0, 0, 3, 3],
+                                                     [1, 1, 2, 2],
+                                                     [1, 1, 2, 2]]),
+                                           index=['as', 'a', 'bs', 'b'], columns=['as', 'a', 'bs', 'b'])

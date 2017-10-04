@@ -34,10 +34,10 @@ class Agent(metaclass=ABCMeta):
             現在の状態のstring
         """
 
-        self.id_ = id_
+        self.__id_ = id
 
-        self.neighbors = neighbors
-        self.actions = actions
+        self.__neighbors = neighbors
+        self.__actions = actions
         self.states = states
         self.rewards = []
 

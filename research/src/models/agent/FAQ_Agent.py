@@ -22,7 +22,7 @@ class LFAQ_Agent(Agent):
         self.gamma = gamma
         self.n_each_action = pd.Series([0]*len(actions), index=actions)
         self.n_round = 0
-        self.beta = beta
+        self.__beta = beta
 
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
         self.q_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states)
@@ -34,8 +34,8 @@ class LFAQ_Agent(Agent):
         :return:
         """
         self.reward_lst = []
-        self.q_table = pd.DataFrame(np.zeros((len(self.actions), len(self.states))),
-                                    index=self.actions, columns=self.states, dtype=np.float64)
+        self.q_table = pd.DataFrame(np.zeros((len(self.__actions), len(self.states))),
+                                    index=self.__actions, columns=self.states, dtype=np.float64)
 
 
     def update(self, state: str, reward: float) -> None:
@@ -45,8 +45,8 @@ class LFAQ_Agent(Agent):
         alpha = 1/(10+0.01*self.n_each_action[self.prev_action]) #先行研究に準じたalpha
         self.reward_lst.append(reward)
 
-        xi = softmax_boltzman(self.q_table[state])[self.actions.index(a)] #action選択される確率
-        fa_val = np.min(1, self.beta/xi)
+        xi = softmax_boltzman(self.q_table[state])[self.__actions.index(a)] #action選択される確率
+        fa_val = np.min(1, self.__beta/xi)
 
         #q tableの更新
         self.q_table[s][a] += fa_val*alpha*(reward+self.gamma*self.q_table[state].max()-self.q_table[s][a])
@@ -63,7 +63,7 @@ class LFAQ_Agent(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.actions)
+            action = np.random.choice(self.__actions)
         else:
             q_row = self.q_table[state]
             if reduction:
@@ -71,7 +71,7 @@ class LFAQ_Agent(Agent):
             else:
                 action_id = eps_greedy(q_row, eps=0.1) #eps 固定
 
-            action = self.actions[action_id]
+            action = self.__actions[action_id]
 
         self.prev_action = action
         self.n_each_action[action] += 1

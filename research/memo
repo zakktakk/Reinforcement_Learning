@@ -73,4 +73,9 @@
 ** Games on Networks(https://web.stanford.edu/~jacksonm/GamesNetworks.pdf)
 	概要：
 		
+
+9/24
 SARSA, ...を追加
+やるべき実験
+・populationの違いによる変化(既存)
+・報酬の上げ方(全体なのか自分の隣接なのか)

@@ -1,0 +1,6 @@
+繰り返し回数 : 10000
+エージェント数 : 100
+エッジ数 : 3000
+ネットワーク種類 : wattz_strogatz_graph
+利得行列 : stag_hunt
+強化学習アルゴリズム : Q_Learning_Agent
