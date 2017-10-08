@@ -2,561 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d52a12e-0045-4bd1-b451-58e84556f409" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/research/src/analysis/plot.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/analysis/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/analysis/graph.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/config/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/docs/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/docs/TODOlist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/docs/tips.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/docs/word.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ba/chicken_game_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ba/coodination_game_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ba/matching_pennies_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ba/prisoners_dilemma_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ba/stag_hunt_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ba/tricky_game_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/complete/chicken_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/complete/coodination_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/complete/pri_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/complete/stag_hunt_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/complete/tricky_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/noise/0.1/prisoners_dilemma_sig_q_reduc_signal_complete_n0.1_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/noise/0.2/prisoners_dilemma_sig_q_reduc_signal_complete_n0.2_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/noise/0.3/prisoners_dilemma_sig_q_reduc_signal_complete_n0.3_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/noise/0.4/prisoners_dilemma_sig_q_reduc_signal_complete_n0.4_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/noise/0.5/prisoners_dilemma_sig_q_reduc_signal_complete_n0.5_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.1_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.3_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.7_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.9_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ba/chicken_game_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ba/coodination_game_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ba/matching_pennies_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ba/prisoners_dilemma_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ba/stag_hunt_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ba/tricky_game_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/complete/chicken_game_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/complete/coodination_game_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/complete/matching_pennies_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/complete/prisoners_dilemma_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/complete/stag_hunt_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/complete/tricky_game_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ws/chicken_game_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ws/coodination_game_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ws/matching_pennies_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ws/prisoners_dilemma_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ws/stag_hunt_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/preaction/ws/tricky_game_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0615_onlypr/_q_reduc_signal_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba30/chicken_game_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba30/coodination_game_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba30/matching_pennies_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba30/prisoners_dilemma_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba30/stag_hunt_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba30/tricky_game_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ba70/prisoners_dilemma_sig_q_reduc_signal_ba70_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/complete/chicken_game_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/complete/coodination_game_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/complete/matching_pennies_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/complete/prisoners_dilemma_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/complete/stag_hunt_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/complete/tricky_game_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/random42/prisoners_dilemma_sig_q_reduc_signal_ra42_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ws/chicken_game_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ws/coodination_game_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ws/matching_pennies_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ws/prisoners_dilemma_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ws/stag_hunt_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0704game/ws/tricky_game_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0706edgenum/10/prisoners_dilemma_sig_q_reduc_signal_random_10_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0706edgenum/20/prisoners_dilemma_sig_q_reduc_signal_random_20_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0706edgenum/30/prisoners_dilemma_sig_q_reduc_signal_random_30_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0706edgenum/40/prisoners_dilemma_sig_q_reduc_signal_random_40_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/signal/0706edgenum/50/prisoners_dilemma_sig_q_reduc_signal_random_50_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ws/chicken_game_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ws/coodination_game_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ws/matching_pennies_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ws/prisoners_dilemma_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ws/stag_hunt_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_reduction/ws/tricky_game_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ba/chicken_game_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ba/coodination_game_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ba/matching_pennies_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ba/prisoners_dilemma_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ba/stag_hunt_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ba/tricky_game_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/complete/chicken_game_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/complete/coodination_game_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/complete/matching_pennies_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/complete/prisoners_dilemma_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/complete/stag_hunt_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/complete/tricky_game_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ws/chicken_game_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ws/coodination_game_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ws/matching_pennies_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ws/prisoners_dilemma_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ws/stag_hunt_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/Q_stable/ws/tricky_game_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/satisficing/complete/chicken_game_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/satisficing/complete/coodination_game_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/satisficing/complete/matching_pennies_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/satisficing/complete/prisoners_dilemma_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/satisficing/complete/stag_hunt_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/satisficing/complete/tricky_game_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/wolf-PHC/complete/chicken_game_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/wolf-PHC/complete/coodination_game_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/wolf-PHC/complete/matching_pennies_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/wolf-PHC/complete/prisoners_dilemma_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/wolf-PHC/complete/stag_hunt_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/past_result/wolf-PHC/complete/tricky_game_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/chicken_game_q_reduc_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/chicken_game_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/chicken_game_q_reduc_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/chicken_game_q_reduc_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/coodination_game_q_reduc_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/coodination_game_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/coodination_game_q_reduc_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/coodination_game_q_reduc_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/matching_pennies_q_reduc_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/matching_pennies_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/matching_pennies_q_reduc_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/matching_pennies_q_reduc_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/prisoners_dilemma_q_reduc_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/prisoners_dilemma_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/prisoners_dilemma_q_reduc_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/prisoners_dilemma_q_reduc_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/stag_hunt_q_reduc_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/stag_hunt_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/stag_hunt_q_reduc_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/stag_hunt_q_reduc_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/tricky_game_q_reduc_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/tricky_game_q_reduc_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/tricky_game_q_reduc_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba/tricky_game_q_reduc_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba70matching_pennies_q_reduc_ba70_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ba70matching_pennies_q_reduc_ba70_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/chicken_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/chicken_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/chicken_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/chicken_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/coodination_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/coodination_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/coodination_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/coodination_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/matching_pennies_q__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/matching_pennies_q__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/matching_pennies_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/pri_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/pri_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/pri_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/pri_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/stag_hunt_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/stag_hunt_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/stag_hunt_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/stag_hunt_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/tricky_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/tricky_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/tricky_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/complete/tricky_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.1/prisoners_dilemma_sig_q_reduc_signal_complete_n0.1_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.1/prisoners_dilemma_sig_q_reduc_signal_complete_n0.1_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.1/prisoners_dilemma_sig_q_reduc_signal_complete_n0.1_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.1/prisoners_dilemma_sig_q_reduc_signal_complete_n0.1_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.2/prisoners_dilemma_sig_q_reduc_signal_complete_n0.2_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.2/prisoners_dilemma_sig_q_reduc_signal_complete_n0.2_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.2/prisoners_dilemma_sig_q_reduc_signal_complete_n0.2_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.2/prisoners_dilemma_sig_q_reduc_signal_complete_n0.2_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.3/prisoners_dilemma_sig_q_reduc_signal_complete_n0.3_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.3/prisoners_dilemma_sig_q_reduc_signal_complete_n0.3_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.3/prisoners_dilemma_sig_q_reduc_signal_complete_n0.3_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.3/prisoners_dilemma_sig_q_reduc_signal_complete_n0.3_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.4/prisoners_dilemma_sig_q_reduc_signal_complete_n0.4_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.4/prisoners_dilemma_sig_q_reduc_signal_complete_n0.4_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.4/prisoners_dilemma_sig_q_reduc_signal_complete_n0.4_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.4/prisoners_dilemma_sig_q_reduc_signal_complete_n0.4_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.5/prisoners_dilemma_sig_q_reduc_signal_complete_n0.5_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.5/prisoners_dilemma_sig_q_reduc_signal_complete_n0.5_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.5/prisoners_dilemma_sig_q_reduc_signal_complete_n0.5_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/noise/0.5/prisoners_dilemma_sig_q_reduc_signal_complete_n0.5_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.1_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.1_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.1_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.1_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.3_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.3_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.3_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.3_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.7_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.7_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.7_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.7_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.9_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.9_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.9_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/p_shift/prisoners_dilemma_q_red_ini0.9_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/chicken_game_q_reduc_preaction_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/chicken_game_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/chicken_game_q_reduc_preaction_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/chicken_game_q_reduc_preaction_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/coodination_game_q_reduc_preaction_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/coodination_game_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/coodination_game_q_reduc_preaction_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/coodination_game_q_reduc_preaction_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/matching_pennies_q_reduc_preaction_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/matching_pennies_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/matching_pennies_q_reduc_preaction_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/matching_pennies_q_reduc_preaction_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/prisoners_dilemma_q_reduc_preaction_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/prisoners_dilemma_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/prisoners_dilemma_q_reduc_preaction_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/prisoners_dilemma_q_reduc_preaction_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/stag_hunt_q_reduc_preaction_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/stag_hunt_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/stag_hunt_q_reduc_preaction_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/stag_hunt_q_reduc_preaction_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/tricky_game_q_reduc_preaction_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/tricky_game_q_reduc_preaction_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/tricky_game_q_reduc_preaction_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ba/tricky_game_q_reduc_preaction_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/chicken_game_q_reduc_preaction_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/chicken_game_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/chicken_game_q_reduc_preaction_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/chicken_game_q_reduc_preaction_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/coodination_game_q_reduc_preaction_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/coodination_game_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/coodination_game_q_reduc_preaction_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/coodination_game_q_reduc_preaction_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/matching_pennies_q_reduc_preaction_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/matching_pennies_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/matching_pennies_q_reduc_preaction_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/matching_pennies_q_reduc_preaction_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/prisoners_dilemma_q_reduc_preaction_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/prisoners_dilemma_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/prisoners_dilemma_q_reduc_preaction_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/prisoners_dilemma_q_reduc_preaction_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/stag_hunt_q_reduc_preaction_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/stag_hunt_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/stag_hunt_q_reduc_preaction_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/stag_hunt_q_reduc_preaction_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/tricky_game_q_reduc_preaction_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/tricky_game_q_reduc_preaction_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/tricky_game_q_reduc_preaction_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/complete/tricky_game_q_reduc_preaction_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/chicken_game_q_reduc_preaction_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/chicken_game_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/chicken_game_q_reduc_preaction_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/chicken_game_q_reduc_preaction_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/coodination_game_q_reduc_preaction_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/coodination_game_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/coodination_game_q_reduc_preaction_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/coodination_game_q_reduc_preaction_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/matching_pennies_q_reduc_preaction_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/matching_pennies_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/matching_pennies_q_reduc_preaction_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/matching_pennies_q_reduc_preaction_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/prisoners_dilemma_q_reduc_preaction_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/prisoners_dilemma_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/prisoners_dilemma_q_reduc_preaction_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/prisoners_dilemma_q_reduc_preaction_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/stag_hunt_q_reduc_preaction_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/stag_hunt_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/stag_hunt_q_reduc_preaction_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/stag_hunt_q_reduc_preaction_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/tricky_game_q_reduc_preaction_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/tricky_game_q_reduc_preaction_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/tricky_game_q_reduc_preaction_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/preaction/ws/tricky_game_q_reduc_preaction_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0615_onlypr/_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/chicken_game_sig_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/chicken_game_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/chicken_game_sig_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/chicken_game_sig_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/coodination_game_sig_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/coodination_game_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/coodination_game_sig_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/coodination_game_sig_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/matching_pennies_sig_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/matching_pennies_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/matching_pennies_sig_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/matching_pennies_sig_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/prisoners_dilemma_sig_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/prisoners_dilemma_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/prisoners_dilemma_sig_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/prisoners_dilemma_sig_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/stag_hunt_sig_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/stag_hunt_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/stag_hunt_sig_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/stag_hunt_sig_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/tricky_game_sig_q_reduc_signal_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/tricky_game_sig_q_reduc_signal_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/tricky_game_sig_q_reduc_signal_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba30/tricky_game_sig_q_reduc_signal_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba70/prisoners_dilemma_sig_q_reduc_signal_ba70_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba70/prisoners_dilemma_sig_q_reduc_signal_ba70_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba70/prisoners_dilemma_sig_q_reduc_signal_ba70_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ba70/prisoners_dilemma_sig_q_reduc_signal_ba70_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/chicken_game_sig_q_reduc_signal_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/chicken_game_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/chicken_game_sig_q_reduc_signal_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/chicken_game_sig_q_reduc_signal_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/coodination_game_sig_q_reduc_signal_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/coodination_game_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/coodination_game_sig_q_reduc_signal_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/coodination_game_sig_q_reduc_signal_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/matching_pennies_sig_q_reduc_signal_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/matching_pennies_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/matching_pennies_sig_q_reduc_signal_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/matching_pennies_sig_q_reduc_signal_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/prisoners_dilemma_sig_q_reduc_signal_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/prisoners_dilemma_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/prisoners_dilemma_sig_q_reduc_signal_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/prisoners_dilemma_sig_q_reduc_signal_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/stag_hunt_sig_q_reduc_signal_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/stag_hunt_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/stag_hunt_sig_q_reduc_signal_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/stag_hunt_sig_q_reduc_signal_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/tricky_game_sig_q_reduc_signal_complete_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/tricky_game_sig_q_reduc_signal_complete_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/tricky_game_sig_q_reduc_signal_complete_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/complete/tricky_game_sig_q_reduc_signal_complete_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/random42/prisoners_dilemma_sig_q_reduc_signal_ra42_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/random42/prisoners_dilemma_sig_q_reduc_signal_ra42_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/random42/prisoners_dilemma_sig_q_reduc_signal_ra42_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/random42/prisoners_dilemma_sig_q_reduc_signal_ra42_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/chicken_game_sig_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/chicken_game_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/chicken_game_sig_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/chicken_game_sig_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/coodination_game_sig_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/coodination_game_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/coodination_game_sig_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/coodination_game_sig_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/matching_pennies_sig_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/matching_pennies_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/matching_pennies_sig_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/matching_pennies_sig_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/prisoners_dilemma_sig_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/prisoners_dilemma_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/prisoners_dilemma_sig_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/prisoners_dilemma_sig_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/stag_hunt_sig_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/stag_hunt_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/stag_hunt_sig_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/stag_hunt_sig_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/tricky_game_sig_q_reduc_signal_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/tricky_game_sig_q_reduc_signal_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/tricky_game_sig_q_reduc_signal_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0704game/ws/tricky_game_sig_q_reduc_signal_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/10/prisoners_dilemma_sig_q_reduc_signal_random_10_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/10/prisoners_dilemma_sig_q_reduc_signal_random_10_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/10/prisoners_dilemma_sig_q_reduc_signal_random_10_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/10/prisoners_dilemma_sig_q_reduc_signal_random_10_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/20/prisoners_dilemma_sig_q_reduc_signal_random_20_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/20/prisoners_dilemma_sig_q_reduc_signal_random_20_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/20/prisoners_dilemma_sig_q_reduc_signal_random_20_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/20/prisoners_dilemma_sig_q_reduc_signal_random_20_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/30/prisoners_dilemma_sig_q_reduc_signal_random_30_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/30/prisoners_dilemma_sig_q_reduc_signal_random_30_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/30/prisoners_dilemma_sig_q_reduc_signal_random_30_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/30/prisoners_dilemma_sig_q_reduc_signal_random_30_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/40/prisoners_dilemma_sig_q_reduc_signal_random_40_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/40/prisoners_dilemma_sig_q_reduc_signal_random_40_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/40/prisoners_dilemma_sig_q_reduc_signal_random_40_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/40/prisoners_dilemma_sig_q_reduc_signal_random_40_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/50/prisoners_dilemma_sig_q_reduc_signal_random_50_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/50/prisoners_dilemma_sig_q_reduc_signal_random_50_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/50/prisoners_dilemma_sig_q_reduc_signal_random_50_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/50/prisoners_dilemma_sig_q_reduc_signal_random_50_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/signal/0706edgenum/descrption" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/chicken_game_q_reduc_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/chicken_game_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/chicken_game_q_reduc_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/chicken_game_q_reduc_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/coodination_game_q_reduc_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/coodination_game_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/coodination_game_q_reduc_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/coodination_game_q_reduc_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/matching_pennies_q_reduc_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/matching_pennies_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/matching_pennies_q_reduc_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/matching_pennies_q_reduc_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/prisoners_dilemma_q_reduc_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/prisoners_dilemma_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/prisoners_dilemma_q_reduc_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/prisoners_dilemma_q_reduc_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/stag_hunt_q_reduc_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/stag_hunt_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/stag_hunt_q_reduc_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/stag_hunt_q_reduc_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/tricky_game_q_reduc_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/tricky_game_q_reduc_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/tricky_game_q_reduc_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_reduction/ws/tricky_game_q_reduc_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/chicken_game_q_stable_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/chicken_game_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/chicken_game_q_stable_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/chicken_game_q_stable_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/coodination_game_q_stable_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/coodination_game_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/coodination_game_q_stable_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/coodination_game_q_stable_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/matching_pennies_q_stable_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/matching_pennies_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/matching_pennies_q_stable_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/matching_pennies_q_stable_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/prisoners_dilemma_q_stable_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/prisoners_dilemma_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/prisoners_dilemma_q_stable_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/prisoners_dilemma_q_stable_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/stag_hunt_q_stable_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/stag_hunt_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/stag_hunt_q_stable_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/stag_hunt_q_stable_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/tricky_game_q_stable_ba_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/tricky_game_q_stable_ba_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/tricky_game_q_stable_ba_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ba/tricky_game_q_stable_ba_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/chicken_game_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/chicken_game_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/chicken_game_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/chicken_game_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/coodination_game_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/coodination_game_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/coodination_game_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/coodination_game_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/matching_pennies_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/matching_pennies_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/matching_pennies_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/matching_pennies_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/prisoners_dilemma_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/prisoners_dilemma_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/prisoners_dilemma_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/prisoners_dilemma_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/stag_hunt_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/stag_hunt_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/stag_hunt_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/stag_hunt_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/tricky_game_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/tricky_game_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/tricky_game_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/complete/tricky_game_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/chicken_game_q_stable_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/chicken_game_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/chicken_game_q_stable_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/chicken_game_q_stable_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/coodination_game_q_stable_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/coodination_game_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/coodination_game_q_stable_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/coodination_game_q_stable_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/matching_pennies_q_stable_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/matching_pennies_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/matching_pennies_q_stable_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/matching_pennies_q_stable_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/prisoners_dilemma_q_stable_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/prisoners_dilemma_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/prisoners_dilemma_q_stable_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/prisoners_dilemma_q_stable_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/stag_hunt_q_stable_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/stag_hunt_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/stag_hunt_q_stable_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/stag_hunt_q_stable_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/tricky_game_q_stable_ws_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/tricky_game_q_stable_ws_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/tricky_game_q_stable_ws_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/Q_stable/ws/tricky_game_q_stable_ws_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/compare_algorithm.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/compare_network.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/edge_num_random_graph.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/preaction.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/chicken_game_satisfi_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/chicken_game_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/chicken_game_satisfi_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/chicken_game_satisfi_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/coodination_game_satisfi_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/coodination_game_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/coodination_game_satisfi_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/coodination_game_satisfi_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/matching_pennies_satisfi_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/matching_pennies_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/matching_pennies_satisfi_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/matching_pennies_satisfi_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/prisoners_dilemma_satisfi_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/prisoners_dilemma_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/prisoners_dilemma_satisfi_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/prisoners_dilemma_satisfi_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/stag_hunt_satisfi_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/stag_hunt_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/stag_hunt_satisfi_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/stag_hunt_satisfi_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/tricky_game_satisfi_q_ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/tricky_game_satisfi_q_fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/tricky_game_satisfi_q_meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/satisficing/complete/tricky_game_satisfi_q_per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/signaling.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/signaling_w_noise.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/chicken_game_wolf_phc__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/chicken_game_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/chicken_game_wolf_phc__meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/chicken_game_wolf_phc__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/coodination_game_wolf_phc__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/coodination_game_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/coodination_game_wolf_phc__meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/coodination_game_wolf_phc__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/matching_pennies_wolf_phc__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/matching_pennies_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/matching_pennies_wolf_phc__meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/matching_pennies_wolf_phc__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/prisoners_dilemma_wolf_phc__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/prisoners_dilemma_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/prisoners_dilemma_wolf_phc__meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/prisoners_dilemma_wolf_phc__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/stag_hunt_wolf_phc__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/stag_hunt_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/stag_hunt_wolf_phc__meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/stag_hunt_wolf_phc__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/tricky_game_wolf_phc__ave.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/tricky_game_wolf_phc__fig.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/tricky_game_wolf_phc__meta.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/results/wolf-PHC/complete/tricky_game_wolf_phc__per.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/scripts/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/Agent.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/FAQ_Agent.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/SARSA_Agent.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/Satisficing_Agent.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/WoLF_PHC_Agent.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/agent/policy.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/networks/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/nohup.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/payoff_matrix.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/synchro_world.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/synchro_world_noise.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/synchro_world_preaction.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/synchro_world_random.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/models/world/synchro_world_signal.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/analysis/plot.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/refs/MinimaxQ-Learning" afterPath="$PROJECT_DIR$/refs/MinimaxQ-Learning" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/refs/learningprisoners" afterPath="$PROJECT_DIR$/refs/learningprisoners" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/memo" afterPath="$PROJECT_DIR$/research/memo" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -569,23 +19,15 @@
     <favorites_list name="Reinforcement_Learning" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="synchro_world_signal.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_signal.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="network_utils.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/research/src/model/networks/network_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="81" column="20" lean-forward="true" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="synchro_world_preaction.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_preaction.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="443">
+              <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+              <folding>
+                <element signature="e#79#100#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -601,7 +43,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>agent_id</find>
       <find>action_set</find>
       <find>self.len_s</find>
       <find>tb</find>
@@ -630,6 +71,8 @@
       <find>n_round</find>
       <find>p_noise</find>
       <find>neighbors</find>
+      <find>states</find>
+      <find>state</find>
     </findStrings>
     <replaceStrings>
       <replace>id_</replace>
@@ -660,24 +103,34 @@
         <option value="$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py" />
         <option value="$PROJECT_DIR$/research/src/models/world/synchro_world.py" />
         <option value="$PROJECT_DIR$/research/src/analysis/plot.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/WoLF_PHC_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/FAQ_Agent.py" />
         <option value="$PROJECT_DIR$/research/src/model/agent/Q_Learning_Agent.py" />
         <option value="$PROJECT_DIR$/research/src/model/agent/SARSA_Agent.py" />
         <option value="$PROJECT_DIR$/research/src/model/agent/Satisficing_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world.py" />
-        <option value="$PROJECT_DIR$/research/memo" />
         <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_noise.py" />
         <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_signal.py" />
         <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_random.py" />
         <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_preaction.py" />
+        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/FAQ_Agent.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/SARSA_td.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/policy.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent_td.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/Agent.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/WoLF_PHC_Agent.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/SARSA_Agent_TD.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent.py" />
+        <option value="$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent_TD.py" />
+        <option value="$PROJECT_DIR$/research/src/model/networks/network_generator.py" />
+        <option value="$PROJECT_DIR$/research/memo" />
+        <option value="$PROJECT_DIR$/research/src/model/networks/network_utils.py" />
+        <option value="$PROJECT_DIR$/research/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="20" />
-    <option name="y" value="23" />
+    <option name="x" value="-1916" />
+    <option name="y" value="-705" />
     <option name="width" value="1436" />
     <option name="height" value="877" />
   </component>
@@ -737,20 +190,12 @@
               <item name="model" type="462c0819:PsiDirectoryNode" />
               <item name="networks" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Reinforcement_Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="research" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="world" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -788,9 +233,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="23" width="1436" height="877" extended-state="6" />
+    <frame x="-1916" y="-705" width="1916" height="1177" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17827298" sideWeight="0.4626087" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1336117" sideWeight="0.4626087" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -820,66 +265,122 @@
           <url>file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py</url>
           <line>13</line>
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/research/src/model/agent/Q_Learning_Agent.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/research/src/models/world/synchro_world.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/networks/network_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#79#100#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="54" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/world/payoff_matrix.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Agent.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#233#251#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/world/payoff_matrix.py">
+    <entry file="file://$PROJECT_DIR$/research/src/models/world/synchro_world.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/world/payoff_matrix.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/world/payoff_matrix.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/world/synchro_world_noise.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/policy.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/FAQ_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Satisficing_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/SARSA_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/WoLF_PHC_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/networks/network.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/world/payoff_matrix.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/models/world/synchro_world.py" />
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.5.2/lib/python3.5/site-packages/networkx/generators/classic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="64" lean-forward="false" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
+        <state relative-caret-position="2700">
+          <caret line="183" column="4" lean-forward="false" selection-start-line="183" selection-start-column="4" selection-end-line="183" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Agent.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_noise.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_random.py" />
+    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_preaction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="86" column="51" lean-forward="true" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/policy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/FAQ_Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="28" column="69" lean-forward="false" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Satisficing_Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/WoLF_PHC_Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="39" column="30" lean-forward="true" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/SARSA_Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent_TD.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <caret line="6" column="100" lean-forward="true" selection-start-line="6" selection-start-column="100" selection-end-line="6" selection-end-column="100" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/world/synchro_world_noise.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/networks/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -887,82 +388,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/policy.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/SARSA_Agent_TD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        <state relative-caret-position="195">
+          <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/FAQ_Agent.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Q_Learning_Agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="39" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+        <state relative-caret-position="330">
+          <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+          <folding>
+            <element signature="e#282#300#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+          <folding>
+            <element signature="e#233#251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_signal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="81" column="20" lean-forward="false" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Satisficing_Agent.py">
+    <entry file="file://$PROJECT_DIR$/research/memo">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        <state relative-caret-position="990">
+          <caret line="98" column="40" lean-forward="false" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/SARSA_Agent.py">
+    <entry file="file://$PROJECT_DIR$/research/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="30" column="22" lean-forward="true" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="35" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/WoLF_PHC_Agent.py">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="58" lean-forward="false" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/networks/network.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Agent.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/world/payoff_matrix.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="24" column="46" lean-forward="true" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        <state relative-caret-position="330">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/world/payoff_matrix.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-262">
-          <caret line="21" column="76" lean-forward="false" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/agent/Q_Learning_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="80" lean-forward="false" selection-start-line="21" selection-start-column="80" selection-end-line="21" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/models/world/synchro_world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="96" column="29" lean-forward="false" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="29" />
+        <state relative-caret-position="1470">
+          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -975,115 +480,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/payoff_matrix.py">
+    <entry file="file://$PROJECT_DIR$/research/src/model/networks/network_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.pyenv/versions/3.5.2/lib/python3.5/site-packages/networkx/generators/classic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2700">
-          <caret line="183" column="4" lean-forward="false" selection-start-line="183" selection-start-column="4" selection-end-line="183" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/SARSA_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Satisficing_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/WoLF_PHC_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/FAQ_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="28" lean-forward="false" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Q_Learning_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/memo">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_noise.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="85" column="28" lean-forward="true" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="136" column="11" lean-forward="true" selection-start-line="136" selection-start-column="11" selection-end-line="136" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_random.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_signal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="81" column="20" lean-forward="true" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_preaction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="443">
+          <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <folding>
+            <element signature="e#79#100#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

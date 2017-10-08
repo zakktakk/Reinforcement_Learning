@@ -1,3 +1,6 @@
 */**/*.pyc
-./research/results/*
-./existing/*
+research/results/
+/existing/
+research/past_result/
+/refs/
+/.ipynb_checkpoints/
