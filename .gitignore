@@ -1,0 +1,6 @@
+*/**/*.pyc
+research/results/
+/existing/
+research/past/
+/refs/
+/.ipynb_checkpoints/
