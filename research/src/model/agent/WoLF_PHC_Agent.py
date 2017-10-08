@@ -27,7 +27,7 @@ class WoLF_PHC_Agent(Agent):
         self.pi_table = pd.DataFrame(np.ones((len_a, len_s))/len_a,
                                      index=actions, columns=states)
 
-        self.C = pd.DataFrame(np.zeros(len_s), columns=self.states)
+        self.C = pd.DataFrame(np.zeros(len_s), columns=states)
 
 
     def __q_mean(self, pi_table: pd.DataFrame, q_table: pd.DataFrame) -> float:

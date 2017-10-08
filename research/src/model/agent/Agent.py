@@ -37,7 +37,7 @@ class Agent(metaclass=ABCMeta):
         self.__id = id_
 
         self.__actions = actions
-        self.states = states
+        self.__states = states
         self.rewards = []
 
         self.prev_action = ""

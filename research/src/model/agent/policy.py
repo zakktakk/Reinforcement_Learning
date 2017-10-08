@@ -14,9 +14,9 @@ __all__ = ["softmax_boltzman", "softmax_roulette", "eps_greedy", "greedy"]
 
 def softmax_boltzman(q_row, T=1.0):
     """
-    :description ボルツマンソフトマックス方策
-    :param q_row q_table row of object state s
-    :param T temperature parameter
+    :description ボルツマンソフトマックス方策, for off policy learning
+    :param q_row: q_table row of object state s
+    :param T: temperature parameter
     :return selected action arg
     """
     obj = np.arange(len(q_row))
@@ -24,11 +24,12 @@ def softmax_boltzman(q_row, T=1.0):
     ep = np.exp(q_row/T)
     return np.random.choice(obj, p=ep/np.sum(ep))
 
+
 def eps_greedy(q_row, eps=0.1):
     """
     :description epsilon greedy 方策
-    :param q_row q_table row of object state s
-    :param eps epsilon
+    :param q_row: q_table row of object state s
+    :param eps: epsilon
     :return selected action arg
     """
     if np.random.rand() < eps:
@@ -37,18 +38,20 @@ def eps_greedy(q_row, eps=0.1):
     else:
         return q_row.argmax() #greedyな戦略
 
+
 def greedy(q_row):
     """
     :description greedy 方策
-    :param q_row q_table row of object state s
+    :param q_row: q_table row of object state s
     :return selected action arg
     """
     return q_row.argmax()
 
+
 def softmax_roulette(q_row):
     """
     :description ルーレットソフトマックス方策
-    :param q_row q_table row of object state s
+    :param q_row: q_table row of object state s
     :return selected action arg
     """
     obj = np.arange(q_row.size)

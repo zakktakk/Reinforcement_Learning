@@ -82,7 +82,7 @@ class synchro_world(object):
                 # self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for others, change action
                 self.agent_action_table[n][i] = self.G.node[n]["action"]
 
-            # 報酬計算&Q値更新 **2回計算してるから非効率的やでー
+            # 報酬計算&Q値更新
             for n in nodes:
                 neighbors = self.G.neighbors(n)
                 n_action = self.G.node[n]["action"]
@@ -98,7 +98,7 @@ class synchro_world(object):
 
 
     def __save_meta_info(self, f_name:str, other=None) -> None:
-        """
+        """実験条件の保存
         :param f_name: 出力ファイル名
         :param other: その他の条件を出力する
         """
@@ -114,7 +114,7 @@ class synchro_world(object):
 
 
     def __save_average_reward(self, f_name: str) -> None:
-        """
+        """各ステップでの平均報酬を保存
         :param f_name: 出力ファイル名
         :return: None
         """
@@ -122,21 +122,29 @@ class synchro_world(object):
 
 
     def __save_action_table(self, f_name: str) -> None:
-        """
+        """agentの行動を保存
         :param f_name: 出力ファイル名
         :return: None
         """
         self.agent_action_table.to_csv(f_name, index=False)
 
+    def __save_graph_pickle(self, f_name: str) -> None:
+        """グラフをpickleで保存
+        :param f_name: 出力ファイル名
+        :return: None
+        """
+        nx.write_gpickle(self.G, f_name)
+
 
     def save(self, f_name: str, other=None) -> None:
-        """
+        """実験結果の保存
         :param f_name: 出力ファイル名
         :param other: その他の条件
         :return: None
         """
         self.__save_action_table(f_name+"_action_table.csv")
         self.__save_average_reward(f_name+"_ave.csv")
+        self.__save_graph_pickle(f_name+"_g.gpickle")
         self.__save_meta_info(f_name+"_meta.txt", other)
 
 

@@ -5,6 +5,7 @@
 
 # Reference
 #   - D. Bloembergen, M. Kaisers, K. Tuyls, "Lenient Frequency Adjusted Q-Learning", In Belgian/Netherlands Artificial Intelligence Conference, 2010
+# これはマルチエージェント用の手法だからこれやっても意味ない木がするぞ
 
 
 import numpy as np
@@ -26,16 +27,6 @@ class LFAQ_Agent(Agent):
 
         #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
         self.q_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states)
-
-
-    def re_init(self) -> None:
-        """
-        これはどのタイミングで使うメソッドなんだ？
-        :return:
-        """
-        self.reward_lst = []
-        self.q_table = pd.DataFrame(np.zeros((len(self.__actions), len(self.states))),
-                                    index=self.__actions, columns=self.states, dtype=np.float64)
 
 
     def update(self, state: str, reward: float) -> None:
