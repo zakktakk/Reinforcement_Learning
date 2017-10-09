@@ -20,7 +20,7 @@ class graph_generator(object):
         return nx.complete_graph(n)
 
     @staticmethod
-    def random_graph(n=100, m=30):
+    def random_graph(n=100, m=2500):
         """ランダムグラフ
         :param n: node num
         :param m: edge num
@@ -30,12 +30,20 @@ class graph_generator(object):
 
     @staticmethod
     def grid_2d_graph(m=10, n=10):
-        """グリッドグラフ
+        """2Dグリッドグラフ
         :param m: row num
         :param n: col num
         :return: grid_2d_graph instance
         """
         return nx.grid_2d_graph(m, n)
+
+    @staticmethod
+    def grid_graph(dim=[5, 5, 4]):
+        """nDグリッドグラフ
+        :param dim: dimension
+        :return grid_graph instance
+        """
+        return nx.grid_graph(dim)
 
     @staticmethod
     def watts_strogatz_graph(n=100, k=50, p=0.5):
@@ -164,7 +172,8 @@ class graph_utils(object):
         plt.ylabel("degree")
         plt.xlabel("rank")
 
-        plt.savefig(f_name)
+        plt.savefig(f_name, bbox_inches="tight")
+        plt.clf()
 
     @staticmethod
     def plot_graph(G, f_name):
@@ -174,14 +183,15 @@ class graph_utils(object):
         :return: None
         """
         plt.figure(figsize=(15,15))
-        pos = nx.spring_layout(G, k=0.3)
+        pos = nx.spring_layout(G, k=0.8)
 
         node_size = [len(G.neighbors(n))*2 for n in G.nodes()]
-        nx.draw_networkx_nodes(G, pos, node_color="w", alpha=0.6, node_size=node_size)
-        nx.draw_networkx_edges(G, pos, alpha=0.6, edge_color="b")
+        nx.draw_networkx_nodes(G, pos, node_color="royalblue", alpha=0.8, node_size=node_size)
+        nx.draw_networkx_edges(G, pos, edge_color="gray", alpha=0.5)
 
         plt.axis("off")
-        plt.savefig(f_name)
+        plt.savefig(f_name, bbox_inches="tight")
+        plt.clf()
 
     @staticmethod
     def read_graph(f_name):

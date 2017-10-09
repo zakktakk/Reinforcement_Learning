@@ -34,7 +34,7 @@ class LFAQ_Agent(Agent):
         s = self.current_state
 
         alpha = 1/(10+0.01*self.n_each_action[self.prev_action]) #先行研究に準じたalpha
-        self.reward_lst.append(reward)
+        self.rewards.append(reward)
 
         xi = softmax_boltzman(self.q_table[state])[self.__actions.index(a)] #action選択される確率
         fa_val = np.min(1, self.__beta/xi)

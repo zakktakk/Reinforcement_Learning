@@ -38,7 +38,7 @@ class SARSA_Agent(Agent):
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 
         # append current reward to reward history list
-        self.reward_lst.append(reward)
+        self.rewards.append(reward)
 
         # update q function
         self.q_table[s][a] += alpha * (reward + self.__gamma * self.q_table[state][action] - self.q_table[s][a])

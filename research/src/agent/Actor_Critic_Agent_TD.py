@@ -14,13 +14,16 @@ from .Agent import Agent
 
 
 class Actor_Critic_Agent_TD(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95) -> None:
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, beta: float=1,
+                 lmd: float=0.5, gamma: float=0.95) -> None:
         """
         :param beta: 正のステップサイズ変数
         """
         super().__init__(id_, states, actions)
 
+        self.__beta = beta
         self.__gamma = gamma
+        self.__lmd = lmd
         self.n_each_action = pd.Series([0] * len(actions), index=actions)
         self.n_round = 0
         self.T = 1 # 温度パラメータ
@@ -44,14 +47,22 @@ class Actor_Critic_Agent_TD(Agent):
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 
         # append current reward to reward history list
-        self.reward_lst.append(reward)
+        self.rewards.append(reward)
 
         # update v table
         delta = reward + self.__gamma * self.v_table[state] - self.v[s]
-        self.v_table[s] += alpha * delta
+
+        # update eligibility trace table
+        self.e_table[s][a] += 1
+
+        # update all v_table and e_table
+        for us in self.__states:
+            self.v_table[us] += alpha * delta + self.e_table[us]
+            self.e_table[us] *= self.__gamma * self.__lmd
 
         # update p table
         self.p_table[s][a] += delta * self.__beta
+        # update current state
         self.current_state = state
 
 
@@ -65,7 +76,7 @@ class Actor_Critic_Agent_TD(Agent):
         if random:
             action = np.random.choice(self.__actions)
         else:
-            q_row = self.q_table[state]
+            q_row = self.p_table[state]
             action_id = softmax_boltzman(q_row, T=self.T)
             action = self.__actions[action_id]
             self.T *= 0.9

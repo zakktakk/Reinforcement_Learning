@@ -13,7 +13,7 @@ from .Agent import Agent
 
 
 class Actor_Critic_Agent(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, beta: float=1 ,gamma: float=0.95) -> None:
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, beta: float=1, gamma: float=0.95) -> None:
         """
         :param beta: 正のステップサイズ変数
         """
@@ -41,7 +41,7 @@ class Actor_Critic_Agent(Agent):
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 
         # append current reward to reward history list
-        self.reward_lst.append(reward)
+        self.rewards.append(reward)
 
         # update v table
         delta = reward + self.__gamma * self.v_table[state] - self.v[s]
@@ -49,6 +49,7 @@ class Actor_Critic_Agent(Agent):
 
         # update p table
         self.p_table[s][a] += delta * self.__beta
+        # update current state
         self.current_state = state
 
 
@@ -62,7 +63,7 @@ class Actor_Critic_Agent(Agent):
         if random:
             action = np.random.choice(self.__actions)
         else:
-            q_row = self.q_table[state]
+            q_row = self.p_table[state]
             action_id = softmax_boltzman(q_row, T=self.T)
             action = self.__actions[action_id]
             self.T *= 0.9

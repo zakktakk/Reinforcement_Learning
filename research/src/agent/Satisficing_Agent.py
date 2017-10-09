@@ -27,7 +27,7 @@ class Satisficing_Agent(Agent):
         :param reward: float, reward value
         :return: None
         """
-        self.reward_lst.append(reward)
+        self.rewards.append(reward)
         self.asp = self.asp * self.lmd + (1-self.lmd) * reward
 
 
@@ -37,7 +37,7 @@ class Satisficing_Agent(Agent):
         :param random: boolean, random action or not
         :return: str, selected action
         """
-        if random or self.reward_lst[-1] < self.asp:
+        if random or self.rewards[-1] < self.asp:
             # ランダムか閾値を超えない
             action = np.random.choice(self.__actions)
         else:
