@@ -30,15 +30,15 @@ def shapleys_game():
 
 
 def matching_pennies():
-    return "matching_pennies", pd.DataFrame(np.array([[1, -1],[-1, 1]]), index=list('ab'), columns=list('ab'))
+    return "matching_pennies", pd.DataFrame(np.array([[1, -1],[-1, 1]]), index=list('cd'), columns=list('cd'))
 
 
 def coodination_game():
-    return "coodination_game", pd.DataFrame(np.array([[2, 0], [0, 4]]), index=list('ab'), columns=list('ab'))
+    return "coodination_game", pd.DataFrame(np.array([[2, 0], [0, 4]]), index=list('cd'), columns=list('cd'))
 
 
 def stag_hunt():
-    return "stag_hunt", pd.DataFrame(np.array([[2, 3], [-5, 4]]), index=list('ab'), columns=list('ab'))
+    return "stag_hunt", pd.DataFrame(np.array([[2, 3], [-5, 4]]), index=list('cd'), columns=list('cd'))
 
 
 def prisoners_dilemma():
@@ -50,7 +50,7 @@ def chicken_game():
 
 
 def tricky_game():
-    return "tricky_game", pd.DataFrame(np.array([[0, 3], [1, 2]]), index=list('ab'), columns=list('ab'))
+    return "tricky_game", pd.DataFrame(np.array([[0, 3], [1, 2]]), index=list('cd'), columns=list('cd'))
 
 
 ###########payoff matrix for signaling###########
@@ -68,15 +68,14 @@ def matching_pennies_sig():
                                                           [1, 1, -1, -1],
                                                           [-1, -1, 1, 1],
                                                           [-1, -1, 1, 1]]),
-                                                index=['as', 'a', 'bs', 'b'], columns=['as', 'a', 'bs', 'b'])
-
+                                                index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd'])
 
 def coodination_game_sig():
     return "coodination_game_sig", pd.DataFrame(np.array([[2, 2, 0, 0],
                                                           [2, 2, 0, 0],
                                                           [0, 0, 4, 4],
                                                           [0, 0, 4, 4]]),
-                                                index = ['as', 'a', 'bs', 'b'], columns = ['as', 'a', 'bs', 'b'])
+                                                index = ['cs', 'c', 'ds', 'd'], columns = ['cs', 'c', 'ds', 'd'])
 
 
 def stag_hunt_sig():
@@ -84,7 +83,7 @@ def stag_hunt_sig():
                                                    [2, 2, 3, 3],
                                                    [-5, -5, 4, 4],
                                                    [-5, -5, 4, 4]]),
-                                         index=['as', 'a', 'bs', 'b'], columns=['as', 'a', 'bs', 'b'])
+                                         index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd'])
 
 
 def chicken_game_sig():
@@ -100,4 +99,4 @@ def tricky_game_sig():
                                                      [0, 0, 3, 3],
                                                      [1, 1, 2, 2],
                                                      [1, 1, 2, 2]]),
-                                           index=['as', 'a', 'bs', 'b'], columns=['as', 'a', 'bs', 'b'])
+                                           index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd'])

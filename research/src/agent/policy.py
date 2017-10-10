@@ -33,7 +33,7 @@ def eps_greedy(q_row, eps=0.1):
     :return selected action arg
     """
     if np.random.rand() < eps:
-        obj = np.arange(q_row.size)
+        obj = q_row.index
         return np.random.choice(obj) #randomに戦略を返す
     else:
         return q_row.argmax() #greedyな戦略

@@ -49,7 +49,7 @@ class Actor_Critic_Agent_TD(Agent):
         self.rewards.append(reward)
 
         # update v table
-        delta = reward + self.__gamma * self.v_table[state] - self.v[s]
+        delta = reward + self.__gamma * self.v_table[state] - self.v_table[s]
 
         # update eligibility trace table
         self.e_table[s][a] += 1

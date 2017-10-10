@@ -39,9 +39,8 @@ class Agent(metaclass=ABCMeta):
         self.actions = actions
         self.states = states
         self.rewards = []
-
         self.prev_action = ""
-        self.current_state = ""
+        self.current_state = 0
 
 
     @abstractmethod

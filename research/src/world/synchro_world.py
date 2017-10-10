@@ -31,27 +31,27 @@ plt.style.use('ggplot')
 
 class synchro_world(object):
     def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg):
-        self.__n_agent = n_agent
-        self.__n_round = n_round
-        self.__game_name, self.__payoff_matrix = payoff_matrix
-        self.__network_alg = network_alg
-        self.__rl_alg = rl_alg
-        self.__create_network()
+        self.n_agent = n_agent
+        self.n_round = n_round
+        self.game_name, self.payoff_matrix = payoff_matrix
+        self.network_alg = network_alg
+        self.rl_alg = rl_alg
+        self.create_network()
         self.agent_action_table = pd.DataFrame(np.zeros((n_round, n_agent)))
         self.agent_payoff_table = pd.DataFrame(np.zeros((n_round, n_agent)))
 
 
-    def __create_network(self) -> None:
+    def create_network(self) -> None:
         """
         :description ネットワークモデルの定義
         :param n_agent : エージェントの数
         """
-        self.G = self.__network_alg()  # change network
+        self.G = self.network_alg()  # change network
         self.n_edges = self.G.size() # number of edges
 
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
-            agent = self.__rl_alg(n, np.array([0]), self.__payoff_matrix.index)
+            agent = self.rl_alg(n, np.array([0]), self.payoff_matrix.index)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
@@ -60,12 +60,12 @@ class synchro_world(object):
     def run(self):
         rand = True
         nodes = self.G.nodes()
-        for i in range(self.__n_round):
+        for i in range(self.n_round):
             if i % 1000 == 0: # 途中経過の出力
                 print('iter : '+str(i))
 
             # 全エージェントが同期的に行動選択
-            if i == len(list(self.__payoff_matrix))*5:  # 初期のランダム行動
+            if i == len(list(self.payoff_matrix))*5:  # 初期のランダム行動
                 rand = False
 
             # 全てのエージェントが行動選択
@@ -80,7 +80,7 @@ class synchro_world(object):
                 n_reward = 0
                 for ne in neighbors:
                     ne_action = self.G.node[ne]["action"]
-                    n_reward += self.__payoff_matrix[ne_action][n_action]
+                    n_reward += self.payoff_matrix[ne_action][n_action]
 
                 self.G.node[n]["reward"] = n_reward
                 self.agent_payoff_table[n][i] = n_reward/len(neighbors)
@@ -94,12 +94,12 @@ class synchro_world(object):
         :param other: その他の条件を出力する
         """
         with open(f_name, "w") as f:
-            f.write("繰り返し回数 : "+str(self.__n_round)+"\n")
-            f.write("エージェント数 : "+str(self.__n_agent)+"\n")
+            f.write("繰り返し回数 : "+str(self.n_round)+"\n")
+            f.write("エージェント数 : "+str(self.n_agent)+"\n")
             f.write("エッジ数 : "+str(self.n_edges)+"\n")
-            f.write("ネットワーク種類 : "+self.__network_alg.__name__+"\n")
-            f.write("利得行列 : "+self.__game_name+"\n")
-            f.write("強化学習アルゴリズム : "+self.__rl_alg.__name__+"\n")
+            f.write("ネットワーク種類 : "+self.network_alg.__name__+"\n")
+            f.write("利得行列 : "+self.game_name+"\n")
+            f.write("強化学習アルゴリズム : "+self.rl_alg.__name__+"\n")
             if other is not None:
                 f.write("その他の条件 : "+other)
 

@@ -6,7 +6,7 @@ import os
 from collections import OrderedDict
 
 """simulation world"""
-from world import synchro_world
+from world import synchro_world_signal
 
 """network"""
 from networks import network_utils
@@ -34,14 +34,15 @@ all_graph = OrderedDict((("complete",cG), ("random",rG), ("grid2d",g2G), ("watts
              ("powerlaw_cluster",pcG)))
 
 # payoffmatrixの定義
-all_matrix = ["matching_pennies", "coodination_game", "stag_hunt",
-              "prisoners_dilemma", "chicken_game", "tricky_game"]
+all_matrix = ["matching_pennies_sig", "coodination_game_sig",
+              "stag_hunt_sig", "prisoners_dilemma_sig", "chicken_game_sig", "tricky_game_sig"]
 
 # agentの定義
-all_agent = OrderedDict((("wplf_phc",wpa.WoLF_PHC_Agent),("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent)))
+all_agent = OrderedDict((("wplf_phc",wpa.WoLF_PHC_Agent),("q",ql.Q_Learning_Agent),
+                        ("actor_critic",aca.Actor_Critic_Agent)))
 #SARSAはupdateの引数が異なるので別にする, ("sarsa",sarsa.SARSA_Agent)))
 
-RESULT_DIR = "../results/normal/1010/"
+RESULT_DIR = "../results/preaction/1010/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -53,7 +54,7 @@ for ag in all_agent.keys():
         for g in all_matrix:
             print("    "+g)
             RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g
-            W = synchro_world.synchro_world(100, 5000, eval(g)(), all_graph[G], all_agent[ag])
+            W = synchro_world_signal.synchro_world_signal(100, 5000, eval(g)(), all_graph[G], all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

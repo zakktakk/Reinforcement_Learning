@@ -27,7 +27,7 @@ class WoLF_PHC_Agent(Agent):
         self.pi_table = pd.DataFrame(np.ones((len_a, len_s))/len_a,
                                      index=actions, columns=states)
 
-        self.C = pd.DataFrame(np.zeros(len_s), columns=states)
+        self.C = pd.DataFrame(np.zeros(len_s)[np.newaxis,:], columns=states)
 
 
     def __q_mean(self, pi_table: pd.DataFrame, q_table: pd.DataFrame) -> float:
@@ -69,8 +69,7 @@ class WoLF_PHC_Agent(Agent):
         else:
             delta = delta_l / self.C[s][0]
 
-
-        if self.prev_action == self.actions[self.q_table[s].argmax()]: # 怪しい
+        if self.prev_action == self.q_table[s].argmax():
             self.pi_table[s][a] += delta
         else:
             self.pi_table[s][a] -= delta / (len(self.actions)-1)
@@ -89,8 +88,6 @@ class WoLF_PHC_Agent(Agent):
         :param random: boolean, random action or not
         :return: str, selected action
         """
-        print(state)
-        print(type(state))
         action = np.random.choice(self.actions, p=np.array(self.pi_table[state]))
 
         self.prev_action = action

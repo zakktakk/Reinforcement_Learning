@@ -44,7 +44,7 @@ class Actor_Critic_Agent(Agent):
         self.rewards.append(reward)
 
         # update v table
-        delta = reward + self.__gamma * self.v_table[state] - self.v[s]
+        delta = reward + self.__gamma * self.v_table[state] - self.v_table[s]
         self.v_table[s] += alpha * delta
 
         # update p table

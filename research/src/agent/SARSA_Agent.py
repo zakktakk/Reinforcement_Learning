@@ -58,11 +58,9 @@ class SARSA_Agent(Agent):
         else:
             q_row = self.q_table[state]
             if reduction:
-                action_id = eps_greedy(q_row, eps=max(0, 0.2 - 0.0006 * self.n_round))  # eps 減衰
+                action = eps_greedy(q_row, eps=max(0, 0.2 - 0.0006 * self.n_round))  # eps 減衰
             else:
-                action_id = eps_greedy(q_row, eps=0.1)  # eps 固定
-
-            action = self.actions[action_id]
+                action = eps_greedy(q_row, eps=0.1)  # eps 固定
 
         self.prev_action = action
         self.n_each_action[action] += 1

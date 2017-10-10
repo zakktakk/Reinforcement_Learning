@@ -29,7 +29,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
 """self made library"""
-from synchro_world import synchro_world
+from .synchro_world import synchro_world
 
 
 class synchro_world_signal(synchro_world):
@@ -38,18 +38,18 @@ class synchro_world_signal(synchro_world):
         self.__p_noise = p_noise
 
 
-    def __create_network(self) -> None:
+    def create_network(self) -> None:
         """
         :description ネットワークモデルの定義
         :param n_agent : エージェントの数
         """
-        self.G = self.__network_alg()  # change network
+        self.G = self.network_alg()  # change network
         self.n_edges = self.G.size()  # number of edges
 
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
             # 0~隣接エージェント数が状態，シグナルが届いた数を表す
-            agent = self.__rl_alg(n, np.arange(len(neighbors)+1), self.__payoff_matrix.index)
+            agent = self.rl_alg(n, np.arange(len(neighbors)+1), self.payoff_matrix.index)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
             self.G.node[n]["n_signal"] = 0 # 状態の初期値は0
@@ -59,12 +59,12 @@ class synchro_world_signal(synchro_world):
         rand = True
         nodes = self.G.nodes()
 
-        for i in range(self.__n_round):
+        for i in range(self.n_round):
             if i % 100 == 0:
                 print('iter : '+str(i))
 
             # 全エージェントが同期的に行動選択
-            if i == len(self.__payoff_matrix)*5: #初期のランダム行動
+            if i == len(self.payoff_matrix)*5: #初期のランダム行動
                 rand=False
 
             # 全てのエージェントが行動選択
@@ -84,17 +84,18 @@ class synchro_world_signal(synchro_world):
                     # noisyなsignal
                     noise = np.random.rand()
                     is_noise = (self.__p_noise >= noise) # Trueだったらnoise環境
-                    if ne_action==0 or ne_action==2:
+                    if ne_action=="cs" or ne_action=="ds":
                         if not is_noise: # 正しく伝えわる
                             n_signal += 1
                     else:
                         if is_noise: # 間違って伝わる
                             n_signal += 1
 
-                    n_reward += self.__payoff_matrix[ne_action][n_action]
+                    n_reward += self.payoff_matrix[ne_action][n_action]
 
                 self.G.node[n]["reward"] = n_reward
                 self.agent_payoff_table[n][i] = n_reward/len(neighbors)
-                self.G.node[n]["agent"].update_q(self.G.node[n]["n_signal"], n_reward)
-                # self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
                 self.G.node[n]["n_signal"] = n_signal
+
+                self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward)
+                # self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
