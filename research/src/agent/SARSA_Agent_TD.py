@@ -48,8 +48,8 @@ class SARSA_Agent_TD(Agent):
         self.e_table[s][a] += 1
 
         # update all q_table and e_table
-        for ua in self.__actions:
-            for us in self.__states:
+        for ua in self.actions:
+            for us in self.states:
                 self.q_table[us][ua] += alpha * delta * self.e_table[us][ua]
                 self.e_table[us][ua] *= self.__gamma * self.__lmd
 
@@ -64,7 +64,7 @@ class SARSA_Agent_TD(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.__actions)
+            action = np.random.choice(self.actions)
         else:
             q_row = self.q_table[state]
             if reduction:
@@ -72,7 +72,7 @@ class SARSA_Agent_TD(Agent):
             else:
                 action_id = eps_greedy(q_row, eps=0.1)  # eps 固定
 
-            action = self.__actions[action_id]
+            action = self.actions[action_id]
 
         self.prev_action = action
         self.n_each_action[action] += 1

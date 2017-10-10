@@ -2,7 +2,6 @@
 
 # author : Takuro Yamazaki
 # description : Actor Criticのエージェントモデル, actorはsoftmax bortzman, criticはTD(λ)学習
-# TODO 全然まだ
 
 # ref : http://stlab.ssi.ist.hokudai.ac.jp/yuhyama/lecture/OLD/softcomputing/softcomputing-b-4up.pdf
 
@@ -56,7 +55,7 @@ class Actor_Critic_Agent_TD(Agent):
         self.e_table[s][a] += 1
 
         # update all v_table and e_table
-        for us in self.__states:
+        for us in self.states:
             self.v_table[us] += alpha * delta + self.e_table[us]
             self.e_table[us] *= self.__gamma * self.__lmd
 
@@ -74,11 +73,11 @@ class Actor_Critic_Agent_TD(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.__actions)
+            action = np.random.choice(self.actions)
         else:
             q_row = self.p_table[state]
             action_id = softmax_boltzman(q_row, T=self.T)
-            action = self.__actions[action_id]
+            action = self.actions[action_id]
             self.T *= 0.9
 
         self.prev_action = action

@@ -29,14 +29,6 @@ mpl.use('tkagg')
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-"""self made library"""
-from payoff_matrix import *
-# from agent.FAQ_Agent import FAQ_Agent
-# from agent.SARSA_Agent import SARSA_Agent
-# from agent.WoLF_PHC_Agent import WoLF_PHC_Agent
-from agent.Q_Learning_Agent import Q_Learning_Agent
-
-
 class synchro_world(object):
     def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg):
         self.__n_agent = n_agent
@@ -54,12 +46,12 @@ class synchro_world(object):
         :description ネットワークモデルの定義
         :param n_agent : エージェントの数
         """
-        self.G = self.__network_alg(self.__n_agent, 70)  # change network
+        self.G = self.__network_alg()  # change network
         self.n_edges = self.G.size() # number of edges
 
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
-            agent = self.__rl_alg(n, np.array(["0"]), self.__payoff_matrix.index)
+            agent = self.__rl_alg(n, np.array([0]), self.__payoff_matrix.index)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
@@ -78,8 +70,7 @@ class synchro_world(object):
 
             # 全てのエージェントが行動選択
             for n in nodes:
-                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand, reduction=True)  # for Q Leaning, FAQ
-                # self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for others, change action
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for Q Leaning, FAQ
                 self.agent_action_table[n][i] = self.G.node[n]["action"]
 
             # 報酬計算&Q値更新
@@ -146,13 +137,3 @@ class synchro_world(object):
         self.__save_average_reward(f_name+"_ave.csv")
         self.__save_graph_pickle(f_name+"_g.gpickle")
         self.__save_meta_info(f_name+"_meta.txt", other)
-
-
-if __name__ == "__main__":
-    RESULT_DIR = "../../../results/Q_reduction/"
-    for n in all_: # payoff matrixごとに出力
-        RESULT_NAME = RESULT_DIR+n
-        W = synchro_world(100, 100, eval(n)(), nx.barabasi_albert_graph, Q_Learning_Agent)  # 妥当なエージェント数はいくつか
-        W.run()
-        W.save(RESULT_NAME)
-        print('save done!!')

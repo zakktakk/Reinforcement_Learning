@@ -39,7 +39,7 @@ class Satisficing_Agent(Agent):
         """
         if random or self.rewards[-1] < self.asp:
             # ランダムか閾値を超えない
-            action = np.random.choice(self.__actions)
+            action = np.random.choice(self.actions)
         else:
             action = self.prev_action
 

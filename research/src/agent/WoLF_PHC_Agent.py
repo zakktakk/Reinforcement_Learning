@@ -70,10 +70,10 @@ class WoLF_PHC_Agent(Agent):
             delta = delta_l / self.C[s][0]
 
 
-        if self.prev_action == self.__actions[self.q_table[s].argmax()]: # 怪しい
+        if self.prev_action == self.actions[self.q_table[s].argmax()]: # 怪しい
             self.pi_table[s][a] += delta
         else:
-            self.pi_table[s][a] -= delta / (len(self.__actions)-1)
+            self.pi_table[s][a] -= delta / (len(self.actions)-1)
 
 
         self.pi_table[s] /= self.pi_table[s].sum()
@@ -89,7 +89,9 @@ class WoLF_PHC_Agent(Agent):
         :param random: boolean, random action or not
         :return: str, selected action
         """
-        action = np.random.choice(self.__actions, p=np.array(self.pi_table[state]))
+        print(state)
+        print(type(state))
+        action = np.random.choice(self.actions, p=np.array(self.pi_table[state]))
 
         self.prev_action = action
         self.count_table[state][action] += 1

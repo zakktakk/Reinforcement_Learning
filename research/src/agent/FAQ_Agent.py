@@ -36,7 +36,7 @@ class LFAQ_Agent(Agent):
         alpha = 1/(10+0.01*self.n_each_action[self.prev_action]) #先行研究に準じたalpha
         self.rewards.append(reward)
 
-        xi = softmax_boltzman(self.q_table[state])[self.__actions.index(a)] #action選択される確率
+        xi = softmax_boltzman(self.q_table[state])[self.actions.index(a)] #action選択される確率
         fa_val = np.min(1, self.__beta/xi)
 
         #q tableの更新
@@ -46,7 +46,7 @@ class LFAQ_Agent(Agent):
         self.current_state = state
 
 
-    def act(self, state: str, random: bool=False, reduction: bool=False) -> str:
+    def act(self, state: str, random: bool=False, reduction: bool=True) -> str:
         """
         :param state: string, state
         :param random: boolean, random action or not
@@ -54,7 +54,7 @@ class LFAQ_Agent(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.__actions)
+            action = np.random.choice(self.actions)
         else:
             q_row = self.q_table[state]
             if reduction:
@@ -62,7 +62,7 @@ class LFAQ_Agent(Agent):
             else:
                 action_id = eps_greedy(q_row, eps=0.1) #eps 固定
 
-            action = self.__actions[action_id]
+            action = self.actions[action_id]
 
         self.prev_action = action
         self.n_each_action[action] += 1

@@ -61,11 +61,11 @@ class Actor_Critic_Agent(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.__actions)
+            action = np.random.choice(self.actions)
         else:
             q_row = self.p_table[state]
             action_id = softmax_boltzman(q_row, T=self.T)
-            action = self.__actions[action_id]
+            action = self.actions[action_id]
             self.T *= 0.9
 
         self.prev_action = action

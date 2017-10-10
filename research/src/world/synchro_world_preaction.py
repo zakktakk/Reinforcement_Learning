@@ -34,11 +34,6 @@ plt.style.use('ggplot')
 
 """self made library"""
 from synchro_world import synchro_world
-from payoff_matrix import *
-# from agent.FAQ_Agent import FAQ_Agent
-# from agent.SARSA_Agent import SARSA_Agent
-# from agent.WoLF_PHC_Agent import WoLF_PHC_Agent
-from agent.Q_Learning_Agent import Q_Learning_Agent
 
 
 class synchro_world_preaction(synchro_world):
@@ -52,7 +47,7 @@ class synchro_world_preaction(synchro_world):
         :description ネットワークモデルの定義
         :param n_agent : エージェントの数
         """
-        self.G = self.__network_alg(self.__n_agent, 70)  # change network
+        self.G = self.__network_alg()  # change network
         self.n_edges = self.G.size()  # number of edges
 
         for n in self.G.nodes():
@@ -77,8 +72,7 @@ class synchro_world_preaction(synchro_world):
                 rand=False
 
             for n in  nodes:
-                self.G.node[n]["action"] = self.G.node[n]["agent"].act(self.G.node[n]["n_signal"], random=rand, reduction=True) #reduction=Trueで減衰
-                # self.G.node[n]["action"] = self.G.node[n]["agent"].act(self.G.node[n]["n_signal"], random=rand)  # for others, change action
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(self.G.node[n]["n_signal"], random=rand) #reduction=Trueで減衰
                 self.agent_action_table[n][i] = self.G.node[n]["action"]
 
             #報酬計算&Q値更新
@@ -107,15 +101,3 @@ class synchro_world_preaction(synchro_world):
                 self.G.node[n]["agent"].update_q(self.G.node[n]["n_signal"], n_reward)
                 # self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
                 self.G.node[n]["n_signal"] = n_signal
-
-
-# allはsigじゃないよ
-
-if __name__ == "__main__":
-    RESULT_DIR = "../../../results/preaction/"
-    for n in all_:
-        RESULT_NAME = RESULT_DIR+n+'_q_reduc_preaction_complete'
-        W = synchro_world_preaction(100, 10000, eval(n)(), nx.barabasi_albert_graph, Q_Learning_Agent, p_noise=0.5) #妥当なエージェント数はいくつか
-        W.run()
-        W.save(RESULT_NAME)
-        print('save done!!')

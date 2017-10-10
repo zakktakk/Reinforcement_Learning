@@ -58,7 +58,7 @@ class Q_Learning_Agent(Agent):
         :return: str, selected action
         """
         if random:
-            action = np.random.choice(self.__actions)
+            action = np.random.choice(self.actions)
         else:
             q_row = self.q_table[state]
             if reduction:
@@ -66,7 +66,7 @@ class Q_Learning_Agent(Agent):
             else:
                 action_id = eps_greedy(q_row, eps=0.1) #eps 固定
 
-            action = self.__actions[action_id]
+            action = self.actions[action_id]
 
         self.prev_action = action
         self.n_each_action[action] += 1
