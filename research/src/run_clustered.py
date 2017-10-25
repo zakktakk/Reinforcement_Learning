@@ -6,7 +6,7 @@ import os
 from collections import OrderedDict
 
 """simulation world"""
-from world import synchro_world_preaction
+from world import synchro_world_clustered
 
 """network"""
 from networks import network_utils
@@ -21,39 +21,31 @@ from agent import SARSA_Agent as sarsa
 """payoff matrix"""
 from world.payoff_matrix import *
 
-
+prefix = "../src/networks/"
 # graphの定義
-cG = network_utils.graph_generator.complete_graph
-rG = network_utils.graph_generator.random_graph
-g2G = network_utils.graph_generator.grid_2d_graph
-pcG = network_utils.graph_generator.powerlaw_cluster_graph
-
-all_graph = OrderedDict((("complete",cG), ("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG)))
+all_graph = ["inner_dence_clustered.gpickle", "multiple_clustered.gpickle"]
 
 # payoffmatrixの定義
 all_matrix = ["prisoners_dilemma", "coodination_game"]
 
-
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent)))
+all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-# ノイズを加える
-p_noises = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-
-RESULT_DIR = "../results/preaction/"
+RESULT_DIR = "../results/clustered/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
     print(ag)
     for G in all_graph:
-        if not os.path.exists(RESULT_DIR+ag+"/"+G):
-            os.makedirs(RESULT_DIR+ag+"/"+G)
-        print("  "+G)
+        G_name = G.split(".")[0]
+        if not os.path.exists(RESULT_DIR+ag+"/"+G_name):
+            os.makedirs(RESULT_DIR+ag+"/"+G_name)
+        print("  "+G_name)
         for g in all_matrix:
             print("    "+g)
-            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g
-            W = synchro_world_preaction.synchro_world_preaction(100, 5000, eval(g)(), all_graph[G], all_agent[ag])
+            RESULT_NAME = RESULT_DIR+ag+"/"+G_name+"/"+g
+            W = synchro_world_clustered.synchro_world_clustered(100, 5000, eval(g)(), prefix+G, all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

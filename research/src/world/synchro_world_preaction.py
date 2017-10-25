@@ -87,7 +87,7 @@ class synchro_world_preaction(synchro_world):
 
                     # noisyなsignal
                     noise = np.random.rand()
-                    is_noise = (self.__p_noise >= noise) #Trueだったらnoise
+                    is_noise = (self.__p_noise > noise) #Trueだったらnoise
                     if ne_action == "c":
                         if not is_noise:
                             n_signal += 1
@@ -102,4 +102,4 @@ class synchro_world_preaction(synchro_world):
                 self.G.node[n]["n_signal"] = n_signal
 
                 self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward)
-                # self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
+                #self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA

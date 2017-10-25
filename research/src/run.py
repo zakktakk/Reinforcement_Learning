@@ -26,22 +26,18 @@ from world.payoff_matrix import *
 cG = network_utils.graph_generator.complete_graph
 rG = network_utils.graph_generator.random_graph
 g2G = network_utils.graph_generator.grid_2d_graph
-wG = network_utils.graph_generator.watts_strogatz_graph
-baG = network_utils.graph_generator.barabasi_albert_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_graph = OrderedDict((("complete",cG), ("random",rG), ("grid2d",g2G), ("watts_strogatz",wG), ("barabasi_albert",baG),
-             ("powerlaw_cluster",pcG)))
+all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
 
 # payoffmatrixの定義
-all_matrix = ["matching_pennies", "coodination_game", "stag_hunt",
-              "prisoners_dilemma", "chicken_game", "tricky_game"]
+all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
-all_agent = OrderedDict((("wplf_phc",wpa.WoLF_PHC_Agent),("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent)))
-#SARSAはupdateの引数が異なるので別にする, ("sarsa",sarsa.SARSA_Agent)))
+all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
+# all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results/normal/1010/"
+RESULT_DIR = "../results/basic/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

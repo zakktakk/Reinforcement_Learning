@@ -29,7 +29,7 @@ mpl.use('tkagg')
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-class synchro_world(object):
+class synchro_world_clustered(object):
     def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg):
         self.n_agent = n_agent
         self.n_round = n_round
@@ -46,7 +46,7 @@ class synchro_world(object):
         :description ネットワークモデルの定義
         :param n_agent : エージェントの数
         """
-        self.G = self.network_alg()  # change network
+        self.G = nx.read_gpickle(self.network_alg)  # change network
         self.n_edges = self.G.size() # number of edges
 
         for n in self.G.nodes():
@@ -97,7 +97,7 @@ class synchro_world(object):
             f.write("繰り返し回数 : "+str(self.n_round)+"\n")
             f.write("エージェント数 : "+str(self.n_agent)+"\n")
             f.write("エッジ数 : "+str(self.n_edges)+"\n")
-            f.write("ネットワーク種類 : "+self.network_alg.__name__+"\n")
+            f.write("ネットワーク種類 : "+self.network_alg+"\n")
             f.write("利得行列 : "+self.game_name+"\n")
             f.write("強化学習アルゴリズム : "+self.rl_alg.__name__+"\n")
             if other is not None:

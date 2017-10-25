@@ -6,6 +6,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+from .grid_2d_graph import grid_2d_graph
 
 class graph_generator(object):
     def __init__(self):
@@ -35,7 +36,7 @@ class graph_generator(object):
         :param n: col num
         :return: grid_2d_graph instance
         """
-        return nx.grid_2d_graph(m, n)
+        return grid_2d_graph(m, n)
 
     @staticmethod
     def grid_graph(dim=[5, 5, 4]):

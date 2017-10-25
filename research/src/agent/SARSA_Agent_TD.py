@@ -56,7 +56,7 @@ class SARSA_Agent_TD(Agent):
         self.current_state = state
 
 
-    def act(self, state: str, random: bool = False, reduction: bool = False) -> str:
+    def act(self, state: str, random: bool = False, reduction: bool = True) -> str:
         """
         :param state: string, state
         :param random: boolean, random action or not
