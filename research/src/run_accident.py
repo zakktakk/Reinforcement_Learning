@@ -49,10 +49,10 @@ for ag in all_agent.keys():
         if not os.path.exists(RESULT_DIR+ag+"/"+G):
             os.makedirs(RESULT_DIR+ag+"/"+G)
         print("  "+G)
-        for bg, ag in mat_product:
+        for beg, afg in mat_product:
             print("    "+bg+"_"+ag)
             RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+bg+"_"+ag
-            W = synchro_world_accident.synchro_world_accident(100, 5000, eval(bg)(), eval(ag)(), all_graph[G], all_agent[ag])
+            W = synchro_world_accident.synchro_world_accident(100, 5000, eval(beg)(), eval(afg)(), all_graph[G], all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

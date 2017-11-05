@@ -34,6 +34,8 @@ class synchro_world_accident(object):
         self.n_agent = n_agent
         self.n_round = n_round
         self.game_name, self.payoff_matrix = before_payoff_matrix
+        print(before_payoff_matrix)
+        print(after_payoff_matrix)
         self.after_payoff_matrix = after_payoff_matrix
         self.network_alg = network_alg
         self.rl_alg = rl_alg

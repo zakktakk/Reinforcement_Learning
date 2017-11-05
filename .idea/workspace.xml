@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d52a12e-0045-4bd1-b451-58e84556f409" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/research/src/run_accident.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/research/src/run_simple.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/research/src/run_signal.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/world/synchro_world.py" afterPath="$PROJECT_DIR$/research/src/world/synchro_world.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/world/synchro_world_clustered.py" afterPath="$PROJECT_DIR$/research/src/world/synchro_world_clustered.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/run_accident.py" afterPath="$PROJECT_DIR$/research/src/run_accident.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" afterPath="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,21 +18,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="run_accident.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="run_accident.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/research/src/run_accident.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="208">
+              <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="synchro_world_simple.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_simple.py">
+      <file leaf-file-name="synchro_world_accident.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_accident.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="197">
+              <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -150,10 +146,10 @@
         <option value="$PROJECT_DIR$/research/src/run_preaction.py" />
         <option value="$PROJECT_DIR$/research/src/run_signal.py" />
         <option value="$PROJECT_DIR$/research/src/world/setting.py" />
-        <option value="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
         <option value="$PROJECT_DIR$/research/src/run_simple.py" />
         <option value="$PROJECT_DIR$/research/src/world/synchro_world_clustered.py" />
         <option value="$PROJECT_DIR$/research/src/world/payoff_matrix.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
         <option value="$PROJECT_DIR$/research/src/run_accident.py" />
       </list>
     </option>
@@ -280,7 +276,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15250696" sideWeight="0.4626087" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -522,25 +518,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_simple.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_accident.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="197">
+          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/research/src/run_accident.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_simple.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="208">
+          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding />
         </state>
       </provider>
