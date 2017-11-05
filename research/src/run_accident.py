@@ -3,10 +3,11 @@
 # description : 基礎的な実験
 
 import os
+import itertools
 from collections import OrderedDict
 
 """simulation world"""
-from world import synchro_world_signal
+from world import synchro_world_accident
 
 """network"""
 from networks import network_utils
@@ -28,18 +29,18 @@ rG = network_utils.graph_generator.random_graph
 g2G = network_utils.graph_generator.grid_2d_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_graph = OrderedDict((("complete",cG), ("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG)))
+all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
 
 # payoffmatrixの定義
-all_matrix = ["prisoners_dilemma", "coodination_game_sig"]
+all_matrix = ["prisoners_dilemma", "coodination_game", "matching_pennies"]
+mat_product = list(filter(lambda n : n[0]!=n[1], list(itertools.product(all_matrix, all_matrix))))
 
-#agentの定義
-all_agent = OrderedDict((("wplf_phc",wpa.WoLF_PHC_Agent),("q",ql.Q_Learning_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
-#all_agent = {"sarsa":sarsa.SARSA_Agent}
+# agentの定義
+# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
+all_agent = {"q":ql.Q_Learning_Agent}
+# all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-p_noises = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-
-RESULT_DIR = "../results/signal/noisy/"
+RESULT_DIR = "../results/accident/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -48,13 +49,11 @@ for ag in all_agent.keys():
         if not os.path.exists(RESULT_DIR+ag+"/"+G):
             os.makedirs(RESULT_DIR+ag+"/"+G)
         print("  "+G)
-        for g in all_matrix:
-            print("    "+g)
-            for p in p_noises:
-                print("      "+str(p))
-                RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g+"_"+str(p)
-                W = synchro_world_signal.synchro_world_signal(100, 5000, eval(g)(), all_graph[G], all_agent[ag], p_noise=p)
-                W.run()
-                W.save(RESULT_NAME)
+        for bg, ag in mat_product:
+            print("    "+bg+"_"+ag)
+            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+bg+"_"+ag
+            W = synchro_world_accident.synchro_world_accident(100, 5000, eval(bg)(), eval(ag)(), all_graph[G], all_agent[ag])
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

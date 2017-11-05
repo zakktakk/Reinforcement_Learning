@@ -112,6 +112,14 @@ class synchro_world(object):
         self.agent_payoff_table.apply(lambda x:np.mean(x), axis=1).to_csv(f_name, index=False)
 
 
+    def __save_average_coop(self, f_name: str) -> None:
+        """各ステップでの協調行動割合を保存
+        :param f_name: 出力ファイル名
+        :return: None
+        """
+        self.agent_action_table.apply(lambda x:len(x[x == "c"]) / len(x), axis=1).to_csv(f_name, index=False)
+
+
     def __save_action_table(self, f_name: str) -> None:
         """agentの行動を保存
         :param f_name: 出力ファイル名
@@ -133,7 +141,8 @@ class synchro_world(object):
         :param other: その他の条件
         :return: None
         """
-        self.__save_action_table(f_name+"_action_table.csv")
-        self.__save_average_reward(f_name+"_ave.csv")
-        self.__save_graph_pickle(f_name+"_g.gpickle")
+        # self.__save_action_table(f_name+"_action_table.csv")
+        self.__save_average_reward(f_name+"_reward.csv")
+        self.__save_average_coop(f_name+"_coop.csv")
+        # self.__save_graph_pickle(f_name+"_g.gpickle")
         self.__save_meta_info(f_name+"_meta.txt", other)

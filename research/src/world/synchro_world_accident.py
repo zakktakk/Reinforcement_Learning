@@ -29,11 +29,12 @@ mpl.use('tkagg')
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-class synchro_world_clustered(object):
-    def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg):
+class synchro_world_accident(object):
+    def __init__(self, n_agent, n_round, before_payoff_matrix, after_payoff_matrix, network_alg, rl_alg):
         self.n_agent = n_agent
         self.n_round = n_round
-        self.game_name, self.payoff_matrix = payoff_matrix
+        self.game_name, self.payoff_matrix = before_payoff_matrix
+        self.after_payoff_matrix = after_payoff_matrix
         self.network_alg = network_alg
         self.rl_alg = rl_alg
         self.create_network()
@@ -56,6 +57,9 @@ class synchro_world_clustered(object):
             self.G.node[n]["action"] = 0
 
 
+    def change_payoff_metrix(self):
+        self.game_name, self.payoff_matrix = self.after_payoff_matrix
+
 
     def run(self):
         rand = True
@@ -63,6 +67,9 @@ class synchro_world_clustered(object):
         for i in range(self.n_round):
             if i % 1000 == 0: # 途中経過の出力
                 print('iter : '+str(i))
+
+            if i == self.n_round * 0.5: # 半分経過したらpayoffを帰る
+                self.change_payoff_metrix()
 
             # 全エージェントが同期的に行動選択
             if i == len(list(self.payoff_matrix))*5:  # 初期のランダム行動
@@ -86,47 +93,3 @@ class synchro_world_clustered(object):
                 self.agent_payoff_table[n][i] = n_reward/len(neighbors)
                 self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
                 #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
-
-
-    def __save_meta_info(self, f_name:str, other=None) -> None:
-        """実験条件の保存
-        :param f_name: 出力ファイル名
-        :param other: その他の条件を出力する
-        """
-        with open(f_name, "w") as f:
-            f.write("繰り返し回数 : "+str(self.n_round)+"\n")
-            f.write("エージェント数 : "+str(self.n_agent)+"\n")
-            f.write("エッジ数 : "+str(self.n_edges)+"\n")
-            f.write("ネットワーク種類 : "+self.network_alg+"\n")
-            f.write("利得行列 : "+self.game_name+"\n")
-            f.write("強化学習アルゴリズム : "+self.rl_alg.__name__+"\n")
-            if other is not None:
-                f.write("その他の条件 : "+other)
-
-    def __save_average_reward(self, f_name: str) -> None:
-        """各ステップでの平均報酬を保存
-        :param f_name: 出力ファイル名
-        :return: None
-        """
-        self.agent_payoff_table.apply(lambda x:np.mean(x), axis=1).to_csv(f_name, index=False)
-
-
-    def __save_average_coop(self, f_name: str) -> None:
-        """各ステップでの協調行動割合を保存
-        :param f_name: 出力ファイル名
-        :return: None
-        """
-        self.agent_action_table.apply(lambda x:len(x[x == "c"]) / len(x), axis=1).to_csv(f_name, index=False)
-
-
-    def save(self, f_name: str, other=None) -> None:
-        """実験結果の保存
-        :param f_name: 出力ファイル名
-        :param other: その他の条件
-        :return: None
-        """
-        # self.__save_action_table(f_name+"_action_table.csv")
-        self.__save_average_reward(f_name+"_reward.csv")
-        self.__save_average_coop(f_name+"_coop.csv")
-        # self.__save_graph_pickle(f_name+"_g.gpickle")
-        self.__save_meta_info(f_name+"_meta.txt", other)
