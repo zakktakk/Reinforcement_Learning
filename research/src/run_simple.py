@@ -49,7 +49,7 @@ for ag in all_agent.keys():
         for g in all_matrix:
             print("    "+g)
             RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g
-            W = synchro_world_simple.synchro_world_simple(100, 5000, eval(g)(), all_graph[G], all_agent[ag])
+            W = synchro_world_simple.synchro_world_simple(100, 5, eval(g)(), all_graph[G], all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 
