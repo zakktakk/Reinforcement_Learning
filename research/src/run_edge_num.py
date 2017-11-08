@@ -29,7 +29,6 @@ rG = network_utils.graph_generator.random_graph
 all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
-# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 all_agent = {"q":ql.Q_Learning_Agent}
 
 # エージェント数の定義

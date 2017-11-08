@@ -28,16 +28,13 @@ rG = network_utils.graph_generator.random_graph
 g2G = network_utils.graph_generator.grid_2d_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-# all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
-all_graph = {"random":rG}
+all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
 
 # payoffmatrixの定義
-# all_matrix = ["prisoners_dilemma", "coodination_game"]
-all_matrix = ["social_dilemma_sen"]
+all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
-# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
-all_agent = {"q":ql.Q_Learning_Agent}
+all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 RESULT_DIR = "../results/graph/"

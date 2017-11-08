@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d52a12e-0045-4bd1-b451-58e84556f409" name="Default" comment="" />
+    <list default="true" id="7d52a12e-0045-4bd1-b451-58e84556f409" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/research/src/world/synchro_world_lr.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master_thesis.md" afterPath="$PROJECT_DIR$/master_thesis.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/run_accident.py" afterPath="$PROJECT_DIR$/research/src/run_accident.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/run_agent_num.py" afterPath="$PROJECT_DIR$/research/src/run_agent_num.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/run_edge_num.py" afterPath="$PROJECT_DIR$/research/src/run_edge_num.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/run_graph.py" afterPath="$PROJECT_DIR$/research/src/run_graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/run_learning_rate.py" afterPath="$PROJECT_DIR$/research/src/run_learning_rate.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" afterPath="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,28 +23,7 @@
     <favorites_list name="Reinforcement_Learning" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="synchro_world_simple.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_simple.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-242">
-              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="run_simple.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/research/src/run_simple.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,7 +34,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.len_s</find>
       <find>tb</find>
       <find>ar</find>
       <find>argmax</find>
@@ -75,6 +63,7 @@
       <find>state</find>
       <find>self.C</find>
       <find>update</find>
+      <find>simple</find>
     </findStrings>
     <replaceStrings>
       <replace>id_</replace>
@@ -96,18 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/research/src/analysis/plot.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/Q_Learning_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/SARSA_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/Satisficing_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_noise.py" />
-        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_signal.py" />
-        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_random.py" />
-        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world_preaction.py" />
-        <option value="$PROJECT_DIR$/research/src/model/world/synchro_world.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/FAQ_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/SARSA_td.py" />
-        <option value="$PROJECT_DIR$/research/src/model/agent/policy.py" />
         <option value="$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent_td.py" />
         <option value="$PROJECT_DIR$/research/src/model/agent/Agent.py" />
         <option value="$PROJECT_DIR$/research/src/model/agent/WoLF_PHC_Agent.py" />
@@ -131,29 +108,41 @@
         <option value="$PROJECT_DIR$/research/src/agent/SARSA_Agent.py" />
         <option value="$PROJECT_DIR$/research/src/agent/policy.py" />
         <option value="$PROJECT_DIR$/research/src/agent/Q_Learning_Agent.py" />
-        <option value="$PROJECT_DIR$/research/src/world/synchro_world.py" />
         <option value="$PROJECT_DIR$/research/src/agent/Actor_Critic_Agent.py" />
         <option value="$PROJECT_DIR$/research/src/agent/Actor_Critic_Agent_TD.py" />
         <option value="$PROJECT_DIR$/research/src/networks/MLW_graph.py" />
-        <option value="$PROJECT_DIR$/research/src/run.py" />
-        <option value="$PROJECT_DIR$/research/src/run_clustered.py" />
         <option value="$PROJECT_DIR$/research/src/run_rewire.py" />
         <option value="$PROJECT_DIR$/research/src/run_preaction.py" />
         <option value="$PROJECT_DIR$/research/src/run_signal.py" />
         <option value="$PROJECT_DIR$/research/src/world/setting.py" />
-        <option value="$PROJECT_DIR$/research/src/world/synchro_world_clustered.py" />
-        <option value="$PROJECT_DIR$/research/src/world/payoff_matrix.py" />
-        <option value="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
-        <option value="$PROJECT_DIR$/research/src/run_accident.py" />
         <option value="$PROJECT_DIR$/research/src/world/synchro_world_simple.py" />
         <option value="$PROJECT_DIR$/research/src/run_simple.py" />
+        <option value="$PROJECT_DIR$/research/src/world/sychr_world_clustered_simple.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_clustered_simple.py" />
+        <option value="$PROJECT_DIR$/research/src/run_accident_simple.py" />
+        <option value="$PROJECT_DIR$/research/src/run_clustered_simple.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_accident_simple.py" />
+        <option value="$PROJECT_DIR$/research/src/world/payoff_matrix.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_clustered.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world.py" />
+        <option value="$PROJECT_DIR$/research/src/run.py" />
+        <option value="$PROJECT_DIR$/master_thesis.md" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_edge_num.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_accident.py" />
+        <option value="$PROJECT_DIR$/research/src/world/synchro_world_lr.py" />
+        <option value="$PROJECT_DIR$/research/src/run_accident.py" />
+        <option value="$PROJECT_DIR$/research/src/run_clustered.py" />
+        <option value="$PROJECT_DIR$/research/src/run_agent_num.py" />
+        <option value="$PROJECT_DIR$/research/src/run_edge_num.py" />
+        <option value="$PROJECT_DIR$/research/src/run_graph.py" />
+        <option value="$PROJECT_DIR$/research/src/run_learning_rate.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-106" />
+    <option name="x" value="4" />
     <option name="y" value="23" />
-    <option name="width" value="1550" />
+    <option name="width" value="1436" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectView">
@@ -171,7 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -195,13 +184,13 @@
               <item name="Reinforcement_Learning" type="462c0819:PsiDirectoryNode" />
               <item name="research" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="world" type="462c0819:PsiDirectoryNode" />
+              <item name="agent" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -228,8 +217,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_simple">
-    <configuration name="run_accident" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.run_clustered">
+    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -241,12 +230,12 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Reinforcement_Learning" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_accident.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_graph.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="run_simple" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="run_agent_num" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -258,38 +247,76 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Reinforcement_Learning" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_simple.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_agent_num.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="synchro_world_simple" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="run_clustered" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/research/src/world" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/research/src" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Reinforcement_Learning" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/world/synchro_world_simple.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_clustered.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Python.run_accident" />
-      <item index="1" class="java.lang.String" itemvalue="Python.run_simple" />
-      <item index="2" class="java.lang.String" itemvalue="Python.synchro_world_simple" />
+    <configuration name="run_edge_num" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/research/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Reinforcement_Learning" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_edge_num.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="run_learning_rate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/research/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Reinforcement_Learning" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/research/src/run_learning_rate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.run" />
+      <item index="1" class="java.lang.String" itemvalue="Python.run_edge_num" />
+      <item index="2" class="java.lang.String" itemvalue="Python.run_agent_num" />
+      <item index="3" class="java.lang.String" itemvalue="Python.run_learning_rate" />
+      <item index="4" class="java.lang.String" itemvalue="Python.run_clustered" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.run_simple" />
-        <item index="1" class="java.lang.String" itemvalue="Python.synchro_world_simple" />
-        <item index="2" class="java.lang.String" itemvalue="Python.run_accident" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.run_clustered" />
+        <item index="1" class="java.lang.String" itemvalue="Python.run_learning_rate" />
+        <item index="2" class="java.lang.String" itemvalue="Python.run" />
+        <item index="3" class="java.lang.String" itemvalue="Python.run_edge_num" />
+        <item index="4" class="java.lang.String" itemvalue="Python.run_agent_num" />
       </list>
     </recent_temporary>
   </component>
@@ -309,16 +336,16 @@
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15250696" sideWeight="0.4626087" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21866295" sideWeight="0.4626087" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25341615" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13333334" sideWeight="0.5373913" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -350,20 +377,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_preaction.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/policy.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/FAQ_Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Satisficing_Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/WoLF_PHC_Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/SARSA_Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent_TD.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/networks/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/SARSA_Agent_TD.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Q_Learning_Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/agent/Actor_Critic_Agent.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/model/world/synchro_world_signal.py" />
-    <entry file="file://$PROJECT_DIR$/research/README.md" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -383,13 +396,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/research/src/networks/network.ipynb" />
-    <entry file="file://$PROJECT_DIR$/research/src/networks/network_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/research/src/agent/FAQ_Agent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -402,13 +408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="41" column="43" lean-forward="false" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_signal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="86" column="56" lean-forward="false" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -433,13 +432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/agent/Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/research/src/agent/SARSA_Agent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
@@ -454,20 +446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/agent/policy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="35" column="25" lean-forward="false" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/agent/Q_Learning_Agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/research/src/agent/Actor_Critic_Agent_TD.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -479,13 +457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="46" column="62" lean-forward="false" selection-start-line="46" selection-start-column="62" selection-end-line="46" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/agent/SARSA_Agent_TD.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -505,24 +476,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/research/src/world/setting.py" />
-    <entry file="file://$PROJECT_DIR$/research/src/run.py">
+    <entry file="file://$PROJECT_DIR$/research/src/run_graph.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="28" column="58" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/run_clustered.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_clustered.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1815">
-          <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -533,50 +490,221 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/world/payoff_matrix.py">
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_signal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        <state relative-caret-position="480">
+          <caret line="86" column="56" lean-forward="false" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_clustered.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="131" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_accident.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_rewire.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-572">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="107" column="15" lean-forward="false" selection-start-line="107" selection-start-column="15" selection-end-line="107" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_clustered.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="30" column="10" lean-forward="false" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/research/src/run_accident.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="42" column="35" lean-forward="true" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+        <state relative-caret-position="390">
+          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_learning_rate" />
+    <entry file="file://$PROJECT_DIR$/research/src/agent/Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/agent/SARSA_Agent_TD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/agent/policy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master_thesis.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="705">
+            <caret line="47" column="32" lean-forward="false" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/networks/network_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="37" column="11" lean-forward="true" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/agent/Q_Learning_Agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/payoff_matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/past/synchro_world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1036">
+          <caret line="77" column="47" lean-forward="true" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_accident.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="735">
+          <caret line="49" column="46" lean-forward="false" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="-982">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_simple.py">
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_clustered.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-242">
-          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state relative-caret-position="735">
+          <caret line="49" column="32" lean-forward="false" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/research/src/run_simple.py">
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_edge_num.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        <state relative-caret-position="735">
+          <caret line="49" column="43" lean-forward="true" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/world/synchro_world_lr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="24" lean-forward="false" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_clustered.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="44" column="73" lean-forward="false" selection-start-line="44" selection-start-column="73" selection-end-line="44" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_learning_rate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="48" column="59" lean-forward="false" selection-start-line="48" selection-start-column="59" selection-end-line="48" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="51" column="53" lean-forward="false" selection-start-line="51" selection-start-column="53" selection-end-line="51" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_edge_num.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="46" column="71" lean-forward="false" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_agent_num.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="43" column="73" lean-forward="false" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/research/src/run_accident.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="49" column="71" lean-forward="false" selection-start-line="49" selection-start-column="71" selection-end-line="49" selection-end-column="71" />
+          <folding>
+            <element signature="e#74#83#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

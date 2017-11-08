@@ -4,6 +4,8 @@
 
 import os
 import itertools
+import pandas as pd
+import numpy as np
 from collections import OrderedDict
 
 """simulation world"""
@@ -14,10 +16,7 @@ from networks import network_utils
 
 """agent"""
 # defaultはこの4種類にしよう
-from agent import Actor_Critic_Agent as aca
-from agent import WoLF_PHC_Agent as wpa
 from agent import Q_Learning_Agent as ql
-from agent import SARSA_Agent as sarsa
 
 """payoff matrix"""
 from world.payoff_matrix import *
@@ -31,13 +30,11 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
 
-# payoffmatrixの定義
-all_matrix = ["prisoners_dilemma", "coodination_game", "matching_pennies"]
-mat_product = list(filter(lambda n : n[0]!=n[1], list(itertools.product(all_matrix, all_matrix))))
+all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[3, 0], [5, 4]]), index=list('cd'), columns=list('cd'))]
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
-# all_agent = {"sarsa":sarsa.SARSA_Agent}
+all_agent = {"q":ql.Q_Learning_Agent}
 
 RESULT_DIR = "../results/accident/"
 for ag in all_agent.keys():
@@ -48,10 +45,9 @@ for ag in all_agent.keys():
         if not os.path.exists(RESULT_DIR+ag+"/"+G):
             os.makedirs(RESULT_DIR+ag+"/"+G)
         print("  "+G)
-        for beg, afg in mat_product:
-            print("    "+beg+"_"+afg)
-            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+beg+"_"+afg
-            W = synchro_world_accident.synchro_world_accident(100, 5000, eval(beg)(), eval(afg)(), all_graph[G], all_agent[ag])
+        for ti, aa in zip(["tenchi", "kaishou"], all_after):
+            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/prisoners_dilemma_"+ti
+            W = synchro_world_accident.synchro_world_accident(100, 5000, prisoners_dilemma(), all_graph[G], all_agent[ag], aa)
             W.run()
             W.save(RESULT_NAME)
 

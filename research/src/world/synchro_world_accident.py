@@ -34,12 +34,12 @@ from .synchro_world import synchro_world
 
 
 class synchro_world_accident(synchro_world):
-    def __init__(self, n_agent, n_round, before_payoff_matrix, after_payoff_matrix, network_alg, rl_alg):
+    def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg, after_matrix):
         self.n_agent = n_agent
         self.n_round = n_round
-        self.game_name, self.payoff_matrix = before_payoff_matrix
-        self.after_payoff_matrix = after_payoff_matrix
+        self.game_name, self.payoff_matrix = payoff_matrix
         self.network_alg = network_alg
+        self.after_matrix = after_matrix
         self.rl_alg = rl_alg
         self.create_network()
         self.payoff_table = pd.DataFrame(np.zeros((n_round, 1)))
@@ -47,7 +47,7 @@ class synchro_world_accident(synchro_world):
 
 
     def change_payoff_metrix(self):
-        self.game_name, self.payoff_matrix = self.after_payoff_matrix
+        self.payoff_matrix = self.after_matrix
 
 
     def run(self):

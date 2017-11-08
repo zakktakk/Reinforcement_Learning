@@ -1,22 +1,19 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : グラフ構造とアルゴリズムごとの結果の違い
+# description : 学習率を変化させた時の学習の差異
 
 import os
 from collections import OrderedDict
 
 """simulation world"""
-from world import synchro_world
+from world import synchro_world_lr
 
 """network"""
 from networks import network_utils
 
 """agent"""
 # defaultはこの4種類にしよう
-from agent import Actor_Critic_Agent as aca
-from agent import WoLF_PHC_Agent as wpa
 from agent import Q_Learning_Agent as ql
-from agent import SARSA_Agent as sarsa
 
 """payoff matrix"""
 from world.payoff_matrix import *
@@ -28,31 +25,28 @@ rG = network_utils.graph_generator.random_graph
 g2G = network_utils.graph_generator.grid_2d_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-# all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
 all_graph = {"random":rG}
 
 # payoffmatrixの定義
-# all_matrix = ["prisoners_dilemma", "coodination_game"]
-all_matrix = ["social_dilemma_sen"]
+all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
-# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 all_agent = {"q":ql.Q_Learning_Agent}
-# all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results/graph/"
+# 割引率gammaの定義
+all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
+
+
+RESULT_DIR = "../results/lr/random/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
     print(ag)
-    for G in all_graph:
-        if not os.path.exists(RESULT_DIR+ag+"/"+G):
-            os.makedirs(RESULT_DIR+ag+"/"+G)
-        print("  "+G)
-        for g in all_matrix:
-            print("    "+g)
-            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g
-            W = synchro_world.synchro_world(100, 5000, eval(g)(), all_graph[G], all_agent[ag])
+    for g in all_matrix:
+        print("    "+g)
+        for gamma in all_gamma:
+            RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(gamma*100)
+            W = synchro_world_lr.synchro_world_lr(100, 5000, eval(g)(), rG, all_agent[ag], gamma)
             W.run()
             W.save(RESULT_NAME)
 

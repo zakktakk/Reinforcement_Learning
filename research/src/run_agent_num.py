@@ -13,10 +13,7 @@ from networks import network_utils
 
 """agent"""
 # defaultはこの4種類にしよう
-from agent import Actor_Critic_Agent as aca
-from agent import WoLF_PHC_Agent as wpa
 from agent import Q_Learning_Agent as ql
-from agent import SARSA_Agent as sarsa
 
 """payoff matrix"""
 from world.payoff_matrix import *
@@ -29,13 +26,12 @@ rG = network_utils.graph_generator.random_graph
 all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
-# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 all_agent = {"q":ql.Q_Learning_Agent}
 
 # エージェント数の定義
 all_agent_num = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200]
 
-RESULT_DIR = "../results/edge_num/random/"
+RESULT_DIR = "../results/agent_num/random/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
