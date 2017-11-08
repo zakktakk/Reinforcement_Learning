@@ -1,13 +1,12 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : 基礎的な実験
+# description : グラフ構造とアルゴリズムごとの結果の違い
 
 import os
-import itertools
 from collections import OrderedDict
 
 """simulation world"""
-from world import synchro_world_accident
+from world import synchro_world
 
 """network"""
 from networks import network_utils
@@ -29,17 +28,19 @@ rG = network_utils.graph_generator.random_graph
 g2G = network_utils.graph_generator.grid_2d_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
+# all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
+all_graph = {"random":rG}
 
 # payoffmatrixの定義
-all_matrix = ["prisoners_dilemma", "coodination_game", "matching_pennies"]
-mat_product = list(filter(lambda n : n[0]!=n[1], list(itertools.product(all_matrix, all_matrix))))
+# all_matrix = ["prisoners_dilemma", "coodination_game"]
+all_matrix = ["social_dilemma_sen"]
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
+# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
+all_agent = {"q":ql.Q_Learning_Agent}
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results/accident/"
+RESULT_DIR = "../results/graph/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -48,10 +49,10 @@ for ag in all_agent.keys():
         if not os.path.exists(RESULT_DIR+ag+"/"+G):
             os.makedirs(RESULT_DIR+ag+"/"+G)
         print("  "+G)
-        for beg, afg in mat_product:
-            print("    "+beg+"_"+afg)
-            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+beg+"_"+afg
-            W = synchro_world_accident.synchro_world_accident(100, 5000, eval(beg)(), eval(afg)(), all_graph[G], all_agent[ag])
+        for g in all_matrix:
+            print("    "+g)
+            RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g
+            W = synchro_world.synchro_world(100, 5000, eval(g)(), all_graph[G], all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

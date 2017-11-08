@@ -36,7 +36,8 @@ all_matrix = ["prisoners_dilemma", "coodination_game", "matching_pennies"]
 mat_product = list(filter(lambda n : n[0]!=n[1], list(itertools.product(all_matrix, all_matrix))))
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
+# all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
+all_agent = OrderedDict((("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 RESULT_DIR = "../results/accident/"
