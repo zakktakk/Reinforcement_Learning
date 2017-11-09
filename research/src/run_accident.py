@@ -46,7 +46,7 @@ for ag in all_agent.keys():
         print("  "+G)
         for ti, aa in zip(["kaishou"], all_after):
             RESULT_NAME = RESULT_DIR+ag+"/"+G+"/prisoners_dilemma_"+ti
-            W = synchro_world_accident.synchro_world_accident(100, 2000, prisoners_dilemma(), all_graph[G], all_agent[ag], aa)
+            W = synchro_world_accident.synchro_world_accident(100, 1000, prisoners_dilemma(), all_graph[G], all_agent[ag], aa)
             W.run()
             W.save(RESULT_NAME)
 

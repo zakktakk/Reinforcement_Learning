@@ -46,7 +46,7 @@ for ag in all_agent.keys():
         print("    "+g)
         for gamma in all_gamma:
             RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(gamma*100)
-            W = synchro_world_lr.synchro_world_lr(100, 2000, eval(g)(), rG, all_agent[ag], gamma)
+            W = synchro_world_lr.synchro_world_lr(100, 1000, eval(g)(), rG, all_agent[ag], gamma)
             W.run()
             W.save(RESULT_NAME)
 

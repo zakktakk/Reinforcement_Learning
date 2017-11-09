@@ -47,7 +47,7 @@ for ag in all_agent.keys():
         for gamma in all_gamma:
             for ti, aa in zip(["kaishou"], all_after):
                 RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(gamma*100)+"_"+ti
-                W = synchro_world_lr_accident.synchro_world_lr_accident(100, 2000, eval(g)(), rG, all_agent[ag], aa,gamma)
+                W = synchro_world_lr_accident.synchro_world_lr_accident(100, 1000, eval(g)(), rG, all_agent[ag], aa,gamma)
                 W.run()
                 W.save(RESULT_NAME)
 

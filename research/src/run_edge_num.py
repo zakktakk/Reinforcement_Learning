@@ -44,7 +44,7 @@ for ag in all_agent.keys():
         for e_num in all_edge_num:
             print("     ", str(e_num))
             RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(e_num)
-            W = synchro_world_edge_num.synchro_world_edge_num(100, 2000, e_num, eval(g)(), rG, all_agent[ag])
+            W = synchro_world_edge_num.synchro_world_edge_num(100, 1000, e_num, eval(g)(), rG, all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

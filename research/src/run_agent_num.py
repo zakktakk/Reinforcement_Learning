@@ -41,7 +41,7 @@ for ag in all_agent.keys():
         for a_num in all_agent_num:
             print("     ", str(a_num))
             RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(a_num)
-            W = synchro_world_edge_num.synchro_world_edge_num(a_num, 2000, a_num*25, eval(g)(), rG, all_agent[ag])
+            W = synchro_world_edge_num.synchro_world_edge_num(a_num, 1000, a_num*25, eval(g)(), rG, all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

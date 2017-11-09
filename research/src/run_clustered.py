@@ -42,7 +42,7 @@ for ag in all_agent.keys():
         for g in all_matrix:
             print("    "+g)
             RESULT_NAME = RESULT_DIR+ag+"/"+G_name+"/"+g
-            W = synchro_world_clustered.synchro_world_clustered(100, 2000, eval(g)(), prefix+G, all_agent[ag])
+            W = synchro_world_clustered.synchro_world_clustered(100, 1000, eval(g)(), prefix+G, all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

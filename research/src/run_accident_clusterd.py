@@ -43,7 +43,7 @@ for ag in all_agent.keys():
         print("  "+G_name)
         for ti, aa in zip(["kaishou"], all_after):
             RESULT_NAME = RESULT_DIR+ag+"/"+G_name+"/prisoners_dilemma_"+ti
-            W = synchro_world_accident_clusterd.synchro_world_accident_clustered(100, 2000, prisoners_dilemma(), prefix+G, all_agent[ag], aa)
+            W = synchro_world_accident_clusterd.synchro_world_accident_clustered(100, 1000, prisoners_dilemma(), prefix+G, all_agent[ag], aa)
             W.run()
             W.save(RESULT_NAME)
 

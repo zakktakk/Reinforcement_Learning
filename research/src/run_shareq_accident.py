@@ -53,7 +53,7 @@ for ag in all_agent.keys():
                 print("         ", asr)
                 for ti, aa in zip(["kaishou"], all_after):
                     RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g+"_"+str(asr*100)+"_"+ti
-                    W = synchro_world_shareq_accident.synchro_world_shareq_accident(100, 2000, eval(g)(), all_graph[G], all_agent[ag], asr, aa)
+                    W = synchro_world_shareq_accident.synchro_world_shareq_accident(100, 1000, eval(g)(), all_graph[G], all_agent[ag], asr, aa)
                     W.run()
                     W.save(RESULT_NAME)
 
