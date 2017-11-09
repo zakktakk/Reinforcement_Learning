@@ -26,8 +26,7 @@ rG = network_utils.graph_generator.random_graph
 all_graph = {"random":rG}
 
 
-all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[3, 0], [5, 4]]), index=list('cd'), columns=list('cd'))]
+all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd'))]
 
 # payoffmatrixの定義
 all_matrix = ["prisoners_dilemma"]
@@ -52,9 +51,9 @@ for ag in all_agent.keys():
             print("    "+g)
             for asr in all_share_rate:
                 print("         ", asr)
-                for ti, aa in zip(["tenchi", "kaishou"], all_after):
+                for ti, aa in zip(["kaishou"], all_after):
                     RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g+"_"+str(asr*100)+"_"+ti
-                    W = synchro_world_shareq_accident.synchro_world_shareq_accident(100, 5000, eval(g)(), all_graph[G], all_agent[ag], asr, aa)
+                    W = synchro_world_shareq_accident.synchro_world_shareq_accident(100, 2000, eval(g)(), all_graph[G], all_agent[ag], asr, aa)
                     W.run()
                     W.save(RESULT_NAME)
 

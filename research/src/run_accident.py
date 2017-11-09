@@ -30,8 +30,7 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG)))
 
-all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[3, 0], [5, 4]]), index=list('cd'), columns=list('cd'))]
+all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd'))]
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
@@ -45,9 +44,9 @@ for ag in all_agent.keys():
         if not os.path.exists(RESULT_DIR+ag+"/"+G):
             os.makedirs(RESULT_DIR+ag+"/"+G)
         print("  "+G)
-        for ti, aa in zip(["tenchi", "kaishou"], all_after):
+        for ti, aa in zip(["kaishou"], all_after):
             RESULT_NAME = RESULT_DIR+ag+"/"+G+"/prisoners_dilemma_"+ti
-            W = synchro_world_accident.synchro_world_accident(100, 5000, prisoners_dilemma(), all_graph[G], all_agent[ag], aa)
+            W = synchro_world_accident.synchro_world_accident(100, 2000, prisoners_dilemma(), all_graph[G], all_agent[ag], aa)
             W.run()
             W.save(RESULT_NAME)
 

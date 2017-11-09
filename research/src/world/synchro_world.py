@@ -1,7 +1,15 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : 定義通りのゲーム
-# ref : file:///Users/yamazakitakurou/Downloads/8708-38013-1-PB.pdf
+# description : 同時プレイの世界
+#
+# データに記述すべきメタデータ
+# - 繰り返し回数
+# - エージェント数
+# - ネットワークの種類
+# - エージェントの種類
+# - エッジ数
+# - 利得行列の種類
+# - その他の条件(初期行動制約など)
 
 
 """path setting"""
@@ -48,6 +56,7 @@ class synchro_world(object):
             self.G.node[n]["action"] = 0
 
 
+
     def run(self):
         rand = True
         nodes = self.G.nodes()
@@ -59,35 +68,32 @@ class synchro_world(object):
             if i == len(list(self.payoff_matrix))*5:  # 初期のランダム行動
                 rand = False
 
-            rewards = []
-            actions = []
-            # 全てのエージェントが隣接エージェントと対戦＆更新
-            for n1 in nodes:
-                
-                n2 = np.random.choice(self.G.neighbors(n1))
-                
-                n1_action = self.G.node[n1]["agent"].act(0, random=rand)
-                n2_action = self.G.node[n2]["agent"].act(0, random=rand)
+            # 全てのエージェントが行動選択
+            coop_num = 0
+            for n in nodes:
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for Q Leaning, FAQ
 
-                n1_reward = self.payoff_matrix[n2_action][n1_action]
-                n2_reward = self.payoff_matrix[n1_action][n2_action]
+                if self.G.node[n]["action"] == "c":
+                    coop_num += 1
 
-                rewards.append(n1_reward)
-                rewards.append(n2_reward)
+            self.coop_per_table[0][i] = coop_num / self.n_agent
 
-                actions.append(n1_action)
-                actions.append(n2_action)
+            # 報酬計算&Q値更新
+            reward_sum = 0
+            for n in nodes:
+                neighbors = self.G.neighbors(n)
+                n_action = self.G.node[n]["action"]
+                n_reward = 0
+                for ne in neighbors:
+                    ne_action = self.G.node[ne]["action"]
+                    n_reward += self.payoff_matrix[ne_action][n_action]
 
-                self.G.node[n1]["agent"].update(0, n1_reward) # 今状態は0だけ
-                #self.G.node[n1]["agent"].update(0, n1_reward, n1_action) # for SARSA
+                self.G.node[n]["reward"] = n_reward
+                reward_sum += n_reward
+                self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
+                #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
 
-                self.G.node[n2]["agent"].update(0, n2_reward)
-                #self.G.node[n2]["agent"].update(0, n2_reward, n2_action) # for SARSA
-
-            actions = np.array(actions)
-            self.payoff_table[0][i] = np.mean(rewards)
-            self.coop_per_table[0][i] = len(actions[actions=="c"]) / self.n_agent / 2
-            # TODO save Q value
+            self.payoff_table[0][i] = reward_sum / self.n_agent
 
 
     def __save_meta_info(self, f_name:str, other=None) -> None:
@@ -111,7 +117,7 @@ class synchro_world(object):
         :param f_name: 出力ファイル名
         :return: None
         """
-        self.payoff_table.to_csv(f_name, index=False)
+        self.payoff_table.to_csv(f_name, index=False, header=False)
 
 
     def __save_average_coop(self, f_name: str) -> None:
@@ -119,7 +125,7 @@ class synchro_world(object):
         :param f_name: 出力ファイル名
         :return: None
         """
-        self.coop_per_table.to_csv(f_name, index=False)
+        self.coop_per_table.to_csv(f_name, index=False, header=False)
 
 
     def save(self, f_name: str, other=None) -> None:

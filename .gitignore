@@ -1,6 +1,8 @@
 */**/*.pyc
-research/results/
+/research/results/
+/research/simple_results/
 /existing/
-research/past/
+/research/src/past_PGG/
+/research/src/past_simple/
 /refs/
 /.ipynb_checkpoints/

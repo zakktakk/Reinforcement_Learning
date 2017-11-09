@@ -10,8 +10,8 @@
 import numpy as np
 import pandas as pd
 
-__all__ = ["matching_pennies", "coodination_game", "stag_hunt","prisoners_dilemma", "social_dilemma_sen",
-           "coodination_game_sen", "chicken_game", "tricky_game", "matching_pennies_sig", "coodination_game_sig",
+__all__ = ["matching_pennies", "coodination_game", "stag_hunt","prisoners_dilemma", "chicken_game", "tricky_game",
+           "matching_pennies_sig", "coodination_game_sig",
            "stag_hunt_sig", "prisoners_dilemma_sig", "chicken_game_sig", "tricky_game_sig"]
 
 
@@ -29,13 +29,6 @@ def stag_hunt():
 
 def prisoners_dilemma():
     return "prisoners_dilemma", pd.DataFrame(np.array([[3, 0],[5, 1]]),index=list('cd'), columns=list('cd'))
-
-
-def social_dilemma_sen():
-    return "social dilemma sen", pd.DataFrame(np.array([[-1, 3],[2, 1]]),index=list('cd'), columns=list('cd'))
-
-def coodination_game_sen():
-    return "social dilemma sen", pd.DataFrame(np.array([[4, -1],[-1, 4]]),index=list('cd'), columns=list('cd'))
 
 
 def chicken_game():

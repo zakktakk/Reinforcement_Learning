@@ -50,7 +50,7 @@ for ag in all_agent.keys():
             for asr in all_share_rate:
                 print("         ", asr)
                 RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g+"_"+str(asr*100)
-                W = synchro_world_share_q.synchro_world_share_q(100, 5000, eval(g)(), all_graph[G], all_agent[ag], asr)
+                W = synchro_world_share_q.synchro_world_share_q(100, 2000, eval(g)(), all_graph[G], all_agent[ag], asr)
                 W.run()
                 W.save(RESULT_NAME)
 

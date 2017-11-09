@@ -31,8 +31,7 @@ all_matrix = ["prisoners_dilemma"]
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
 
-all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[3, 0], [5, 4]]), index=list('cd'), columns=list('cd'))]
+all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd'))]
 
 # 割引率gammaの定義
 all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
@@ -46,9 +45,9 @@ for ag in all_agent.keys():
     for g in all_matrix:
         print("    "+g)
         for gamma in all_gamma:
-            for ti, aa in zip(["tenchi", "kaishou"], all_after):
+            for ti, aa in zip(["kaishou"], all_after):
                 RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(gamma*100)+"_"+ti
-                W = synchro_world_lr_accident.synchro_world_lr_accident(100, 5000, eval(g)(), rG, all_agent[ag], aa,gamma)
+                W = synchro_world_lr_accident.synchro_world_lr_accident(100, 2000, eval(g)(), rG, all_agent[ag], aa,gamma)
                 W.run()
                 W.save(RESULT_NAME)
 

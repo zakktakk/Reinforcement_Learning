@@ -79,44 +79,42 @@ class synchro_world_shareq_accident(synchro_world):
         rand = True
         nodes = self.G.nodes()
         for i in range(self.n_round):
-            if i % 1000 == 0:  # 途中経過の出力
-                print('iter : ' + str(i))
+            if i % 1000 == 0: # 途中経過の出力
+                print('iter : '+str(i))
 
             # 全エージェントが同期的に行動選択
-            if i == len(list(self.payoff_matrix)) * 5:  # 初期のランダム行動
+            if i == len(list(self.payoff_matrix))*5:  # 初期のランダム行動
                 rand = False
 
             if i == self.n_round * 0.5: # 半分経過したらpayoffを帰る
                 self.change_payoff_metrix()
 
-            rewards = []
-            actions = []
-            # 全てのエージェントが隣接エージェントと対戦＆更新
-            for n1 in nodes:
-                n2 = np.random.choice(self.G.neighbors(n1))
+            # 全てのエージェントが行動選択
+            coop_num = 0
+            for n in nodes:
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for Q Leaning, FAQ
 
-                n1_action = self.G.node[n1]["agent"].act(0, random=rand)
-                n2_action = self.G.node[n2]["agent"].act(0, random=rand)
+                if self.G.node[n]["action"] == "c":
+                    coop_num += 1
 
-                n1_reward = self.payoff_matrix[n2_action][n1_action]
-                n2_reward = self.payoff_matrix[n1_action][n2_action]
+            self.coop_per_table[0][i] = coop_num / self.n_agent
 
-                rewards.append(n1_reward)
-                rewards.append(n2_reward)
+            # 報酬計算&Q値更新
+            reward_sum = 0
+            for n in nodes:
+                neighbors = self.G.neighbors(n)
+                n_action = self.G.node[n]["action"]
+                n_reward = 0
+                for ne in neighbors:
+                    ne_action = self.G.node[ne]["action"]
+                    n_reward += self.payoff_matrix[ne_action][n_action]
 
-                actions.append(n1_action)
-                actions.append(n2_action)
+                self.G.node[n]["reward"] = n_reward
+                reward_sum += n_reward
+                self.G.node[n]["agent"].update(0, n_reward)  # 今状態は0だけ
+                # self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
 
-                self.G.node[n1]["agent"].update(0, n1_reward)  # 今状態は0だけ
-                # self.G.node[n1]["agent"].update(0, n1_reward, n1_action) # for SARSA
-
-                self.G.node[n2]["agent"].update(0, n2_reward)
-                # self.G.node[n2]["agent"].update(0, n2_reward, n2_action) # for SARSA
+            self.payoff_table[0][i] = reward_sum / self.n_agent
 
             self._update_q()
             self._share_q()
-
-            actions = np.array(actions)
-            self.payoff_table[0][i] = np.mean(rewards)
-            self.coop_per_table[0][i] = len(actions[actions == "c"]) / self.n_agent / 2
-            # TODO save Q value
