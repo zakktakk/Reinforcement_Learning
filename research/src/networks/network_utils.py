@@ -56,26 +56,6 @@ class graph_generator(object):
         """
         return nx.watts_strogatz_graph(n, k, p)
 
-    # @staticmethod
-    # def newman_watts_strogatz_graph(n=100, k=30, p=0.5):
-    #     """ニューマンワッツストロガッツモデル(In contrast with watts_strogatz_graph(), no edges are removed)
-    #     :param n: node num
-    #     :param k: neighbor num
-    #     :param p: prob
-    #     :return: newman_watts_strogatz_graph instance
-    #     """
-    #     return nx.newman_watts_strogatz_graph(n, k, p)
-    #
-    # @staticmethod
-    # def connected_watts_strogatz_graph(n=100, k=50, p=0.5):
-    #     """連結ワッツストロガッツモデル(よくわからんから比較する)
-    #     :param n: node num
-    #     :param k: neighbor num
-    #     :param p: prob
-    #     :return: connected_watts_strogatz_graph instance
-    #     """
-    #     return nx.connected_watts_strogatz_graph(n, k, p)
-
     @staticmethod
     def barabasi_albert_graph(n=100, m=30):
         """バラバシアルバートモデル

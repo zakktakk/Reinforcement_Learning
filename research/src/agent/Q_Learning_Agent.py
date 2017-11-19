@@ -28,7 +28,7 @@ class Q_Learning_Agent(Agent):
         self.current_state = 0
 
         # indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
-        self.q_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
+        self.q_df = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
 
 
     def update(self, state: str, reward: float) -> None:
@@ -46,7 +46,7 @@ class Q_Learning_Agent(Agent):
         self.rewards.append(reward)
 
         # update q function
-        self.q_table[s][a] += alpha * (reward+self.__gamma*self.q_table[state].max()-self.q_table[s][a])
+        self.q_df[s][a] += alpha * (reward+self.__gamma*self.q_df[state].max()-self.q_df[s][a])
 
         self.current_state = state
 
@@ -61,9 +61,9 @@ class Q_Learning_Agent(Agent):
         if random:
             action = np.random.choice(self.actions)
         else:
-            q_row = self.q_table[state]
+            q_row = self.q_df[state]
             if reduction:
-                action = eps_greedy(q_row, eps=max(0, 0.3-0.0003*self.n_round)) #eps 減衰
+                action = eps_greedy(q_row, eps=max(0, 0.2-0.00018*self.n_round)) #eps 減衰
             else:
                 action = eps_greedy(q_row, eps=0.1) #eps 固定
 

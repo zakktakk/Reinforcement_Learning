@@ -1,15 +1,7 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : 同時プレイの世界
-#
-# データに記述すべきメタデータ
-# - 繰り返し回数
-# - エージェント数
-# - ネットワークの種類
-# - エージェントの種類
-# - エッジ数
-# - 利得行列の種類
-# - その他の条件(初期行動制約など)
+# description : 定義通りのゲーム
+# ref : file:///Users/yamazakitakurou/Downloads/8708-38013-1-PB.pdf
 
 
 """path setting"""
@@ -29,15 +21,12 @@ mpl.use('tkagg')
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-
-
-class synchro_world_accident_clustered(object):
-    def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg, after_matrix):
+class synchro_world(object):
+    def __init__(self, n_agent, n_round, payoff_matrix, network_alg, rl_alg):
         self.n_agent = n_agent
         self.n_round = n_round
         self.game_name, self.payoff_matrix = payoff_matrix
         self.network_alg = network_alg
-        self.after_matrix = after_matrix
         self.rl_alg = rl_alg
         self.create_network()
         self.payoff_table = pd.DataFrame(np.zeros((n_round, 1)))
@@ -49,7 +38,7 @@ class synchro_world_accident_clustered(object):
         :description ネットワークモデルの定義
         :param n_agent : エージェントの数
         """
-        self.G = nx.read_gpickle(self.network_alg)  # change network
+        self.G = self.network_alg()  # change network
         self.n_edges = self.G.size() # number of edges
 
         for n in self.G.nodes():
@@ -57,10 +46,6 @@ class synchro_world_accident_clustered(object):
             agent = self.rl_alg(n, np.array([0]), self.payoff_matrix.index)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
-
-
-    def change_payoff_metrix(self):
-        self.payoff_matrix = self.after_matrix
 
 
     def run(self):
@@ -74,35 +59,35 @@ class synchro_world_accident_clustered(object):
             if i == len(list(self.payoff_matrix))*5:  # 初期のランダム行動
                 rand = False
 
-            if i == self.n_round * 0.5: # 半分経過したらpayoffを帰る
-                self.change_payoff_metrix()
+            rewards = []
+            actions = []
+            # 全てのエージェントが隣接エージェントと対戦＆更新
+            for n1 in nodes:
+                
+                n2 = np.random.choice(self.G.neighbors(n1))
+                
+                n1_action = self.G.node[n1]["agent"].act(0, random=rand)
+                n2_action = self.G.node[n2]["agent"].act(0, random=rand)
 
-            # 全てのエージェントが行動選択
-            coop_num = 0
-            for n in nodes:
-                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for Q Leaning, FAQ
+                n1_reward = self.payoff_matrix[n2_action][n1_action]
+                n2_reward = self.payoff_matrix[n1_action][n2_action]
 
-                if self.G.node[n]["action"] == "c":
-                    coop_num += 1
+                rewards.append(n1_reward)
+                rewards.append(n2_reward)
 
-            self.coop_per_table[0][i] = coop_num / self.n_agent
+                actions.append(n1_action)
+                actions.append(n2_action)
 
-            # 報酬計算&Q値更新
-            reward_sum = 0
-            for n in nodes:
-                neighbors = self.G.neighbors(n)
-                n_action = self.G.node[n]["action"]
-                n_reward = 0
-                for ne in neighbors:
-                    ne_action = self.G.node[ne]["action"]
-                    n_reward += self.payoff_matrix[ne_action][n_action]
+                self.G.node[n1]["agent"].update(0, n1_reward) # 今状態は0だけ
+                #self.G.node[n1]["agent"].update(0, n1_reward, n1_action) # for SARSA
 
-                self.G.node[n]["reward"] = n_reward
-                reward_sum += n_reward
-                self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
-                #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
+                self.G.node[n2]["agent"].update(0, n2_reward)
+                #self.G.node[n2]["agent"].update(0, n2_reward, n2_action) # for SARSA
 
-            self.payoff_table[0][i] = reward_sum / self.n_agent
+            actions = np.array(actions)
+            self.payoff_table[0][i] = np.mean(rewards)
+            self.coop_per_table[0][i] = len(actions[actions=="c"]) / self.n_agent / 2
+            # TODO save Q value
 
 
     def __save_meta_info(self, f_name:str, other=None) -> None:
@@ -114,7 +99,7 @@ class synchro_world_accident_clustered(object):
             f.write("繰り返し回数 : "+str(self.n_round)+"\n")
             f.write("エージェント数 : "+str(self.n_agent)+"\n")
             f.write("エッジ数 : "+str(self.n_edges)+"\n")
-            f.write("ネットワーク種類 : "+self.network_alg+"\n")
+            f.write("ネットワーク種類 : "+self.network_alg.__name__+"\n")
             f.write("利得行列 : "+self.game_name+"\n")
             f.write("強化学習アルゴリズム : "+self.rl_alg.__name__+"\n")
             if other is not None:

@@ -13,8 +13,8 @@ from .Agent import Agent
 
 
 class Actor_Critic_Agent_TD(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, beta: float=1,
-                 lmd: float=0.5, gamma: float=0.95) -> None:
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95,
+                 beta: float=1, lmd: float=0.5) -> None:
         """
         :param beta: 正のステップサイズ変数
         """
@@ -27,11 +27,11 @@ class Actor_Critic_Agent_TD(Agent):
         self.n_round = 0
         self.T = 1 # 温度パラメータ
 
-        self.v_table = pd.Series(np.zeros(len(states)), index=states, dtype=float)
-        self.p_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
+        self.v_df = pd.Series(np.zeros(len(states)), index=states, dtype=float)
+        self.p_df = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
 
         # 適格度トレースのテーブル
-        self.e_table = pd.Series(np.zeros(len(states)), index=states, dtype=float)
+        self.e_df = pd.Series(np.zeros(len(states)), index=states, dtype=float)
 
 
     def update(self, state: str, reward: float) -> None:
@@ -48,19 +48,19 @@ class Actor_Critic_Agent_TD(Agent):
         # append current reward to reward history list
         self.rewards.append(reward)
 
-        # update v table
-        delta = reward + self.__gamma * self.v_table[state] - self.v_table[s]
+        # update v df
+        delta = reward + self.__gamma * self.v_df[state] - self.v_df[s]
 
-        # update eligibility trace table
-        self.e_table[s][a] += 1
+        # update eligibility trace df
+        self.e_df[s][a] += 1
 
-        # update all v_table and e_table
+        # update all v_df and e_df
         for us in self.states:
-            self.v_table[us] += alpha * delta + self.e_table[us]
-            self.e_table[us] *= self.__gamma * self.__lmd
+            self.v_df[us] += alpha * delta + self.e_df[us]
+            self.e_df[us] *= self.__gamma * self.__lmd
 
-        # update p table
-        self.p_table[s][a] += delta * self.__beta
+        # update p df
+        self.p_df[s][a] += delta * self.__beta
         # update current state
         self.current_state = state
 
@@ -75,7 +75,7 @@ class Actor_Critic_Agent_TD(Agent):
         if random:
             action = np.random.choice(self.actions)
         else:
-            q_row = self.p_table[state]
+            q_row = self.p_df[state]
             action_id = softmax_boltzman(q_row, T=self.T)
             action = self.actions[action_id]
             self.T *= 0.9

@@ -8,7 +8,7 @@ import pandas as pd
 from collections import OrderedDict
 
 """simulation world"""
-from world import synchro_world_shareq_accident
+from world import synchro_world
 
 """network"""
 from networks import network_utils
@@ -25,11 +25,7 @@ rG = network_utils.graph_generator.random_graph
 
 all_graph = {"random":rG}
 
-
 all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd'))]
-
-# payoffmatrixの定義
-all_matrix = ["prisoners_dilemma"]
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
@@ -47,14 +43,13 @@ for ag in all_agent.keys():
         if not os.path.exists(RESULT_DIR+ag+"/"+G):
             os.makedirs(RESULT_DIR+ag+"/"+G)
         print("  "+G)
-        for g in all_matrix:
-            print("    "+g)
-            for asr in all_share_rate:
-                print("         ", asr)
-                for ti, aa in zip(["kaishou"], all_after):
-                    RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g+"_"+str(asr*100)+"_"+ti
-                    W = synchro_world_shareq_accident.synchro_world_shareq_accident(100, 1000, eval(g)(), all_graph[G], all_agent[ag], asr, aa)
-                    W.run()
-                    W.save(RESULT_NAME)
+        for asr in all_share_rate:
+            print("         ", asr)
+            for ti, aa in zip(["kaishou"], all_after):
+                RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+"prisoner"+"_"+str(asr*100)+"_"+ti
+                W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], all_agent[ag],
+                                                share_rate=asr, altered_mat=aa)
+                W.run()
+                W.save(RESULT_NAME)
 
 print('done!!')

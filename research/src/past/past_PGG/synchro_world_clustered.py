@@ -37,8 +37,8 @@ class synchro_world_clustered(object):
         self.network_alg = network_alg
         self.rl_alg = rl_alg
         self.create_network()
-        self.payoff_table = pd.DataFrame(np.zeros((n_round, 1)))
-        self.coop_per_table = pd.DataFrame(np.zeros((n_round, 1)))
+        self.agent_action_table = pd.DataFrame(np.zeros((n_round, n_agent)))
+        self.agent_payoff_table = pd.DataFrame(np.zeros((n_round, n_agent)))
 
 
     def create_network(self) -> None:
@@ -69,17 +69,11 @@ class synchro_world_clustered(object):
                 rand = False
 
             # 全てのエージェントが行動選択
-            coop_num = 0
             for n in nodes:
                 self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)  # for Q Leaning, FAQ
-
-                if self.G.node[n]["action"] == "c":
-                    coop_num += 1
-
-            self.coop_per_table[0][i] = coop_num / self.n_agent
+                self.agent_action_table[n][i] = self.G.node[n]["action"]
 
             # 報酬計算&Q値更新
-            reward_sum = 0
             for n in nodes:
                 neighbors = self.G.neighbors(n)
                 n_action = self.G.node[n]["action"]
@@ -89,12 +83,9 @@ class synchro_world_clustered(object):
                     n_reward += self.payoff_matrix[ne_action][n_action]
 
                 self.G.node[n]["reward"] = n_reward
-                reward_sum += n_reward
+                self.agent_payoff_table[n][i] = n_reward/len(neighbors)
                 self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
                 #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
-
-            self.payoff_table[0][i] = reward_sum / self.n_agent
-
 
 
     def __save_meta_info(self, f_name:str, other=None) -> None:
@@ -112,13 +103,12 @@ class synchro_world_clustered(object):
             if other is not None:
                 f.write("その他の条件 : "+other)
 
-
     def __save_average_reward(self, f_name: str) -> None:
         """各ステップでの平均報酬を保存
         :param f_name: 出力ファイル名
         :return: None
         """
-        self.payoff_table.to_csv(f_name, index=False)
+        self.agent_payoff_table.apply(lambda x:np.mean(x), axis=1).to_csv(f_name, index=False)
 
 
     def __save_average_coop(self, f_name: str) -> None:
@@ -126,7 +116,7 @@ class synchro_world_clustered(object):
         :param f_name: 出力ファイル名
         :return: None
         """
-        self.coop_per_table.to_csv(f_name, index=False)
+        self.agent_action_table.apply(lambda x:len(x[x == "c"]) / len(x), axis=1).to_csv(f_name, index=False)
 
 
     def save(self, f_name: str, other=None) -> None:
@@ -135,6 +125,8 @@ class synchro_world_clustered(object):
         :param other: その他の条件
         :return: None
         """
+        # self.__save_action_table(f_name+"_action_table.csv")
         self.__save_average_reward(f_name+"_reward.csv")
         self.__save_average_coop(f_name+"_coop.csv")
+        # self.__save_graph_pickle(f_name+"_g.gpickle")
         self.__save_meta_info(f_name+"_meta.txt", other)

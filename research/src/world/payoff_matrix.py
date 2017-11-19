@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 __all__ = ["matching_pennies", "coodination_game", "stag_hunt","prisoners_dilemma", "chicken_game", "tricky_game",
-           "matching_pennies_sig", "coodination_game_sig",
+           "CG", "PG", "PSCG", "FSCG","matching_pennies_sig", "coodination_game_sig",
            "stag_hunt_sig", "prisoners_dilemma_sig", "chicken_game_sig", "tricky_game_sig"]
 
 
@@ -37,6 +37,24 @@ def chicken_game():
 
 def tricky_game():
     return "tricky_game", pd.DataFrame(np.array([[0, 3], [1, 2]]), index=list('cd'), columns=list('cd'))
+
+
+def CG():
+    return "CG", pd.DataFrame(np.array([[11, -30, 0], [-30, 7, 6], [0, 0, 5]]), index=list('abc'), columns=list('abc'))
+
+
+def PG(k=-50):
+    return "PG", pd.DataFrame(np.array([[10, 0, k], [0, 2, 0], [k, 0, 10]]), index=list('abc'), columns=list('abc'))
+
+
+def PSCG():
+    return "PSCG", pd.DataFrame(np.array([[11, -30, 0], [-30, (14, 0), 6], [0, 0, 5]]),
+                                index=list('abc'), columns=list('abc'))
+
+
+def FSCG():
+    return "FSCG", pd.DataFrame(np.array([[(10, 12), (5, -65), (8, -8)], [(5, -65), (14, 0), (12, 0)], [(5, -5), (5, -5), (10, 0)]]),
+                            index=list('abc'), columns=list('abc'))
 
 
 ###########payoff matrix for signaling###########

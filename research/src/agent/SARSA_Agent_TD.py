@@ -12,8 +12,8 @@ from .Agent import Agent
 
 
 class SARSA_Agent_TD(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, lmd=0.5,
-                 gamma: float = 0.95) -> None:
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95,
+                 lmd=0.5) -> None:
         super().__init__(id_, states, actions)
 
         self.__gamma = gamma
@@ -22,10 +22,10 @@ class SARSA_Agent_TD(Agent):
         self.n_round = 0
 
         # indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
-        self.q_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
+        self.q_df = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
 
         # 適格度トレースのテーブル
-        self.e_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
+        self.e_df = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
 
 
     def update(self, state: str, reward: float, action: str) -> None:
@@ -42,16 +42,16 @@ class SARSA_Agent_TD(Agent):
         # append current reward to reward history list
         self.rewards.append(reward)
 
-        delta = reward + self.__gamma * self.q_table[state][action] - self.q_table[s][a]
+        delta = reward + self.__gamma * self.q_df[state][action] - self.q_df[s][a]
 
-        # update eligibility trace table
-        self.e_table[s][a] += 1
+        # update eligibility trace df
+        self.e_df[s][a] += 1
 
-        # update all q_table and e_table
+        # update all q_df and e_df
         for ua in self.actions:
             for us in self.states:
-                self.q_table[us][ua] += alpha * delta * self.e_table[us][ua]
-                self.e_table[us][ua] *= self.__gamma * self.__lmd
+                self.q_df[us][ua] += alpha * delta * self.e_df[us][ua]
+                self.e_df[us][ua] *= self.__gamma * self.__lmd
 
         self.current_state = state
 
@@ -66,9 +66,9 @@ class SARSA_Agent_TD(Agent):
         if random:
             action = np.random.choice(self.actions)
         else:
-            q_row = self.q_table[state]
+            q_row = self.q_df[state]
             if reduction:
-                action = eps_greedy(q_row, eps=max(0, 0.3 - 0.0003 * self.n_round))  # eps 減衰
+                action = eps_greedy(q_row, eps=max(0, 0.2-0.00018*self.n_round))  # eps 減衰
             else:
                 action = eps_greedy(q_row, eps=0.1)  # eps 固定
 

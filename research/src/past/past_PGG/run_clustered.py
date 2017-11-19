@@ -1,12 +1,15 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : グラフ構造とアルゴリズムごとの結果の違い(cluster graph)
+# description : 基礎的な実験
 
 import os
 from collections import OrderedDict
 
 """simulation world"""
 from world import synchro_world_clustered
+
+"""network"""
+from networks import network_utils
 
 """agent"""
 # defaultはこの4種類にしよう
@@ -29,7 +32,7 @@ all_matrix = ["prisoners_dilemma", "coodination_game"]
 all_agent = OrderedDict((("q",ql.Q_Learning_Agent),("actor_critic",aca.Actor_Critic_Agent), ("wplf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results/graph/"
+RESULT_DIR = "../results/clustered/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -42,7 +45,7 @@ for ag in all_agent.keys():
         for g in all_matrix:
             print("    "+g)
             RESULT_NAME = RESULT_DIR+ag+"/"+G_name+"/"+g
-            W = synchro_world_clustered.synchro_world_clustered(100, 1000, eval(g)(), prefix+G, all_agent[ag])
+            W = synchro_world_clustered.synchro_world_clustered(100, 5000, eval(g)(), prefix+G, all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 

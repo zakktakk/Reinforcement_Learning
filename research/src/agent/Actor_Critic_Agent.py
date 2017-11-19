@@ -13,7 +13,8 @@ from .Agent import Agent
 
 
 class Actor_Critic_Agent(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, beta: float=1, gamma: float=0.95) -> None:
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95,
+                 beta: float=1) -> None:
         """
         :param beta: 正のステップサイズ変数
         """
@@ -25,8 +26,8 @@ class Actor_Critic_Agent(Agent):
         self.n_round = 0
         self.T = 1 # 温度パラメータ
 
-        self.v_table = pd.Series(np.zeros(len(states)), index=states, dtype=float)
-        self.p_table = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
+        self.v_df = pd.Series(np.zeros(len(states)), index=states, dtype=float)
+        self.p_df = pd.DataFrame(np.zeros((len(actions), len(states))), index=actions, columns=states, dtype=float)
 
 
     def update(self, state: str, reward: float) -> None:
@@ -43,12 +44,12 @@ class Actor_Critic_Agent(Agent):
         # append current reward to reward history list
         self.rewards.append(reward)
 
-        # update v table
-        delta = reward + self.__gamma * self.v_table[state] - self.v_table[s]
-        self.v_table[s] += alpha * delta
+        # update v df
+        delta = reward + self.__gamma * self.v_df[state] - self.v_df[s]
+        self.v_df[s] += alpha * delta
 
-        # update p table
-        self.p_table[s][a] += delta * self.__beta
+        # update p df
+        self.p_df[s][a] += delta * self.__beta
         # update current state
         self.current_state = state
 
@@ -63,7 +64,7 @@ class Actor_Critic_Agent(Agent):
         if random:
             action = np.random.choice(self.actions)
         else:
-            q_row = self.p_table[state]
+            q_row = self.p_df[state]
             action_id = softmax_boltzman(q_row, T=self.T)
             action = self.actions[action_id]
             self.T *= 0.9

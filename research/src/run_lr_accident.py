@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 """simulation world"""
-from world import synchro_world_lr_accident
+from world import synchro_world
 
 """network"""
 from networks import network_utils
@@ -23,11 +23,6 @@ from world.payoff_matrix import *
 # graphの定義
 rG = network_utils.graph_generator.random_graph
 
-all_graph = {"random":rG}
-
-# payoffmatrixの定義
-all_matrix = ["prisoners_dilemma"]
-
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
 
@@ -42,13 +37,13 @@ for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
     print(ag)
-    for g in all_matrix:
-        print("    "+g)
-        for gamma in all_gamma:
-            for ti, aa in zip(["kaishou"], all_after):
-                RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(gamma*100)+"_"+ti
-                W = synchro_world_lr_accident.synchro_world_lr_accident(100, 1000, eval(g)(), rG, all_agent[ag], aa,gamma)
-                W.run()
-                W.save(RESULT_NAME)
+
+    for gamma in all_gamma:
+        for ti, aa in zip(["kaishou"], all_after):
+            RESULT_NAME = RESULT_DIR+ag+"/prisoner_"+str(gamma*100)+"_"+ti
+            W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), rG, all_agent[ag],
+                                                                    altered_mat=aa,rl_param=dict(gamma=gamma))
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')
