@@ -55,11 +55,11 @@ class synchro_world(object):
 
         # set rewiring method
         if rewire_mode == "random":
-            self.rewire_mode = self.__random_rewire
+            self.rewire_mode = self.random_rewire
         elif rewire_mode == "neighbor":
-            self.rewire_mode = self.__neighbors_neighbor
+            self.rewire_mode = self.neighbors_neighbor
         elif rewire_mode == "preference":
-            self.rewire_mode = self.__preference_attachment
+            self.rewire_mode = self.preference_attachment
         else:
             self.rewire_mode = None
 

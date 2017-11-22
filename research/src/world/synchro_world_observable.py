@@ -150,8 +150,8 @@ class synchro_world_observable(synchro_world):
                 #self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
 
             if self.share_rate is not None:
-                self.__update_q()
-                self.__share_q()
+                self.update_q()
+                self.share_q()
 
             if is_rewire:
                 self.rewire_mode(rewire_lst)

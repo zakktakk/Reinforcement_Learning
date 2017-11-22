@@ -40,6 +40,7 @@ class Q_Learning_Agent(Agent):
         a = self.prev_action
         s = self.current_state
         # alphaの設定はrefに準ずる
+        print(self.id_, np.array(self.n_each_action))
         alpha = 1/(10+0.01*self.n_each_action[a])
 
         # append current reward to reward history list
@@ -47,6 +48,7 @@ class Q_Learning_Agent(Agent):
 
         # update q function
         self.q_df[s][a] += alpha * (reward+self.__gamma*self.q_df[state].max()-self.q_df[s][a])
+        print(self.q_df)
 
         self.current_state = state
 
@@ -63,7 +65,7 @@ class Q_Learning_Agent(Agent):
         else:
             q_row = self.q_df[state]
             if reduction:
-                action = eps_greedy(q_row, eps=max(0, 0.2-0.00018*self.n_round)) #eps 減衰
+                action = eps_greedy(q_row, eps=max(0, 0.2-0.0002*self.n_round)) #eps 減衰
             else:
                 action = eps_greedy(q_row, eps=0.1) #eps 固定
 

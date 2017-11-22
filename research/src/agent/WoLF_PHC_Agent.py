@@ -30,7 +30,7 @@ class WoLF_PHC_Agent(Agent):
         self.C = pd.DataFrame(np.zeros(len_s)[np.newaxis,:], columns=states)
 
 
-    def __q_mean(self, pi_df: pd.DataFrame, q_df: pd.DataFrame) -> float:
+    def __q_mean(self, pi_df: pd.DataFrame, q_df: pd.DataFrame) -> np.ndarray:
         """
         :param pi_df: pandas dataframe, pi value dataframe
         :param q_df: pandas dataframe, q value dataframe
@@ -59,7 +59,7 @@ class WoLF_PHC_Agent(Agent):
 
 
         # update estimate of average policy pi dash
-        self.C[s] += 1
+        self.C[s][0] += 1
         self.pi_d_df[s] += (self.pi_df[s]-self.pi_d_df[s])/self.C[s][0]
 
 
