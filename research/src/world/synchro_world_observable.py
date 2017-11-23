@@ -92,7 +92,7 @@ class synchro_world_observable(synchro_world):
             if i == len(list(self.payoff_mat))*5: rand = False
 
             # payoff matの更新
-            if (self.altered_mat is not None) and (i == self.n_round * 0.5): self.__change_payoff_metrix()
+            if (self.altered_mat is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
 
             # 全てのエージェントが行動選択
             coop_num = 0

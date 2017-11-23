@@ -113,8 +113,9 @@ class synchro_world(object):
         for n in self.G.nodes():
             neighbors_q = self.agent_q_df.iloc[self.G.neighbors(n)].mean(axis=0)
             self.agent_q_df.iloc[n] = self.agent_q_df.iloc[n] * (1 - self.share_rate) + self.share_rate * neighbors_q
-            self.G.node[n]["agent"].q_df.iloc[0] = self.agent_q_df.iloc[n][0]
-            self.G.node[n]["agent"].q_df.iloc[1] = self.agent_q_df.iloc[n][1]
+
+            for i in range(len(self.payoff_mat.index)):
+                self.G.node[n]["agent"].q_df.iloc[i] = self.agent_q_df.iloc[n][i]
 
     def write_q_val(self, i):
         neighbor_num = len(self.G.neighbors(0))
@@ -126,8 +127,8 @@ class synchro_world(object):
 
         q_val /= self.n_agent
 
-        self.q_df.iloc[i][0] = q_val[0][0]
-        self.q_df.iloc[i][1] = q_val[1][0]
+        for j in range(len(self.payoff_mat.index)):
+            self.q_df.iloc[i][j] = q_val[j][0]
 
 
     def run(self) -> None:

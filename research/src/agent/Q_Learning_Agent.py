@@ -21,7 +21,6 @@ from .Agent import Agent
 class Q_Learning_Agent(Agent):
     def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95) -> None:
         super().__init__(id_, states, actions)
-
         self.__gamma = gamma
         self.n_each_action = pd.Series([0]*len(actions), index=actions)
         self.n_round = 0
@@ -40,7 +39,6 @@ class Q_Learning_Agent(Agent):
         a = self.prev_action
         s = self.current_state
         # alphaの設定はrefに準ずる
-        print(self.id_, np.array(self.n_each_action))
         alpha = 1/(10+0.01*self.n_each_action[a])
 
         # append current reward to reward history list
@@ -48,9 +46,9 @@ class Q_Learning_Agent(Agent):
 
         # update q function
         self.q_df[s][a] += alpha * (reward+self.__gamma*self.q_df[state].max()-self.q_df[s][a])
-        print(self.q_df)
 
         self.current_state = state
+
 
 
     def act(self, state: str, random: bool=False, reduction: bool=True) -> str:
@@ -72,5 +70,5 @@ class Q_Learning_Agent(Agent):
         self.prev_action = action
         self.n_each_action[action] += 1
         self.n_round += 1
-        
+
         return action

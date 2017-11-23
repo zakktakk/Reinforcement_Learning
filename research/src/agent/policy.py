@@ -36,7 +36,9 @@ def eps_greedy(q_row, eps=0.1):
         obj = q_row.index
         return np.random.choice(obj) #randomに戦略を返す
     else:
-        return q_row.argmax() #greedyな戦略
+        q_index = q_row.index
+        index = np.random.choice(np.argwhere(q_row == np.amax(q_row)).flatten())
+        return q_index[index] #greedyな戦略
 
 
 def greedy(q_row):
