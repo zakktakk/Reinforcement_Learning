@@ -35,7 +35,7 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
 all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
 
 
-RESULT_DIR = "../results/lr_accident/random/"
+RESULT_DIR = "../results_1123/lr_accident/random/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

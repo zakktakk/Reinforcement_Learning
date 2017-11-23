@@ -40,7 +40,7 @@ all_matrix = ["prisoners_dilemma", "coodination_game", "CG", "PG"]
 all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results/observable/"
+RESULT_DIR = "../results_1123/observable/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

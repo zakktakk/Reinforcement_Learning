@@ -38,7 +38,7 @@ all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Age
 all_agent_num = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200]
 
 
-RESULT_DIR = "../results/agent_num/random/"
+RESULT_DIR = "../results_1123/agent_num/random/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

@@ -35,8 +35,8 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
 all_graph = {"random":rG}
 
 
-RESULT_NAME = "../results/observable_accident/random/q/prisoners"
-os.makedirs("../results/observable_accident/random/q")
+RESULT_NAME = "../results_1123/observable_accident/random/q/prisoners"
+os.makedirs("../results_1123/observable_accident/random/q")
 
 
 for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
