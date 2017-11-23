@@ -26,15 +26,26 @@ from world.payoff_matrix import *
 # graphの定義
 rG = network_utils.graph_generator.random_graph
 
-all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd'))]
+all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
+             ]
+
 
 all_graph = {"random":rG}
 
-RESULT_NAME = "../results/observable_accident/random/q/prisoners_kaishou"
 
-W = synchro_world_observable.synchro_world_observable(100, 1000, prisoners_dilemma(), rG,
-                                                      ql.Q_Learning_Agent, altered_mat=all_after)
-W.run()
-W.save(RESULT_NAME)
+RESULT_NAME = "../results/observable_accident/random/q/prisoners"
+os.makedirs("../results/observable_accident/random/q")
+
+
+for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+    RESULT_NAME =  RESULT_NAME + "_" + ti
+    print(aa)
+    W = synchro_world_observable.synchro_world_observable(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent,
+                                    altered_mat=aa)
+    W.run()
+    W.save(RESULT_NAME)
+
 
 print('done!!')

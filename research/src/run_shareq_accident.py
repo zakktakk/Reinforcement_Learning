@@ -25,7 +25,10 @@ rG = network_utils.graph_generator.random_graph
 
 all_graph = {"random":rG}
 
-all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd'))]
+all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
+             ]
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
@@ -45,7 +48,7 @@ for ag in all_agent.keys():
         print("  "+G)
         for asr in all_share_rate:
             print("         ", asr)
-            for ti, aa in zip(["kaishou"], all_after):
+            for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
                 RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+"prisoner"+"_"+str(asr*100)+"_"+ti
                 W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], all_agent[ag],
                                                 share_rate=asr, altered_mat=aa)
