@@ -1,4 +1,4 @@
 */**/*.pyc
 /datas/*
-/results/*
+/results*/*
 /past_results/*

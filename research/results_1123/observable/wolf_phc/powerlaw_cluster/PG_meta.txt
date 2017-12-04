@@ -1,6 +1,0 @@
-繰り返し回数 : 1000
-エージェント数 : 100
-エッジ数 : 2451
-ネットワーク種類 : powerlaw_cluster_graph
-利得行列 : PG
-強化学習アルゴリズム : WoLF_PHC_Agent

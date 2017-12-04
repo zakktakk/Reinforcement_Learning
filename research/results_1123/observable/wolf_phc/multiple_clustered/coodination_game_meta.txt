@@ -1,6 +1,0 @@
-繰り返し回数 : 1000
-エージェント数 : 100
-エッジ数 : 486
-ネットワーク種類 : ../src/networks/multiple_clustered.gpickle
-利得行列 : coodination_game
-強化学習アルゴリズム : WoLF_PHC_Agent

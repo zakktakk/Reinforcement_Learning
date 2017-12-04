@@ -1,6 +1,0 @@
-繰り返し回数 : 1000
-エージェント数 : 100
-エッジ数 : 1000
-ネットワーク種類 : random_graph
-利得行列 : prisoners_dilemma
-強化学習アルゴリズム : WoLF_PHC_Agent

@@ -1,6 +1,0 @@
-繰り返し回数 : 1000
-エージェント数 : 50
-エッジ数 : 1225
-ネットワーク種類 : random_graph
-利得行列 : prisoners_dilemma
-強化学習アルゴリズム : Q_Learning_Agent
