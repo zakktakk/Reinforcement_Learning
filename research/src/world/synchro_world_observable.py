@@ -11,7 +11,7 @@
 # - 利得行列の種類
 # - その他の条件(初期行動制約など)
 # TODO coop側の人しかsignal出せないかつ，signal出す出さないは選択可能，signalはコストがかかる -> バランス取らないと初期の行動で行動割合の偏りが生じるぞ
-# TODO 全体の助教が見える場合、近傍の状況が見える場合
+# TODO 全体の状況が見える場合、近傍の状況が見える場合
 
 
 """path setting"""
@@ -146,7 +146,7 @@ class synchro_world_observable(synchro_world):
                 self.G.node[n]["reward"] = n_reward
                 reward_sum += n_reward / len(neighbors)
                 self.G.node[n]["n_signal"] = n_signal
-                self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward) # 今状態は0だけ
+                self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward)
                 #self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
 
             if self.share_rate is not None:

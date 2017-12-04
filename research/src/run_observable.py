@@ -34,6 +34,7 @@ all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG)
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 # payoffmatrixの定義
+# TODO CG, PGはいらない
 all_matrix = ["prisoners_dilemma", "coodination_game", "CG", "PG"]
 
 # agentの定義

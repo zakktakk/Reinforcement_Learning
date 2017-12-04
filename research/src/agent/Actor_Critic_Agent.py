@@ -41,9 +41,6 @@ class Actor_Critic_Agent(Agent):
 
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 
-        # append current reward to reward history list
-        self.rewards.append(reward)
-
         # update v df
         delta = reward + self.__gamma * self.v_df[state] - self.v_df[s]
         self.v_df[s] += alpha * delta

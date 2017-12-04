@@ -24,9 +24,6 @@ class Agent(metaclass=ABCMeta):
             行動を表す文字列の集合
             順序が欲しくかつdiffなどの操作がしやすいためndarrayにした
 
-        :param rewards : list, len=n_history
-            報酬の履歴を表す, append操作のためにlistにした
-
         :param prev_action : sting,
             一つ前の行動のstring
 
@@ -38,7 +35,6 @@ class Agent(metaclass=ABCMeta):
 
         self.actions = actions
         self.states = states
-        self.rewards = []
         self.prev_action = ""
         self.current_state = 0
 

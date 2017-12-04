@@ -52,7 +52,6 @@ class WoLF_PHC_Agent(Agent):
         alpha = 1/(10+0.01*self.count_df[s][a])
         delta_w = 1/(10+self.count_df[s][a])
         delta_l = 4*delta_w
-        self.rewards.append(reward)
 
         # update q df
         self.q_df[s][a] += alpha/(self.C[s]+1)*(reward+self.__gamma*self.q_df[state].max()-self.q_df[s][a])

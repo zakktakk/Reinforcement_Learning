@@ -26,11 +26,12 @@ from world.payoff_matrix import *
 # graphの定義
 rG = network_utils.graph_generator.random_graph
 
-all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
+all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
              ]
 
+all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
 all_graph = {"random":rG}
 
@@ -40,12 +41,13 @@ os.makedirs("../results_1123/observable_accident/random/q")
 
 
 for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
-    RESULT_NAME =  RESULT_NAME + "_" + ti
-    print(aa)
-    W = synchro_world_observable.synchro_world_observable(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent,
-                                    altered_mat=aa)
-    W.run()
-    W.save(RESULT_NAME)
+    for ap in all_p:
+        RESULT_NAME =  RESULT_NAME + "_" + ti + "_" + str(ap*100)
+        print(aa)
+        W = synchro_world_observable.synchro_world_observable(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent,
+                                        altered_mat=aa, p_noise=ap)
+        W.run()
+        W.save(RESULT_NAME)
 
 
 print('done!!')

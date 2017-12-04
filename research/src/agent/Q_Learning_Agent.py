@@ -41,9 +41,6 @@ class Q_Learning_Agent(Agent):
         # alphaの設定はrefに準ずる
         alpha = 1/(10+0.01*self.n_each_action[a])
 
-        # append current reward to reward history list
-        self.rewards.append(reward)
-
         # update q function
         self.q_df[s][a] += alpha * (reward+self.__gamma*self.q_df[state].max()-self.q_df[s][a])
 

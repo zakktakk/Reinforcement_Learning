@@ -1,0 +1,6 @@
+繰り返し回数 : 1000
+エージェント数 : 100
+エッジ数 : 2432
+ネットワーク種類 : powerlaw_cluster_graph
+利得行列 : coodination_game_sig
+強化学習アルゴリズム : Q_Learning_Agent

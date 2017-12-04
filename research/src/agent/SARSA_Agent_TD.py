@@ -39,9 +39,6 @@ class SARSA_Agent_TD(Agent):
         # alphaの設定はrefに準ずる
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 
-        # append current reward to reward history list
-        self.rewards.append(reward)
-
         delta = reward + self.__gamma * self.q_df[state][action] - self.q_df[s][a]
 
         # update eligibility trace df
