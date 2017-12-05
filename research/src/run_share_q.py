@@ -32,7 +32,7 @@ all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG)
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 # payoffmatrixの定義
-all_matrix = ["prisoners_dilemma", "coodination_game", "CG", "PG"]
+all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
@@ -42,7 +42,7 @@ all_agent = {"q":ql.Q_Learning_Agent}
 all_share_rate = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
 
-RESULT_DIR = "../results_1123/share_q/"
+RESULT_DIR = "../results/share_q/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

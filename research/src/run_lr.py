@@ -23,7 +23,7 @@ from world.payoff_matrix import *
 rG = network_utils.graph_generator.random_graph
 
 # payoffmatrixの定義
-all_matrix = ["prisoners_dilemma", "coodination_game", "PG", "CG"]
+all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
@@ -32,7 +32,7 @@ all_agent = {"q":ql.Q_Learning_Agent}
 all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
 
 
-RESULT_DIR = "../results_1123/lr/random/"
+RESULT_DIR = "../results/lr/random/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

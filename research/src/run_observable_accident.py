@@ -36,13 +36,13 @@ all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 all_graph = {"random":rG}
 
 
-RESULT_NAME = "../results_1123/observable_accident/random/q/prisoners"
-os.makedirs("../results_1123/observable_accident/random/q")
+RESULT_DIR = "../results/observable_accident/random/q/prisoners"
+os.makedirs("../results/observable_accident/random/q")
 
 
 for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
     for ap in all_p:
-        RESULT_NAME =  RESULT_NAME + "_" + ti + "_" + str(ap*100)
+        RESULT_NAME =  RESULT_DIR + "_" + ti + "_" + str(ap*100)
         print(aa)
         W = synchro_world_observable.synchro_world_observable(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent,
                                         altered_mat=aa, p_noise=ap)

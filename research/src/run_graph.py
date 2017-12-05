@@ -34,13 +34,13 @@ all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG)
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 # payoffmatrixの定義
-all_matrix = ["prisoners_dilemma", "coodination_game", "CG", "PG"]
+all_matrix = ["prisoners_dilemma", "coodination_game"]
 
 # agentの定義
 all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results_1123/graph/"
+RESULT_DIR = "../results/graph/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)

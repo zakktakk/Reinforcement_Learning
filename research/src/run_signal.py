@@ -41,7 +41,7 @@ all_agent = {"q":ql.Q_Learning_Agent}
 # all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent)))
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
-RESULT_DIR = "../results_1123/signal/"
+RESULT_DIR = "../results/signal/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -53,7 +53,7 @@ for ag in all_agent.keys():
         for g in all_matrix:
             print("    "+g)
             RESULT_NAME = RESULT_DIR+ag+"/"+G+"/"+g
-            W = synchro_world_observable.synchro_world_observable(100, 5, eval(g)(), all_graph[G], all_agent[ag])
+            W = synchro_world_observable.synchro_world_observable(100, 1000, eval(g)(), all_graph[G], all_agent[ag])
             W.run()
             W.save(RESULT_NAME)
 
