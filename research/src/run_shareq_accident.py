@@ -21,9 +21,9 @@ from world.payoff_matrix import *
 
 
 # graphの定義
-rG = network_utils.graph_generator.random_graph
+pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_graph = {"random":rG}
+all_graph = {"powerlaw_cluster":pcG}
 
 all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),

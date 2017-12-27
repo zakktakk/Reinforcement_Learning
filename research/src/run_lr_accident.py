@@ -21,7 +21,7 @@ from world.payoff_matrix import *
 
 
 # graphの定義
-rG = network_utils.graph_generator.random_graph
+pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
@@ -35,7 +35,7 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
 all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
 
 
-RESULT_DIR = "../results/lr_accident/random/"
+RESULT_DIR = "../results/lr_accident/powerlaw_cluster/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -44,7 +44,7 @@ for ag in all_agent.keys():
     for gamma in all_gamma:
         for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
             RESULT_NAME = RESULT_DIR+ag+"/prisoner_"+str(gamma*100)+"_"+ti
-            W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), rG, all_agent[ag],
+            W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, all_agent[ag],
                                                                     altered_mat=aa,rl_param=dict(gamma=gamma))
             W.run()
             W.save(RESULT_NAME)

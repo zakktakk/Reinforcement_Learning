@@ -13,9 +13,7 @@ from networks import network_utils
 
 """agent"""
 # defaultはこの4種類にしよう
-from agent import WoLF_PHC_Agent as wpa
 from agent import Q_Learning_Agent as ql
-from agent import SARSA_Agent as sarsa
 
 """payoff matrix"""
 from world.payoff_matrix import *
@@ -24,22 +22,18 @@ graph_prefix = "../src/networks/"
 
 # graphの定義
 cG = network_utils.graph_generator.complete_graph
-rG = network_utils.graph_generator.random_graph
-g2G = network_utils.graph_generator.grid_2d_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG),
+all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
                          ("multiple_clustered",graph_prefix+"multiple_clustered.gpickle"),
                          ("inner_dence_clustered", graph_prefix+"inner_dence_clustered.gpickle"),
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 # payoffmatrixの定義
-all_matrix = ["prisoners_dilemma_sig", "coodination_game_sig"]
+all_matrix = ["prisoners_dilemma_sig"]
 
 # agentの定義
 all_agent = {"q":ql.Q_Learning_Agent}
-# all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent)))
-# all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 RESULT_DIR = "../results/signal/"
 for ag in all_agent.keys():

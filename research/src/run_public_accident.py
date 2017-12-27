@@ -21,25 +21,27 @@ from world.payoff_matrix import *
 
 
 # graphの定義
-rG = network_utils.graph_generator.random_graph
+pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
              ]
 
-# agentの定義
-all_agent = {"q":ql.Q_Learning_Agent}
+all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+
+
+RESULT_DIR = "../results/public_accident/powerlaw_cluster/q/prisoners"
+os.makedirs("../results/public_accident/powerlaw_cluster/q")
 
 RESULT_DIR = "../results/public_accident/"
-for ag in all_agent.keys():
-    if not os.path.exists(RESULT_DIR+ag):
-        os.makedirs(RESULT_DIR+ag)
-    print(ag)
 
-    for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
-        RESULT_NAME = RESULT_DIR+ag+"/prisoner_"+ti
-        W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), rG, all_agent[ag], altered_mat=aa)
+for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+    for ap in all_p:
+        print(aa)
+        RESULT_NAME = RESULT_DIR+"_"+ti+ "_" + str(ap*100)
+        W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG,ql.Q_Learning_Agent,
+                                                      altered_mat=aa, p_noise=ap)
         W.run()
         W.save(RESULT_NAME)
 

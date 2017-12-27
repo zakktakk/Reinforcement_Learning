@@ -18,6 +18,7 @@ from networks import network_utils
 # defaultはこの4種類にしよう
 from agent import WoLF_PHC_Agent as wpa
 from agent import Q_Learning_Agent as ql
+from agent import Actor_Critic_Agent as aca
 from agent import SARSA_Agent as sarsa
 
 """payoff matrix"""
@@ -28,19 +29,16 @@ graph_prefix = "../src/networks/"
 
 # graphの定義
 cG = network_utils.graph_generator.complete_graph
-rG = network_utils.graph_generator.random_graph
-g2G = network_utils.graph_generator.grid_2d_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_graph = OrderedDict((("random",rG), ("grid2d",g2G), ("powerlaw_cluster",pcG), ("complete",cG),
+all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
                          ("multiple_clustered",graph_prefix+"multiple_clustered.gpickle"),
                          ("inner_dence_clustered", graph_prefix+"inner_dence_clustered.gpickle"),
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent)))
-# all_agent = {"sarsa":sarsa.SARSA_Agent}
+all_agent = OrderedDict((("q",ql.Q_Learning_Agent)))
 
 # accident後の行列
 all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
