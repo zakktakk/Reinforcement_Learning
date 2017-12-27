@@ -1,5 +1,6 @@
 */**/*.pyc
 /research/results/
+/research/results_*/*
 /research/simple_results/
 /existing/
 /research/src/past_PGG/

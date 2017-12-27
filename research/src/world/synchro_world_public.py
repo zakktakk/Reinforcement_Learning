@@ -1,15 +1,6 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : 同時プレイの世界
-#
-# データに記述すべきメタデータ
-# - 繰り返し回数
-# - エージェント数
-# - ネットワークの種類
-# - エージェントの種類
-# - エッジ数
-# - 利得行列の種類
-# - その他の条件(初期行動制約など)
+# description : 公共の情報が参照可能な場合
 
 
 """path setting"""
@@ -147,6 +138,7 @@ class synchro_world_public(synchro_world):
                 prev_public_coop_num = public_coop_num
 
 
+            #
             if self.share_rate is not None:
                 self.update_q()
                 self.share_q()

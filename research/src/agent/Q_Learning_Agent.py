@@ -3,11 +3,6 @@
 # author : Takuro Yamazaki
 # description : Q学習エージェントモデル
 
-# TODO
-#   - reward_lstの長さ制限
-#   - 適格度トレースの実装(メモリ機能)
-#   - alpha固定と減衰を比較
-
 # Reference
 #   - J.W.Crandall, M.A.Goodrich, "Learning to compete, compromise, and cooperate in repeated general-sum games"
 
