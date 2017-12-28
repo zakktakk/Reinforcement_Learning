@@ -22,28 +22,19 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-# payoffmatrixの定義
-all_matrix = ["prisoners_dilemma"]
-
-# agentの定義
-all_agent = {"q":ql.Q_Learning_Agent}
-
 # 割引率gammaの定義
 all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
 
 
-RESULT_DIR = "../results/lr/powerlaw_cluster/"
-for ag in all_agent.keys():
-    if not os.path.exists(RESULT_DIR+ag):
-        os.makedirs(RESULT_DIR+ag)
-    print(ag)
-    for g in all_matrix:
-        print("    "+g)
-        for gamma in all_gamma:
-            print("      ", gamma)
-            RESULT_NAME = RESULT_DIR+ag+"/"+g+"_"+str(gamma*100)
-            W = synchro_world.synchro_world(100, 1000, eval(g)(), pcG, all_agent[ag], rl_param=dict(gamma=gamma))
-            W.run()
-            W.save(RESULT_NAME)
+RESULT_DIR = "../results/lr/powerlaw_cluster/q/"
+if not os.path.exists(RESULT_DIR):
+    os.makedirs(RESULT_DIR)
+
+for gamma in all_gamma:
+    print("      ", gamma)
+    RESULT_NAME = RESULT_DIR+"prisoners_"+str(gamma*100)
+    W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, rl_param=dict(gamma=gamma))
+    W.run()
+    W.save(RESULT_NAME)
 
 print('done!!')

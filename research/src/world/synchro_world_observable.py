@@ -28,7 +28,7 @@ from .synchro_world import synchro_world
 
 
 class synchro_world_observable(synchro_world):
-    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg,
+    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg,episodes=5,
                  altered_mat=None, share_rate=None, nwk_param=None, rl_param=None,
                  rewire_mode=None, rewire_interval=0, p_noise=-1):
         """
@@ -45,7 +45,7 @@ class synchro_world_observable(synchro_world):
         :param rewire_interval: edge rewiring interval, if 0, no rewiring
         :param p_noise: probablity of noise in observable information
         """
-        super().__init__(n_agent, n_round, payoff_mat, nwk_alg, rl_alg, altered_mat, share_rate, nwk_param, rl_param,
+        super().__init__(n_agent, n_round, payoff_mat, nwk_alg, rl_alg, episodes, altered_mat, share_rate, nwk_param, rl_param,
                  rewire_mode, rewire_interval)
         self.p_noise = p_noise
 

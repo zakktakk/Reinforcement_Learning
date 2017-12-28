@@ -31,7 +31,7 @@ plt.style.use('ggplot')
 
 
 class synchro_world(object):
-    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg,
+    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg, episodes=5,
                  altered_mat=None, share_rate=None, nwk_param=None, rl_param=None, rewire_mode=None, rewire_interval=0):
         """
         :param n_agent: agent num
@@ -51,6 +51,7 @@ class synchro_world(object):
         self.game_name, self.payoff_mat = payoff_mat
         self.rl_alg = rl_alg
         self.nwk_alg = nwk_alg
+        self.episodes = episodes
         self.is_prepared_nwk = isinstance(nwk_alg, str)
 
         # set rewiring method

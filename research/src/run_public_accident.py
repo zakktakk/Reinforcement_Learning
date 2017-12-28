@@ -3,7 +3,8 @@
 # description : 全員の行動だけが観測可能な場合
 
 import os
-from collections import OrderedDict
+import numpy as np
+import pandas as pd
 
 """simulation world"""
 from world import synchro_world_public
@@ -28,7 +29,7 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
              pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
              ]
 
-all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+all_p = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
 
 RESULT_DIR = "../results/public_accident/powerlaw_cluster/q/prisoners"
