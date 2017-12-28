@@ -32,18 +32,18 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
 all_p = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
 
-RESULT_DIR = "../results/public_accident/powerlaw_cluster/q/prisoners"
+RESULT_DIR = "../results/public_accident/powerlaw_cluster/q"
 os.makedirs("../results/public_accident/powerlaw_cluster/q")
 
 RESULT_DIR = "../results/public_accident/"
 
 for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
     for ap in all_p:
-        print(aa)
-        RESULT_NAME = RESULT_DIR+"_"+ti+ "_" + str(ap*100)
-        W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG,ql.Q_Learning_Agent,
-                                                      altered_mat=aa, p_noise=ap)
-        W.run()
-        W.save(RESULT_NAME)
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_"+ti+ "_" + str(ap*100)
+            W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG,ql.Q_Learning_Agent,
+                                                          altered_mat=aa, p_noise=ap)
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

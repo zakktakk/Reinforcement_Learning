@@ -37,10 +37,10 @@ for G in all_graph:
     if not os.path.exists(RESULT_DIR+"/"+G):
         os.makedirs(RESULT_DIR+"/"+G)
     print("  "+G)
-
-    RESULT_NAME = RESULT_DIR+"/"+G+"/prisoners_dilemma"
-    W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent)
-    W.run()
-    W.save(RESULT_NAME)
+    for k in range(5):
+        RESULT_NAME = RESULT_DIR+"/"+G+"/"+str(k)+"/prisoners_dilemma"
+        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent)
+        W.run()
+        W.save(RESULT_NAME)
 
 print('done!!')

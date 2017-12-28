@@ -158,3 +158,12 @@ class synchro_world_public(synchro_world):
         self.save_average_reward(f_name+"_reward.csv")
         self.save_average_coop(f_name+"_coop.csv")
         self.save_meta_info(f_name+"_meta.txt", other)
+
+    def get_result(self, f_name: str, other=None):
+        """
+        :param f_name: 出力ファイル名
+        :param other: その他の条件
+        :return: q値のテーブル、協調確率のテーブル、獲得報酬のテーブル
+        """
+        self.save_meta_info(f_name+"_meta.txt", other)
+        return self.coop_per_df, self.payoff_df

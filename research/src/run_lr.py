@@ -32,9 +32,10 @@ if not os.path.exists(RESULT_DIR):
 
 for gamma in all_gamma:
     print("      ", gamma)
-    RESULT_NAME = RESULT_DIR+"prisoners_"+str(gamma*100)
-    W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, rl_param=dict(gamma=gamma))
-    W.run()
-    W.save(RESULT_NAME)
+    for k in range(5):
+        RESULT_NAME = RESULT_DIR+"/"+str(k)+"prisoners_"+str(gamma*100)
+        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, rl_param=dict(gamma=gamma))
+        W.run()
+        W.save(RESULT_NAME)
 
 print('done!!')

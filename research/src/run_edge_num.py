@@ -32,9 +32,10 @@ if not os.path.exists(RESULT_DIR):
 
 for e_num in all_edge_num:
     print("     ", str(e_num))
-    RESULT_NAME = RESULT_DIR+"prisoners_"+str(e_num)
-    W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent, nwk_param=dict(m=e_num))
-    W.run()
-    W.save(RESULT_NAME)
+    for k in range(5):
+        RESULT_NAME = RESULT_DIR+"/"+str(k)+"prisoners_"+str(e_num)
+        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent, nwk_param=dict(m=e_num))
+        W.run()
+        W.save(RESULT_NAME)
 
 print('done!!')

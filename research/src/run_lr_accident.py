@@ -39,10 +39,11 @@ if not os.path.exists(RESULT_DIR):
 
 for gamma in all_gamma:
     for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
-        RESULT_NAME = RESULT_DIR+"/prisoner_"+str(gamma*100)+"_"+ti
-        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent,
-                                                                altered_mat=aa,rl_param=dict(gamma=gamma))
-        W.run()
-        W.save(RESULT_NAME)
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoner_"+str(gamma*100)+"_"+ti
+            W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent,
+                                                                    altered_mat=aa,rl_param=dict(gamma=gamma))
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

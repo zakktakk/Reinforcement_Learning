@@ -48,9 +48,10 @@ for G in all_graph:
 
     print("  "+G)
     for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
-        RESULT_NAME = RESULT_DIR+"/"+G+"/prisoners_dilemma_"+ti
-        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent, altered_mat=aa)
-        W.run()
-        W.save(RESULT_NAME)
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+"/"+G+"/"+str(k)+"/prisoners_dilemma_"+ti
+            W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent, altered_mat=aa)
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

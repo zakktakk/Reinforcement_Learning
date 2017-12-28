@@ -254,6 +254,16 @@ class synchro_world(object):
         self.save_meta_info(f_name+"_meta.txt", other)
 
 
+    def get_result(self, f_name: str, other=None):
+        """
+        :param f_name: 出力ファイル名
+        :param other: その他の条件
+        :return: q値のテーブル、協調確率のテーブル、獲得報酬のテーブル
+        """
+        self.save_meta_info(f_name+"_meta.txt", other)
+        return self.q_df, self.coop_per_df, self.payoff_df
+
+
     def random_rewire(self, rewire_lst):
         self.G.remove_edges_from(rewire_lst)
         nodes = self.G.nodes()

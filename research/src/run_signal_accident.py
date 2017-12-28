@@ -39,10 +39,11 @@ if not os.path.exists(RESULT_DIR):
 
 for ap in all_p:
     for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
-        RESULT_NAME = RESULT_DIR+"/prisoner"+"_"+str(ap*100)+"_"+ti
-        W = synchro_world_signal.synchro_world_signal(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent,
-                                                      p_noise=ap, altered_mat=aa)
-        W.run()
-        W.save(RESULT_NAME)
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoner"+"_"+str(ap*100)+"_"+ti
+            W = synchro_world_signal.synchro_world_signal(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent,
+                                                          p_noise=ap, altered_mat=aa)
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

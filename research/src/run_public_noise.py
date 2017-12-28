@@ -35,9 +35,10 @@ if not os.path.exists(RESULT_DIR):
     os.makedirs(RESULT_DIR)
 
 for p in all_p:
-    RESULT_NAME = RESULT_DIR+"/prisoners_dilemma_"+str(p*100)
-    W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, p_noise=p)
-    W.run()
-    W.save(RESULT_NAME)
+    for k in range(5):
+        RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_dilemma_"+str(p*100)
+        W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, p_noise=p)
+        W.run()
+        W.save(RESULT_NAME)
 
 print('done!!')
