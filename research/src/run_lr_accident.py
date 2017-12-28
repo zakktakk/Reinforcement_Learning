@@ -41,6 +41,8 @@ for gamma in all_gamma:
     for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
         for k in range(5):
             RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoner_"+str(gamma*100)+"_"+ti
+            if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
+                os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
             W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent,
                                                                     altered_mat=aa,rl_param=dict(gamma=gamma))
             W.run()

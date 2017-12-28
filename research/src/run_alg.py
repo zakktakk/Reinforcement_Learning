@@ -38,6 +38,8 @@ for ag in all_agent.keys():
     for k in range(5):
 
         RESULT_NAME = RESULT_DIR+ag+"/"+str(k)+"/prisoners_dilemma"
+        if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
+            os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
         W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, all_agent[ag])
         W.run()
         W.save(RESULT_NAME)

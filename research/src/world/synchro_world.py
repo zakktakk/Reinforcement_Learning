@@ -16,6 +16,8 @@
 import sys
 sys.path.append("../")
 
+from agent import Actor_Critic_Agent as aca
+
 """util libraries"""
 import numpy as np
 import networkx as nx
@@ -50,6 +52,12 @@ class synchro_world(object):
         self.n_round = n_round
         self.game_name, self.payoff_mat = payoff_mat
         self.rl_alg = rl_alg
+
+        if rl_alg == aca.Actor_Critic_Agent:
+            self.skip_q = True
+        else:
+            self.skip_q = False
+
         self.nwk_alg = nwk_alg
         self.episodes = episodes
         self.is_prepared_nwk = isinstance(nwk_alg, str)
@@ -185,7 +193,8 @@ class synchro_world(object):
                 #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
 
             # save average q value of each round
-            self.write_q_val(i)
+            if not self.skip_q:
+                self.write_q_val(i)
 
             if self.share_rate is not None:
                 self.update_q()

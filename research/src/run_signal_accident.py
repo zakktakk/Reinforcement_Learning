@@ -23,10 +23,13 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
-             ]
+all_after = [pd.DataFrame(np.array([[3, 3, 0, 0],[3, 3, 0, 0],[5, 5, 0, 0],[5, 5, 0, 0]]),
+                    index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd']),
+             pd.DataFrame(np.array([[30, 30, 10, 10], [30, 30, 10, 10], [5, 5, 1, 1], [5, 5, 1, 1]]),
+                          index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd']),
+             pd.DataFrame(np.array([[4, 4, 0, 0], [4, 4, 0, 0], [0, 0, 2, 2], [0, 0, 2, 2]]),
+                          index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd']),
+            ]
 
 
 # share rateの定義
@@ -41,7 +44,9 @@ for ap in all_p:
     for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
         for k in range(5):
             RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoner"+"_"+str(ap*100)+"_"+ti
-            W = synchro_world_signal.synchro_world_signal(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent,
+            if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
+                os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
+            W = synchro_world_signal.synchro_world_signal(100, 1000, prisoners_dilemma_sig(), pcG, ql.Q_Learning_Agent,
                                                           p_noise=ap, altered_mat=aa)
             W.run()
             W.save(RESULT_NAME)

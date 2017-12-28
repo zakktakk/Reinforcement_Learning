@@ -24,7 +24,7 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
+all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
              pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
              ]
@@ -41,6 +41,8 @@ for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
     for ap in all_p:
         for k in range(5):
             RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_"+ti+ "_" + str(ap*100)
+            if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
+                os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
             W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG,ql.Q_Learning_Agent,
                                                           altered_mat=aa, p_noise=ap)
             W.run()
