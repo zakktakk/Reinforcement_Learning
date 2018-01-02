@@ -41,7 +41,7 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
              ]
 
 
-RESULT_DIR = "../results/accident_graph/q/"
+RESULT_DIR = "../results/accident_graph/"
 for G in all_graph:
     if not os.path.exists(RESULT_DIR+"/"+G):
         os.makedirs(RESULT_DIR+"/"+G)
@@ -49,9 +49,9 @@ for G in all_graph:
     print("  "+G)
     for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
         for k in range(5):
-            RESULT_NAME = RESULT_DIR+"/"+G+"/"+str(k)+"/prisoners_dilemma_"+ti
-            if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
-                os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
+            RESULT_NAME = RESULT_DIR+"/"+G+"/q/"+str(k)+"/prisoners_dilemma_"+ti
+            if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+                os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
             W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent, altered_mat=aa)
             W.run()
             W.save(RESULT_NAME)

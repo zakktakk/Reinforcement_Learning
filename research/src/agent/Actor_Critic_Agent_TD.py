@@ -13,7 +13,7 @@ from .Agent import Agent
 
 
 class Actor_Critic_Agent_TD(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95,
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, reguralize_value:int,gamma: float=0.95,
                  beta: float=1, lmd: float=0.5) -> None:
         """
         :param beta: 正のステップサイズ変数
@@ -25,6 +25,7 @@ class Actor_Critic_Agent_TD(Agent):
         self.__lmd = lmd
         self.n_each_action = pd.Series([0] * len(actions), index=actions)
         self.n_round = 0
+        self.regularize_value = reguralize_value
         self.T = 1 # 温度パラメータ
 
         self.v_df = pd.Series(np.zeros(len(states)), index=states, dtype=float)
@@ -42,6 +43,7 @@ class Actor_Critic_Agent_TD(Agent):
         """
         a = self.prev_action
         s = self.current_state
+        reward /= self.regularize_value
 
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 

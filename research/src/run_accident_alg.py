@@ -42,7 +42,7 @@ all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Age
 # all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 
-RESULT_DIR = "../results/accident_alg/q/powerlaw_cluster/"
+RESULT_DIR = "../results/accident_alg/powerlaw_cluster/q/"
 for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
@@ -52,10 +52,10 @@ for ag in all_agent.keys():
         for k in range(5):
             RESULT_NAME = RESULT_DIR+ag+"/"+str(k)+"/prisoners_dilemma_"+ti
 
-            if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
-                os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
+            if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+                os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
 
-            W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, all_agent[ag], altered_mat=aa)
+            W = synchro_world.synchro_world(100, 6, prisoners_dilemma(), pcG, all_agent[ag], altered_mat=aa)
             W.run()
             W.save(RESULT_NAME)
 

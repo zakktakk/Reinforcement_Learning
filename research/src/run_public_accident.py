@@ -40,10 +40,10 @@ RESULT_DIR = "../results/public_accident/"
 for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
     for ap in all_p:
         for k in range(5):
-            RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_"+ti+ "_" + str(ap*100)
-            if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
-                os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
-            W = synchro_world_public.synchro_world_public(100, 1000, prisoners_dilemma(), pcG,ql.Q_Learning_Agent,
+            RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_dilemma_"+ti+ "_" + str(ap*100)
+            if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+                os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
+            W = synchro_world_public.synchro_world_public(100, 10000, prisoners_dilemma(), pcG,ql.Q_Learning_Agent,
                                                           altered_mat=aa, p_noise=ap)
             W.run()
             W.save(RESULT_NAME)

@@ -55,7 +55,7 @@ class Q_Learning_Agent(Agent):
         else:
             q_row = self.q_df[state]
             if reduction:
-                action = eps_greedy(q_row, eps=max(0, 0.2-0.0002*self.n_round)) #eps 減衰
+                action = eps_greedy(q_row, eps=max(0, 0.2-0.00002*self.n_round)) #eps 減衰
             else:
                 action = eps_greedy(q_row, eps=0.1) #eps 固定
 

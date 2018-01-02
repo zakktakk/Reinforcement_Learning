@@ -33,8 +33,8 @@ if not os.path.exists(RESULT_DIR):
 for p in all_p:
     for k in range(5):
         RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_dilemma_"+str(p*100)
-        if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
-            os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
+        if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+            os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
         W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, share_rate=p)
         W.run()
         W.save(RESULT_NAME)

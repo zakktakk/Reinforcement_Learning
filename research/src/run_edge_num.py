@@ -33,9 +33,9 @@ if not os.path.exists(RESULT_DIR):
 for e_num in all_edge_num:
     print("     ", str(e_num))
     for k in range(5):
-        RESULT_NAME = RESULT_DIR+"/"+str(k)+"prisoners_"+str(e_num)
-        if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
-            os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
+        RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_dilemma_"+str(e_num)
+        if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+            os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
         W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent, nwk_param=dict(m=e_num))
         W.run()
         W.save(RESULT_NAME)

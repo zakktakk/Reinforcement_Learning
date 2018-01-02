@@ -29,7 +29,7 @@ all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
                          ("inner_dence_clustered", graph_prefix+"inner_dence_clustered.gpickle"),
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
-RESULT_DIR = "../results/graph/q/"
+RESULT_DIR = "../results/graph/"
 if not os.path.exists(RESULT_DIR):
     os.makedirs(RESULT_DIR)
 
@@ -38,9 +38,9 @@ for G in all_graph:
         os.makedirs(RESULT_DIR+"/"+G)
     print("  "+G)
     for k in range(5):
-        RESULT_NAME = RESULT_DIR+"/"+G+"/"+str(k)+"/prisoners_dilemma"
-        if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
-            os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
+        RESULT_NAME = RESULT_DIR+"/"+G+"/q/"+str(k)+"/prisoners_dilemma"
+        if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+            os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
         W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent)
         W.run()
         W.save(RESULT_NAME)

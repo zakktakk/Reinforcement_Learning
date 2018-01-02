@@ -22,7 +22,9 @@ def softmax_boltzman(q_row, T=1.0):
     obj = np.arange(len(q_row))
     q_row = np.array(q_row)
     ep = np.exp(q_row/T)
-    return np.random.choice(obj, p=ep/np.sum(ep))
+    act = np.random.choice(obj, p=ep/np.sum(ep))
+    pr = (ep/np.sum(ep))[act]
+    return act, pr
 
 
 def eps_greedy(q_row, eps=0.1):

@@ -13,7 +13,7 @@ from .Agent import Agent
 
 
 class Actor_Critic_Agent(Agent):
-    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, gamma: float=0.95,
+    def __init__(self, id_: int, states: np.ndarray, actions: np.ndarray, reguralize_value:int, gamma: float=0.95,
                  beta: float=1) -> None:
         """
         :param beta: 正のステップサイズ変数
@@ -23,7 +23,9 @@ class Actor_Critic_Agent(Agent):
         self.__beta = beta
         self.__gamma = gamma
         self.n_each_action = pd.Series([0] * len(actions), index=actions)
+        self.prev_prob = 0.5
         self.n_round = 0
+        self.regurelize_value = reguralize_value
         self.T = 1 # 温度パラメータ
 
         self.v_df = pd.Series(np.zeros(len(states)), index=states, dtype=float)
@@ -38,6 +40,7 @@ class Actor_Critic_Agent(Agent):
         """
         a = self.prev_action
         s = self.current_state
+        reward /= self.regurelize_value
 
         alpha = 1 / (10 + 0.01 * self.n_each_action[a])
 
@@ -46,7 +49,10 @@ class Actor_Critic_Agent(Agent):
         self.v_df[s] += alpha * delta
 
         # update p df
-        self.p_df[s][a] += delta * self.__beta
+        if self.id_ == 0:
+            print(self.prev_prob)
+            print(self.p_df)
+        self.p_df[s][a] += delta * self.__beta * (1-self.prev_prob)
         # update current state
         self.current_state = state
 
@@ -62,9 +68,9 @@ class Actor_Critic_Agent(Agent):
             action = np.random.choice(self.actions)
         else:
             q_row = self.p_df[state]
-            action_id = softmax_boltzman(q_row, T=self.T)
+            action_id, self.prev_prob = softmax_boltzman(q_row, T=self.T)
             action = self.actions[action_id]
-            self.T *= 0.9
+            self.T *= 0.99
 
         self.prev_action = action
         self.n_each_action[action] += 1
