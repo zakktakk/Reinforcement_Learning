@@ -38,8 +38,8 @@ all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=li
              ]
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
-# all_agent = {"sarsa":sarsa.SARSA_Agent}
+#all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
+all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 
 RESULT_DIR = "../results/accident_alg/powerlaw_cluster/q/"

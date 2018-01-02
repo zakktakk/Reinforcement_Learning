@@ -195,8 +195,8 @@ class synchro_world(object):
 
                 self.G.node[n]["reward"] = n_reward
                 reward_sum += n_reward / len(neighbors)
-                self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
-                #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
+                #self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
+                self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
 
             # save average q value of each round
             if not self.skip_q:

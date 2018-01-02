@@ -27,8 +27,8 @@ graph_prefix = "../src/networks/"
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
-# all_agent = {"sarsa":sarsa.SARSA_Agent}
+#all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
+all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 RESULT_DIR = "../results/alg/powerlaw_cluster/"
 for ag in all_agent.keys():

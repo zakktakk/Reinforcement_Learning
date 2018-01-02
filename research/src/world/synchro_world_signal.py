@@ -140,8 +140,8 @@ class synchro_world_signal(synchro_world):
                 self.G.node[n]["reward"] = n_reward
                 reward_sum += n_reward / len(neighbors)
                 self.G.node[n]["n_signal"] = n_signal
-                self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward) # 今状態は0だけ
-                #self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
+                #self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward) # 今状態は0だけ
+                self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
 
 
             if is_rewire:
