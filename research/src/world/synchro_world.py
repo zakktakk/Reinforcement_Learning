@@ -145,6 +145,19 @@ class synchro_world(object):
         for j in range(len(self.payoff_mat.index)):
             self.q_df.iloc[i][j] = q_val[j][0]
 
+    def write_p_val(self, i):
+        neighbor_num = len(self.G.neighbors(0))
+        p_val = self.G.node[0]["agent"].p_df.as_matrix() / neighbor_num
+
+        for n in self.G.nodes()[1:]:
+            neighbor_num = len(self.G.neighbors(n))
+            p_val += self.G.node[n]["agent"].p_df.as_matrix() / neighbor_num
+
+        p_val /= self.n_agent
+
+        for j in range(len(self.payoff_mat.index)):
+            self.q_df.iloc[i][j] = p_val[j][0]
+
 
     def run(self) -> None:
         """run simulation
@@ -201,6 +214,8 @@ class synchro_world(object):
             # save average q value of each round
             if not self.skip_q:
                 self.write_q_val(i)
+            else:
+                self.write_p_val(i)
 
             if self.share_rate is not None:
                 self.update_q()

@@ -48,10 +48,6 @@ class Actor_Critic_Agent(Agent):
         delta = reward + self.__gamma * self.v_df[state] - self.v_df[s]
         self.v_df[s] += alpha * delta
 
-        # update p df
-        if self.id_ == 0:
-            print(self.prev_prob)
-            print(self.p_df)
         self.p_df[s][a] += delta * self.__beta * (1-self.prev_prob)
         # update current state
         self.current_state = state
@@ -70,7 +66,7 @@ class Actor_Critic_Agent(Agent):
             q_row = self.p_df[state]
             action_id, self.prev_prob = softmax_boltzman(q_row, T=self.T)
             action = self.actions[action_id]
-            self.T *= 0.99
+            self.T *= 0.999
 
         self.prev_action = action
         self.n_each_action[action] += 1

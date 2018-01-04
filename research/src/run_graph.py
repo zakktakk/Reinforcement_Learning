@@ -14,6 +14,7 @@ from networks import network_utils
 """agent"""
 # defaultはこの4種類にしよう
 from agent import Q_Learning_Agent as ql
+from agent import Actor_Critic_Agent as aca
 
 """payoff matrix"""
 from world.payoff_matrix import *
@@ -38,10 +39,10 @@ for G in all_graph:
         os.makedirs(RESULT_DIR+"/"+G)
     print("  "+G)
     for k in range(5):
-        RESULT_NAME = RESULT_DIR+"/"+G+"/q/"+str(k)+"/prisoners_dilemma"
+        RESULT_NAME = RESULT_DIR+"/"+G+"/actor_critic/"+str(k)+"/prisoners_dilemma"
         if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
             os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
-        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], ql.Q_Learning_Agent)
+        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], aca.Actor_Critic_Agent)
         W.run()
         W.save(RESULT_NAME)
 

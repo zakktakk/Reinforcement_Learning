@@ -35,9 +35,10 @@ all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
 
 
 # accident後の行列
-all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
+all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[6, 3], [5, 1]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[15, 0], [25, 5]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[3, 2], [4, 0]]), index=list('cd'), columns=list('cd'))
              ]
 
 
@@ -47,7 +48,7 @@ for G in all_graph:
         os.makedirs(RESULT_DIR+"/"+G)
 
     print("  "+G)
-    for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+    for ti, aa in zip(["reverse", "biggerc", "infration", "chicken"], all_after):
         for k in range(5):
             RESULT_NAME = RESULT_DIR+"/"+G+"/q/"+str(k)+"/prisoners_dilemma_"+ti
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):

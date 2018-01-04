@@ -32,14 +32,15 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 
 # accident後の行列
-all_after = [pd.DataFrame(np.array([[3, 0],[2, 0]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
+all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[6, 3], [5, 1]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[15, 0], [25, 5]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[3, 2], [4, 0]]), index=list('cd'), columns=list('cd'))
              ]
 
 # agentの定義
-#all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
-all_agent = {"sarsa":sarsa.SARSA_Agent}
+all_agent = OrderedDict((("q",ql.Q_Learning_Agent), ("wolf_phc",wpa.WoLF_PHC_Agent), ("actor_critic",aca.Actor_Critic_Agent)))
+#all_agent = {"sarsa":sarsa.SARSA_Agent}
 
 
 RESULT_DIR = "../results/accident_alg/powerlaw_cluster/"
@@ -47,7 +48,7 @@ for ag in all_agent.keys():
     if not os.path.exists(RESULT_DIR+ag):
         os.makedirs(RESULT_DIR+ag)
 
-    for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+    for ti, aa in zip(["reverse", "biggerc", "infration", "chicken"], all_after):
 
         for k in range(5):
             RESULT_NAME = RESULT_DIR+ag+"/"+str(k)+"/prisoners_dilemma_"+ti

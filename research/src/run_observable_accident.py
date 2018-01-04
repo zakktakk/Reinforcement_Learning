@@ -24,9 +24,10 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
+all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[6, 3], [5, 1]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[15, 0], [25, 5]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[3, 2], [4, 0]]), index=list('cd'), columns=list('cd'))
              ]
 
 all_p = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
@@ -36,7 +37,7 @@ RESULT_DIR = "../results/observable_accident/random/q/"
 os.makedirs("../results/observable_accident/random/q")
 
 
-for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+for ti, aa in zip(["reverse", "biggerc", "infration", "chicken"], all_after):
     for ap in all_p:
         for k in range(5):
             RESULT_NAME = RESULT_DIR +str(k)+"/prisoners_dilemma_" + ti + "_" + str(ap*100)

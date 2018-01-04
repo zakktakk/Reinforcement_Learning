@@ -23,9 +23,10 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_after = [pd.DataFrame(np.array([[3, 0],[5, 0]]),index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[30, 10], [5, 1]]), index=list('cd'), columns=list('cd')),
-             pd.DataFrame(np.array([[4, 0], [0, 2]]), index=list('cd'), columns=list('cd'))
+all_after = [pd.DataFrame(np.array([[1, 5],[0, 3]]),index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[6, 3], [5, 1]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[15, 0], [25, 5]]), index=list('cd'), columns=list('cd')),
+             pd.DataFrame(np.array([[3, 2], [4, 0]]), index=list('cd'), columns=list('cd'))
              ]
 
 
@@ -39,7 +40,7 @@ if not os.path.exists(RESULT_DIR):
 
 for asr in all_share_rate:
     print("         ", asr)
-    for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+    for ti, aa in zip(["reverse", "biggerc", "infration", "chicken"], all_after):
         for k in range(5):
             RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoner"+"_"+str(asr*100)+"_"+ti
             if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):

@@ -23,13 +23,15 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_after = [pd.DataFrame(np.array([[3, 3, 0, 0],[3, 3, 0, 0],[5, 5, 0, 0],[5, 5, 0, 0]]),
-                    index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd']),
-             pd.DataFrame(np.array([[30, 30, 10, 10], [30, 30, 10, 10], [5, 5, 1, 1], [5, 5, 1, 1]]),
+all_after = [pd.DataFrame(np.array([[1, 1, 5, 5],[1, 1, 5, 5],[0, 0, 3, 3],[0, 0, 3, 3]]),
                           index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd']),
-             pd.DataFrame(np.array([[4, 4, 0, 0], [4, 4, 0, 0], [0, 0, 2, 2], [0, 0, 2, 2]]),
+             pd.DataFrame(np.array([[6, 6, 3, 3],[6, 6, 3, 3], [5, 5, 1, 1], [5, 5, 1, 1]]),
+                          index = ['cs', 'c', 'ds', 'd'], columns = ['cs', 'c', 'ds', 'd']),
+             pd.DataFrame(np.array([[15, 15, 0, 0], [15, 15, 0, 0], [25, 25, 5, 5], [25, 25, 5, 5]]),
                           index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd']),
-            ]
+             pd.DataFrame(np.array([[3, 3, 2, 2], [3, 3, 2, 2], [4, 4, 0, 0], [4, 4, 0, 0]]),
+                          index=['cs', 'c', 'ds', 'd'], columns=['cs', 'c', 'ds', 'd'])
+             ]
 
 
 # share rateの定義
@@ -41,7 +43,7 @@ if not os.path.exists(RESULT_DIR):
     os.makedirs(RESULT_DIR)
 
 for ap in all_p:
-    for ti, aa in zip(["kaishou", "kakudai", "coodinate"], all_after):
+    for ti, aa in zip(["reverse", "biggerc", "infration", "chicken"], all_after):
         for k in range(5):
             RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoner"+"_"+str(ap*100)+"_"+ti
             if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
