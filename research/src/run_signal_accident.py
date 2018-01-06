@@ -49,7 +49,7 @@ for ap in all_p:
             if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
                 os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
             W = synchro_world_signal.synchro_world_signal(100, 10000, prisoners_dilemma_sig(), pcG, ql.Q_Learning_Agent,
-                                                          p_noise=ap, altered_mat=aa)
+                                                          p_noise=ap, altered_func=aa)
             W.run()
             W.save(RESULT_NAME)
 

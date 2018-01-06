@@ -51,7 +51,7 @@ for ag in all_agent.keys():
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                 os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
 
-            W = synchro_world.synchro_world(100, 1000, [2,-2,2,2], pcG, all_agent[ag], altered_mat=aa)
+            W = synchro_world.synchro_world(100, 1000, [2,-2,2,2], pcG, all_agent[ag], altered_func=aa)
             W.run()
             W.save(RESULT_NAME)
 

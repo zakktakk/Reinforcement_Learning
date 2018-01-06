@@ -46,7 +46,7 @@ for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_
 
                 print(aa)
                 W = synchro_world_observable.synchro_world_observable(100, 5000, [2,-2,2,2], pcG, alg,
-                                                altered_mat=aa, p_noise=ap)
+                                                altered_func=aa, p_noise=ap)
                 W.run()
                 W.save(RESULT_NAME)
 

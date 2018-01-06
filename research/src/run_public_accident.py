@@ -42,7 +42,7 @@ for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_
                 if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                     os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
                 W = synchro_world_public.synchro_world_public(100, 5000, [2,-2,2,2], pcG,alg,
-                                                              altered_mat=aa, p_noise=ap)
+                                                              altered_func=aa, p_noise=ap)
                 W.run()
                 W.save(RESULT_NAME)
 
