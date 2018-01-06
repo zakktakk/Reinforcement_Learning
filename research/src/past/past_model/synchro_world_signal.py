@@ -13,6 +13,7 @@ sys.path.append("../")
 """util libraries"""
 import numpy as np
 import networkx as nx
+import pandas as pd
 from tqdm import tqdm
 
 """visualize"""
@@ -27,15 +28,16 @@ from .synchro_world import synchro_world
 
 
 class synchro_world_signal(synchro_world):
-    def __init__(self, n_agent, n_round, payoff_func, nwk_alg, rl_alg,
-                 altered_func=None, share_rate=None, nwk_param=None, rl_param=None, p_noise=-1):
+    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg,episodes=5,
+                 altered_mat=None, share_rate=None, nwk_param=None, rl_param=None,
+                 rewire_mode=None, rewire_interval=0, p_noise=-1):
         """
         :param n_agent: agent num
         :param n_round: round num
-        :param payoff_func: payoff matrix
+        :param payoff_mat: payoff matrix
         :param nwk_alg: network algorithm
         :param rl_alg: reinforcement algorithm
-        :param altered_func: payoff matrix that is used when accident occur
+        :param altered_mat: payoff matrix that is used when accident occur
         :param share_rate: q value share rate. if None never sharing
         :param nwk_param: network parameter
         :param rl_param: reinforcement learning parameter
@@ -43,7 +45,8 @@ class synchro_world_signal(synchro_world):
         :param rewire_interval: edge rewiring interval, if 0, no rewiring
         :param p_noise: probablity of noise in observable information
         """
-        super().__init__(n_agent, n_round, payoff_func, nwk_alg, rl_alg, altered_func, share_rate, nwk_param, rl_param)
+        super().__init__(n_agent, n_round, payoff_mat, nwk_alg, rl_alg, episodes, altered_mat, share_rate, nwk_param, rl_param,
+                 rewire_mode, rewire_interval)
         self.p_noise = p_noise
 
 
@@ -61,7 +64,7 @@ class synchro_world_signal(synchro_world):
 
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
-            agent = self.rl_alg(n, np.arange(len(neighbors)+1), ['cs', 'c', 'ds', 'd'], **rl_param)
+            agent = self.rl_alg(n, np.arange(len(neighbors)+1), self.payoff_mat.index, **rl_param)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
             self.G.node[n]["n_signal"] = 0 # initial state is zero
@@ -74,11 +77,14 @@ class synchro_world_signal(synchro_world):
         nodes = self.G.nodes()
 
         for i in tqdm(range(self.n_round)):
+            is_rewire = (self.rewire_interval > 0) and (i % self.rewire_interval == 0)
+            rewire_lst = []
+
             # 全エージェントが同期的に行動選択
-            if i == int(self.n_round * 0.01): rand = False
+            if i == len(list(self.payoff_mat))*5: rand = False
 
             # payoff matの更新
-            if (self.altered_func is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
+            if (self.altered_mat is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
 
             # 全てのエージェントが行動選択
             coop_num = 0
@@ -96,15 +102,19 @@ class synchro_world_signal(synchro_world):
                 neighbors = self.G.neighbors(n)
                 n_action = self.G.node[n]["action"]
 
-                # coop
-                ne_coop_num = 0
+                # reward
+                n_reward = 0
+                n_reward_min = 10000
+                n_reward_argmin = 0
+
                 # signal
                 n_signal = 0
 
                 for ne in neighbors:
                     # -------- basic action
                     ne_action = self.G.node[ne]["action"]
-                    if ne_action == "c" or ne_action == "cs": ne_coop_num += 1
+                    n_ne_payoff = self.payoff_mat[ne_action][n_action]
+                    n_reward += n_ne_payoff
 
                     # -------- noisyなsignal
                     noise = np.random.rand()
@@ -116,8 +126,16 @@ class synchro_world_signal(synchro_world):
                         if is_noise:
                             n_signal += 1
 
-                if n_action == "c" or n_action == "cs": n_reward = self.payoff_func[0] * ne_coop_num + self.payoff_func[1]
-                else: n_reward = self.payoff_func[2] * ne_coop_num + self.payoff_func[3]
+                    # -------- rewire
+                    if is_rewire:
+                        if n_reward_min > n_ne_payoff:
+                            n_reward_min = n_ne_payoff
+                            n_reward_argmin = ne
+
+                        elif n_reward_min == n_ne_payoff and (np.random.rand() < 0.5):
+                            n_reward_argmin = ne
+
+                        rewire_lst.append((n, n_reward_argmin))
 
                 self.G.node[n]["reward"] = n_reward
                 reward_sum += n_reward / len(neighbors)
@@ -125,6 +143,9 @@ class synchro_world_signal(synchro_world):
                 self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward) # 今状態は0だけ
                 #self.G.node[n]["agent"].update(self.G.node[n]["n_signal"], n_reward, n_action) # for SARSA
 
+
+            if is_rewire:
+                self.rewire_mode(rewire_lst)
 
             self.payoff_df[0][i] = reward_sum / self.n_agent
 

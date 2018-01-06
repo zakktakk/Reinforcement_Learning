@@ -12,7 +12,6 @@ from world import synchro_world
 from networks import network_utils
 
 """agent"""
-# defaultはこの4種類にしよう
 from agent import Q_Learning_Agent as ql
 from agent import Actor_Critic_Agent as aca
 
@@ -25,25 +24,27 @@ graph_prefix = "../src/networks/"
 cG = network_utils.graph_generator.complete_graph
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
+
 all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
                          ("multiple_clustered",graph_prefix+"multiple_clustered.gpickle"),
                          ("inner_dence_clustered", graph_prefix+"inner_dence_clustered.gpickle"),
                          ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
-RESULT_DIR = "../results/graph/"
-if not os.path.exists(RESULT_DIR):
-    os.makedirs(RESULT_DIR)
 
-for G in all_graph:
-    if not os.path.exists(RESULT_DIR+"/"+G):
-        os.makedirs(RESULT_DIR+"/"+G)
-    print("  "+G)
-    for k in range(5):
-        RESULT_NAME = RESULT_DIR+"/"+G+"/actor_critic/"+str(k)+"/prisoners_dilemma"
-        if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
-            os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
-        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), all_graph[G], aca.Actor_Critic_Agent)
-        W.run()
-        W.save(RESULT_NAME)
+RESULT_DIR = "../results/graph/"
+
+for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
+    for G in all_graph:
+        print("  "+G)
+
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+G+"/"+alg_name+"/"+str(k)+"/nipd"
+
+            if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+                os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
+
+            W = synchro_world.synchro_world(100, 1000, [2,-2,2,2], all_graph[G], alg)
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

@@ -12,13 +12,8 @@ from world import synchro_world
 from networks import network_utils
 
 """agent"""
-# defaultはこの4種類にしよう
-from agent import WoLF_PHC_Agent as wpa
+from agent import Actor_Critic_Agent as aca
 from agent import Q_Learning_Agent as ql
-from agent import SARSA_Agent as sarsa
-
-"""payoff matrix"""
-from world.payoff_matrix import *
 
 
 # graphの定義
@@ -26,21 +21,23 @@ rG = network_utils.graph_generator.random_graph
 
 
 # エージェント数の定義
-all_agent_num = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200]
+agent_nums = [50, 60, 70, 80, 90, 100, 150, 200]
 
 
-RESULT_DIR = "../results/agent_num/powerlaw_cluster/q"
-if not os.path.exists(RESULT_DIR):
-    os.makedirs(RESULT_DIR)
+RESULT_DIR = "../results/agent_num/random/"
 
-for a_num in all_agent_num:
-    print("     ", str(a_num))
-    for k in range(5):
-        RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_dilemma_"+str(a_num)
-        if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
-            os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
-        W = synchro_world.synchro_world(a_num, 1000, prisoners_dilemma(), rG, ql.Q_Learning_Agent, nwk_param=dict(n=a_num, m=a_num*30))
-        W.run()
-        W.save(RESULT_NAME)
+for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
+    for a in agent_nums:
+        print(str(a))
+
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(a)
+
+            if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+                os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
+
+            W = synchro_world.synchro_world(a, 1000, [2,-2,2,2], rG, alg, nwk_param=dict(n=a, m=a*30))
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

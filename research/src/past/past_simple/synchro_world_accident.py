@@ -19,7 +19,6 @@ sys.path.append("../")
 """util libraries"""
 import numpy as np
 import pandas as pd
-import networkx as nx
 
 """visualize"""
 #ディスプレイ表示させない
@@ -30,7 +29,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
 """self made library"""
-from .synchro_world import synchro_world
+from research.src.world.synchro_world_simple import synchro_world
 
 
 class synchro_world_accident(synchro_world):

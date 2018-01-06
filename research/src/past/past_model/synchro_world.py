@@ -17,9 +17,6 @@ import sys
 sys.path.append("../")
 
 from agent import Actor_Critic_Agent as aca
-from agent import Actor_Critic_Agent_TD as acaTD
-from agent import SARSA_Agent as sarsa
-from agent import SARSA_Agent_TD as sarsaTD
 
 """util libraries"""
 import numpy as np
@@ -36,48 +33,56 @@ plt.style.use('ggplot')
 
 
 class synchro_world(object):
-    def __init__(self, n_agent, n_round, payoff_func, nwk_alg, rl_alg,
-                 altered_func=None, share_rate=None, nwk_param=None, rl_param=None):
+    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg,
+                 altered_mat=None, share_rate=None, nwk_param=None, rl_param=None, rewire_mode=None, rewire_interval=0):
         """
         :param n_agent: agent num
         :param n_round: round num
-        :param payoff_func: payoff matrix
+        :param payoff_mat: payoff matrix
         :param nwk_alg: network algorithm
         :param rl_alg: reinforcement algorithm
-        :param altered_func: payoff matrix that is used when accident occur
+        :param altered_mat: payoff matrix that is used when accident occur
         :param share_rate: q value share rate. if None never sharing
         :param nwk_param: network parameter
         :param rl_param: reinforcement learning parameter
+        :param rewire_mode: rewire method or on rewiring
+        :param rewire_interval: edge rewiring interval, if 0, no rewiring
         """
         self.n_agent = n_agent
         self.n_round = n_round
-        self.payoff_func = payoff_func
+        self.payoff_mat = payoff_mat
         self.rl_alg = rl_alg
 
-        if rl_alg == aca.Actor_Critic_Agent or rl_alg == acaTD.Actor_Critic_Agent_TD:
-            self.is_aca = True
+        if rl_alg == aca.Actor_Critic_Agent:
+            self.skip_q = True
         else:
-            self.is_aca = False
-
-        if rl_alg == sarsa.SARSA_Agent or rl_alg == sarsaTD.SARSA_Agent_TD:
-            self.is_sarsa = True
-        else:
-            self.is_sarsa = False
-
+            self.skip_q = False
 
         self.nwk_alg = nwk_alg
         self.is_prepared_nwk = isinstance(nwk_alg, str)
 
+        # set rewiring method
+        if rewire_mode == "random":
+            self.rewire_mode = self.random_rewire
+        elif rewire_mode == "neighbor":
+            self.rewire_mode = self.neighbors_neighbor
+        elif rewire_mode == "preference":
+            self.rewire_mode = self.preference_attachment
+        else:
+            self.rewire_mode = None
+
+        self.rewire_interval = rewire_interval if self.rewire_mode is not None else 0
+
         # set altered matrix
-        self.altered_func = altered_func
+        self.altered_mat = altered_mat
         # set q value share rate
         self.share_rate = share_rate
 
         # set dataframe for saving data
         self.payoff_df = pd.DataFrame(np.zeros((n_round, 1)))
         self.coop_per_df = pd.DataFrame(np.zeros((n_round, 1)))
-        self.q_df = pd.DataFrame(np.zeros((n_round, 2)))
-        self.agent_q_df = pd.DataFrame(np.zeros((n_agent, 2)))
+        self.q_df = pd.DataFrame(np.zeros((n_round, len(self.payoff_mat.index))))
+        self.agent_q_df = pd.DataFrame(np.zeros((n_agent, len(self.payoff_mat.index))))
 
         # create networked simulation envirionment
         nwk_param = {} if nwk_param is None else nwk_param
@@ -97,21 +102,20 @@ class synchro_world(object):
         else:
             self.G = self.nwk_alg(**nwk_param)
 
-        if self.is_aca:
+        if self.skip_q:
             reguralize_value = np.average(list(self.G.degree().values()))
 
         for n in self.G.nodes():
-            if self.is_aca:
-                agent = self.rl_alg(n, np.array([0]), ["c", "d"], reguralize_value, **rl_param)
+            if self.skip_q:
+                agent = self.rl_alg(n, np.array([0]), self.payoff_mat.index, reguralize_value, **rl_param)
             else:
-                agent = self.rl_alg(n, np.array([0]), ["c", "d"], **rl_param)
+                agent = self.rl_alg(n, np.array([0]), self.payoff_mat.index, **rl_param)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
-
     def change_payoff_metrix(self):
         print("matrix altered!!")
-        self.payoff_func = self.altered_func
+        self.payoff_mat = self.altered_mat
 
 
     def update_q(self):
@@ -124,9 +128,8 @@ class synchro_world(object):
             neighbors_q = self.agent_q_df.iloc[self.G.neighbors(n)].mean(axis=0)
             self.agent_q_df.iloc[n] = self.agent_q_df.iloc[n] * (1 - self.share_rate) + self.share_rate * neighbors_q
 
-            for i in range(2):
+            for i in range(len(self.payoff_mat.index)):
                 self.G.node[n]["agent"].q_df.iloc[i] = self.agent_q_df.iloc[n][i]
-
 
     def write_q_val(self, i):
         neighbor_num = len(self.G.neighbors(0))
@@ -138,9 +141,8 @@ class synchro_world(object):
 
         q_val /= self.n_agent
 
-        for j in range(2):
+        for j in range(len(self.payoff_mat.index)):
             self.q_df.iloc[i][j] = q_val[j][0]
-
 
     def write_p_val(self, i):
         neighbor_num = len(self.G.neighbors(0))
@@ -152,7 +154,7 @@ class synchro_world(object):
 
         p_val /= self.n_agent
 
-        for j in range(len(["c", "d"])):
+        for j in range(len(self.payoff_mat.index)):
             self.q_df.iloc[i][j] = p_val[j][0]
 
 
@@ -163,11 +165,14 @@ class synchro_world(object):
         nodes = self.G.nodes()
 
         for i in tqdm(range(self.n_round)):
+            is_rewire = (self.rewire_interval > 0) and (i % self.rewire_interval == 0)
+            rewire_lst = []
+
             # 全エージェントが同期的に行動選択
-            if i == int(self.n_round * 0.01): rand = False
+            if i == len(list(self.payoff_mat))*5: rand = False
 
             # payoff matの更新
-            if (self.altered_func is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
+            if (self.altered_mat is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
 
             # 全てのエージェントが行動選択
             coop_num = 0
@@ -183,25 +188,30 @@ class synchro_world(object):
             for n in nodes:
                 neighbors = self.G.neighbors(n)
                 n_action = self.G.node[n]["action"]
-                ne_coop_num = 0
+                n_reward = 0
+                n_reward_min = 10000
+                n_reward_argmin = 0
 
                 for ne in neighbors:
                     ne_action = self.G.node[ne]["action"]
-                    if ne_action == "c": ne_coop_num += 1
+                    n_ne_payoff = self.payoff_mat[ne_action][n_action]
+                    n_reward += n_ne_payoff
+                    if is_rewire: # if rewire occured
+                        if n_reward_min > n_ne_payoff:
+                            n_reward_min = n_ne_payoff
+                            n_reward_argmin = ne
+                        elif n_reward_min == n_ne_payoff and (np.random.rand() < 0.5):
+                            n_reward_argmin = ne
 
-                if n_action == "c": n_reward = self.payoff_func[0] * ne_coop_num + self.payoff_func[1]
-                else: n_reward = self.payoff_func[2] * ne_coop_num + self.payoff_func[3]
+                        rewire_lst.append((n, n_reward_argmin))
 
                 self.G.node[n]["reward"] = n_reward
-                reward_sum += n_reward
-
-                if self.is_sarsa: # if sarsa
-                    self.G.node[n]["agent"].update(0, n_reward, n_action)
-                else:
-                    self.G.node[n]["agent"].update(0, n_reward)
+                reward_sum += n_reward / len(neighbors)
+                self.G.node[n]["agent"].update(0, n_reward) # 今状態は0だけ
+                #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
 
             # save average q value of each round
-            if not self.is_aca:
+            if not self.skip_q:
                 self.write_q_val(i)
             else:
                 self.write_p_val(i)
@@ -209,6 +219,9 @@ class synchro_world(object):
             if self.share_rate is not None:
                 self.update_q()
                 self.share_q()
+
+            if is_rewire:
+                self.rewire_mode(rewire_lst)
 
             self.payoff_df[0][i] = reward_sum / self.n_agent
 
@@ -278,3 +291,36 @@ class synchro_world(object):
         self.save_meta_info(f_name+"_meta.txt", other)
         return self.q_df, self.coop_per_df, self.payoff_df
 
+
+    def random_rewire(self, rewire_lst):
+        self.G.remove_edges_from(rewire_lst)
+        nodes = self.G.nodes()
+        for from_, _ in rewire_lst:
+            rewire_node = np.random.choice(nodes)
+            while(self.G.has_edge(from_, rewire_node)):
+                rewire_node = np.random.choice(nodes)
+            self.G.add_edge(from_, rewire_node)
+
+
+    def neighbors_neighbor(self, rewire_lst):
+        self.G.remove_edges_from(rewire_lst)
+        for from_, to_ in rewire_lst:
+            neighbors = self.G.neighbors(to_)
+            rewire_node = np.random.choice(neighbors)
+            while(self.G.has_edge(from_, rewire_node)):
+                rewire_node = np.random.choice(neighbors)
+            self.G.add_edge(from_, rewire_node)
+
+
+    def preference_attachment(self, rewire_lst):
+        alpha = 1
+        nodes = self.G.nodes()
+        self.G.remove_edges_from(rewire_lst)
+        degree = np.array([self.G.degree(n)+alpha for n in nodes])
+        prob = degree / np.sum(degree)
+
+        for from_, to_ in rewire_lst:
+            rewire_node = np.random.choice(nodes, p=prob)
+            while(rewire_node == from_):
+                rewire_node = np.random.choice(nodes, p=prob)
+            self.G.add_edge(from_, rewire_node)

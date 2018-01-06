@@ -10,6 +10,7 @@ sys.path.append("../")
 """util libraries"""
 import numpy as np
 import networkx as nx
+import pandas as pd
 from tqdm import tqdm
 
 """visualize"""
@@ -24,21 +25,25 @@ from .synchro_world import synchro_world
 
 
 class synchro_world_public(synchro_world):
-    def __init__(self, n_agent, n_round, payoff_func, nwk_alg, rl_alg,
-                 altered_func=None, share_rate=None, nwk_param=None, rl_param=None, p_noise=-1):
+    def __init__(self, n_agent, n_round, payoff_mat, nwk_alg, rl_alg,episodes=5,
+                 altered_mat=None, share_rate=None, nwk_param=None, rl_param=None,
+                 rewire_mode=None, rewire_interval=0, p_noise=-1):
         """
         :param n_agent: agent num
         :param n_round: round num
-        :param payoff_func: payoff matrix
+        :param payoff_mat: payoff matrix
         :param nwk_alg: network algorithm
         :param rl_alg: reinforcement algorithm
-        :param altered_func: payoff matrix that is used when accident occur
+        :param altered_mat: payoff matrix that is used when accident occur
         :param share_rate: q value share rate. if None never sharing
         :param nwk_param: network parameter
         :param rl_param: reinforcement learning parameter
+        :param rewire_mode: rewire method or on rewiring
+        :param rewire_interval: edge rewiring interval, if 0, no rewiring
         :param p_noise: probablity of noise in observable information
         """
-        super().__init__(n_agent, n_round, payoff_func, nwk_alg, rl_alg, altered_func, share_rate, nwk_param, rl_param)
+        super().__init__(n_agent, n_round, payoff_mat, nwk_alg, rl_alg, episodes, altered_mat, share_rate, nwk_param, rl_param,
+                         rewire_mode, rewire_interval)
         self.p_noise = p_noise
 
 
@@ -55,7 +60,8 @@ class synchro_world_public(synchro_world):
             self.G = self.nwk_alg(**nwk_param)
 
         for n in self.G.nodes():
-            agent = self.rl_alg(n, np.arange(self.n_agent), ["c", "d"], **rl_param)
+            neighbors = self.G.neighbors(n)
+            agent = self.rl_alg(n, np.arange(self.n_agent), self.payoff_mat.index, **rl_param)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
@@ -68,11 +74,14 @@ class synchro_world_public(synchro_world):
         prev_public_coop_num = 0
 
         for i in tqdm(range(self.n_round)):
+            is_rewire = (self.rewire_interval > 0) and (i % self.rewire_interval == 0)
+            rewire_lst = []
+
             # 全エージェントが同期的に行動選択
-            if i == int(self.n_round * 0.01): rand = False
+            if i == len(list(self.payoff_mat))*5: rand = False
 
             # payoff matの更新
-            if (self.altered_func is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
+            if (self.altered_mat is not None) and (i == self.n_round * 0.5): self.change_payoff_metrix()
 
             # 全てのエージェントが行動選択
             coop_num = 0
@@ -103,27 +112,39 @@ class synchro_world_public(synchro_world):
 
                 # reward
                 n_reward = 0
-                # coop
-                ne_coop_num = 0
+                n_reward_min = 10000
+                n_reward_argmin = 0
 
                 for ne in neighbors:
                     # -------- basic action
                     ne_action = self.G.node[ne]["action"]
-                    if ne_action == "c": ne_coop_num += 1
+                    n_ne_payoff = self.payoff_mat[ne_action][n_action]
+                    n_reward += n_ne_payoff
 
-                if n_action == "c": n_reward = self.payoff_func[0] * ne_coop_num + self.payoff_func[1]
-                else: n_reward = self.payoff_func[2] * ne_coop_num + self.payoff_func[3]
+                    # -------- rewire
+                    if is_rewire: # if rewire occured
+                        if n_reward_min > n_ne_payoff:
+                            n_reward_min = n_ne_payoff
+                            n_reward_argmin = ne
+                        elif n_reward_min == n_ne_payoff and (np.random.rand() < 0.5):
+                            n_reward_argmin = ne
+
+                        rewire_lst.append((n, n_reward_argmin))
 
                 self.G.node[n]["reward"] = n_reward
-                reward_sum += n_reward
+                reward_sum += n_reward / len(neighbors)
                 self.G.node[n]["agent"].update(public_coop_num, n_reward)
                 #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
                 prev_public_coop_num = public_coop_num
 
 
+            #
             if self.share_rate is not None:
                 self.update_q()
                 self.share_q()
+
+            if is_rewire:
+                self.rewire_mode(rewire_lst)
 
             self.payoff_df[0][i] = reward_sum / self.n_agent
 
