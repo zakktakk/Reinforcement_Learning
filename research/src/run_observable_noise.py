@@ -32,7 +32,7 @@ RESULT_DIR = "../results/observable_noise/powerlaw_cluster/"
 
 for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
     for p in all_p:
-        for k in range(5):
+        for k in range(3):
             RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(p*100)
 
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
