@@ -32,7 +32,7 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 
 # accident後の行列
-all_after = [[3,3,2,2]]
+all_after = [[2,2,2,-2], [2,-10,2,10], [10,10,10,-10], [10,-10,10,10]]
 
 # agentの定義
 all_agent = OrderedDict((("q",ql.Q_Learning_Agent),
@@ -43,10 +43,10 @@ all_agent = OrderedDict((("q",ql.Q_Learning_Agent),
 
 RESULT_DIR = "../results/accident_alg/powerlaw_cluster/"
 for ag in all_agent.keys():
-    for ti, aa in zip(["reverse", "biggerc", "infration", "chicken"], all_after):
+    for ti, aa in zip(["reverse", "kakusa", "big_reverse", "infration"], all_after):
 
         for k in range(5):
-            RESULT_NAME = RESULT_DIR+ag+"/"+str(k)+"/prisoners_dilemma_"+ti
+            RESULT_NAME = RESULT_DIR+ag+"/"+str(k)+"/nipd_"+ti
 
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                 os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
