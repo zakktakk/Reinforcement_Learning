@@ -27,14 +27,14 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 all_gamma = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
 
 
-RESULT_DIR = "../results/lr/powerlaw_cluster/q/"
+RESULT_DIR = "../results/lr/powerlaw_cluster/"
 
 for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
     for gamma in all_gamma:
         print(gamma)
 
         for k in range(5):
-            RESULT_NAME = RESULT_DIR+"/"+str(k)+"/nipd_"+str(gamma*100)
+            RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(gamma*100)
 
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                 os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))

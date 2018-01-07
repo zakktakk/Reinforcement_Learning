@@ -34,7 +34,7 @@ all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
 RESULT_DIR = "../results/public_accident/powerlaw_cluster/"
 
-for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
+for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
     for ti, aa in zip(["reverse", "kakusa", "big_reverse", "infration"], all_after):
         for ap in all_p:
             for k in range(3):

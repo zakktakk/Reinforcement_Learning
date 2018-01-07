@@ -30,7 +30,7 @@ all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
 RESULT_DIR = "../results/observable_noise/powerlaw_cluster/"
 
-for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
+for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
     for p in all_p:
         for k in range(3):
             RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(p*100)

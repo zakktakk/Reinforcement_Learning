@@ -14,6 +14,7 @@ from networks import network_utils
 """agent"""
 # defaultはこの4種類にしよう
 from agent import Q_Learning_Agent as ql
+from agent import Actor_Critic_Agent as aca
 
 """payoff matrix"""
 from world.payoff_matrix import *

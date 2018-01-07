@@ -59,9 +59,16 @@ class synchro_world_signal(synchro_world):
         else:
             self.G = self.nwk_alg(**nwk_param)
 
+        if self.is_aca:
+            reguralize_value = np.average(list(self.G.degree().values()))
+
         for n in self.G.nodes():
             neighbors = self.G.neighbors(n)
-            agent = self.rl_alg(n, np.arange(len(neighbors)+1), ['cs', 'c', 'ds', 'd'], **rl_param)
+            if self.is_aca:
+                agent = self.rl_alg(n, np.arange(len(neighbors)+1), ['cs', 'c', 'ds', 'd'], reguralize_value, **rl_param)
+            else:
+                agent = self.rl_alg(n, np.arange(len(neighbors)+1), ['cs', 'c', 'ds', 'd'], **rl_param)
+
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
             self.G.node[n]["n_signal"] = 0 # initial state is zero

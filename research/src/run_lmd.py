@@ -23,22 +23,23 @@ from world.payoff_matrix import *
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-# 割引率gammaの定義
-all_g = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.98]
+all_lmd = [0.1, 0.3, 0.5, 0.7, 0.9]
 
 
-RESULT_DIR = "../results/lmd/powerlaw_cluster/q/"
-if not os.path.exists(RESULT_DIR):
-    os.makedirs(RESULT_DIR)
+RESULT_DIR = "../results/lmd/powerlaw_cluster/"
 
-for gamma in all_gamma:
-    print("      ", gamma)
-    for k in range(5):
-        RESULT_NAME = RESULT_DIR+"/"+str(k)+"/prisoners_dilemma"+str(gamma*100)
-        if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
-            os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
-        W = synchro_world.synchro_world(100, 1000, prisoners_dilemma(), pcG, ql.Q_Learning_Agent, rl_param=dict(gamma=gamma))
-        W.run()
-        W.save(RESULT_NAME)
+for alg_name, alg in zip(["actor_critic", "sarsa"], [acatd, sarsatd]):
+    for l in all_lmd:
+        print("      ", gamma)
+
+        for k in range(5):
+            RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(l*100)
+
+            if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
+                os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
+            
+            W = synchro_world.synchro_world(100, 1000, [2,-2, 2, 2], pcG, alg, rl_param=dict(lmd=l))
+            W.run()
+            W.save(RESULT_NAME)
 
 print('done!!')

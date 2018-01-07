@@ -54,8 +54,14 @@ class synchro_world_public(synchro_world):
         else:
             self.G = self.nwk_alg(**nwk_param)
 
+        if self.is_aca:
+            reguralize_value = np.average(list(self.G.degree().values()))
+
         for n in self.G.nodes():
-            agent = self.rl_alg(n, np.arange(self.n_agent), ["c", "d"], **rl_param)
+            if self.is_aca:
+                agent = self.rl_alg(n, np.arange(self.n_agent), ["c", "d"], reguralize_value, **rl_param)
+            else:
+                agent = self.rl_alg(n, np.arange(self.n_agent), ["c", "d"], **rl_param)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
 
