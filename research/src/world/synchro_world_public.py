@@ -1,15 +1,30 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : 公共の情報が参照可能な場合
+# description : 同時プレイの世界
+#
+# データに記述すべきメタデータ
+# - 繰り返し回数
+# - エージェント数
+# - ネットワークの種類
+# - エージェントの種類
+# - エッジ数
+# - 利得行列の種類
+# - その他の条件(初期行動制約など)
 
 
 """path setting"""
 import sys
 sys.path.append("../")
 
+from agent import Actor_Critic_Agent as aca
+from agent import Actor_Critic_Agent_TD as acaTD
+from agent import SARSA_Agent as sarsa
+from agent import SARSA_Agent_TD as sarsaTD
+
 """util libraries"""
 import numpy as np
 import networkx as nx
+import pandas as pd
 from tqdm import tqdm
 
 """visualize"""
@@ -19,13 +34,10 @@ mpl.use('tkagg')
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-"""self made library"""
-from .synchro_world import synchro_world
 
-
-class synchro_world_public(synchro_world):
+class synchro_world_public(object):
     def __init__(self, n_agent, n_round, payoff_func, nwk_alg, rl_alg,
-                 altered_func=None, share_rate=None, nwk_param=None, rl_param=None, p_noise=-1):
+                 altered_func=None, share_rate=None, nwk_param=None, rl_param=None):
         """
         :param n_agent: agent num
         :param n_round: round num
@@ -36,10 +48,42 @@ class synchro_world_public(synchro_world):
         :param share_rate: q value share rate. if None never sharing
         :param nwk_param: network parameter
         :param rl_param: reinforcement learning parameter
-        :param p_noise: probablity of noise in observable information
         """
-        super().__init__(n_agent, n_round, payoff_func, nwk_alg, rl_alg, altered_func, share_rate, nwk_param, rl_param)
-        self.p_noise = p_noise
+        self.n_agent = n_agent
+        self.n_round = n_round
+        self.payoff_func = payoff_func
+        self.rl_alg = rl_alg
+
+        if rl_alg == aca.Actor_Critic_Agent or rl_alg == acaTD.Actor_Critic_Agent_TD:
+            self.is_aca = True
+        else:
+            self.is_aca = False
+
+        if rl_alg == sarsa.SARSA_Agent or rl_alg == sarsaTD.SARSA_Agent_TD:
+            self.is_sarsa = True
+        else:
+            self.is_sarsa = False
+
+
+        self.nwk_alg = nwk_alg
+        self.is_prepared_nwk = isinstance(nwk_alg, str)
+
+        # set altered matrix
+        self.altered_func = altered_func
+        # set q value share rate
+        self.share_rate = share_rate
+
+        # set dataframe for saving data
+        self.payoff_df = pd.DataFrame(np.zeros((n_round, 1)))
+        self.coop_per_df = pd.DataFrame(np.zeros((n_round, 1)))
+        self.q_df = pd.DataFrame(np.zeros((n_round, 2)))
+        self.agent_q_df = pd.DataFrame(np.zeros((n_agent, 2)))
+        self.history = pd.DataFrame(np.zeros((n_round, n_agent)))
+
+        # create networked simulation envirionment
+        nwk_param = {} if nwk_param is None else nwk_param
+        rl_param = {} if rl_param is None else rl_param
+        self.create_nwk(nwk_param, rl_param)
 
 
     def create_nwk(self, nwk_param, rl_param) -> None:
@@ -59,11 +103,58 @@ class synchro_world_public(synchro_world):
 
         for n in self.G.nodes():
             if self.is_aca:
-                agent = self.rl_alg(n, np.arange(self.n_agent), ["c", "d"], reguralize_value, **rl_param)
+                agent = self.rl_alg(n, np.array([0]), ["c", "d"], reguralize_value, **rl_param)
             else:
-                agent = self.rl_alg(n, np.arange(self.n_agent), ["c", "d"], **rl_param)
+                agent = self.rl_alg(n, np.array([0]), ["c", "d"], **rl_param)
             self.G.node[n]["agent"] = agent
             self.G.node[n]["action"] = 0
+
+
+    def change_payoff_metrix(self):
+        print("matrix altered!!")
+        self.payoff_func = self.altered_func
+
+
+    def update_q(self):
+        for n in self.G.nodes():
+            self.agent_q_df.iloc[n] = np.array(self.G.node[n]["agent"].q_df)[:, 0]
+
+
+    def share_q(self):
+        all_q = self.agent_q_df.mean(axis=0)
+        self.agent_q_df = self.agent_q_df * (1 - self.share_rate) + self.share_rate * all_q
+
+        for n in self.G.nodes():
+            for i in range(2):
+                self.G.node[n]["agent"].q_df.iloc[i] = self.agent_q_df.iloc[n][i]
+
+
+    def write_q_val(self, i):
+        neighbor_num = len(self.G.neighbors(0))
+        q_val = self.G.node[0]["agent"].q_df.as_matrix() / neighbor_num
+
+        for n in self.G.nodes()[1:]:
+            neighbor_num = len(self.G.neighbors(n))
+            q_val += self.G.node[n]["agent"].q_df.as_matrix() / neighbor_num
+
+        q_val /= self.n_agent
+
+        for j in range(2):
+            self.q_df.iloc[i][j] = q_val[j][0]
+
+
+    def write_p_val(self, i):
+        neighbor_num = len(self.G.neighbors(0))
+        p_val = self.G.node[0]["agent"].p_df.as_matrix() / neighbor_num
+
+        for n in self.G.nodes()[1:]:
+            neighbor_num = len(self.G.neighbors(n))
+            p_val += self.G.node[n]["agent"].p_df.as_matrix() / neighbor_num
+
+        p_val /= self.n_agent
+
+        for j in range(len(["c", "d"])):
+            self.q_df.iloc[i][j] = p_val[j][0]
 
 
     def run(self) -> None:
@@ -71,7 +162,6 @@ class synchro_world_public(synchro_world):
         """
         rand = True
         nodes = self.G.nodes()
-        prev_public_coop_num = 0
 
         for i in tqdm(range(self.n_round)):
             # 全エージェントが同期的に行動選択
@@ -82,22 +172,11 @@ class synchro_world_public(synchro_world):
 
             # 全てのエージェントが行動選択
             coop_num = 0
-            public_coop_num = 0
             for n in nodes:
-                self.G.node[n]["action"] = self.G.node[n]["agent"].act(prev_public_coop_num, random=rand)  # for Q Leaning, FAQ
+                self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)
+                self.history[n][i] = self.G.node[n]["action"]
 
-                # -------- noisyな観測
-                noise = np.random.rand()
-                is_noise = (self.p_noise > noise)
-
-                if self.G.node[n]["action"] == "c":
-                    coop_num += 1
-                    if not is_noise:
-                        public_coop_num += 1
-                else:
-                    if is_noise:
-                        public_coop_num += 1
-
+                if self.G.node[n]["action"] == "c": coop_num += 1
 
             self.coop_per_df[0][i] = coop_num / self.n_agent
 
@@ -106,14 +185,9 @@ class synchro_world_public(synchro_world):
             for n in nodes:
                 neighbors = self.G.neighbors(n)
                 n_action = self.G.node[n]["action"]
-
-                # reward
-                n_reward = 0
-                # coop
                 ne_coop_num = 0
 
                 for ne in neighbors:
-                    # -------- basic action
                     ne_action = self.G.node[ne]["action"]
                     if ne_action == "c": ne_coop_num += 1
 
@@ -122,16 +196,67 @@ class synchro_world_public(synchro_world):
 
                 self.G.node[n]["reward"] = n_reward
                 reward_sum += n_reward
-                self.G.node[n]["agent"].update(public_coop_num, n_reward)
-                #self.G.node[n]["agent"].update(0, n_reward, n_action) # for SARSA
-                prev_public_coop_num = public_coop_num
 
+                if self.is_sarsa: # if sarsa
+                    self.G.node[n]["agent"].update(0, n_reward, n_action)
+                else:
+                    self.G.node[n]["agent"].update(0, n_reward)
+
+            # save average q value of each round
+            if not self.is_aca:
+                self.write_q_val(i)
+            else:
+                self.write_p_val(i)
 
             if self.share_rate is not None:
                 self.update_q()
                 self.share_q()
 
             self.payoff_df[0][i] = reward_sum / self.n_agent
+
+
+    def save_meta_info(self, f_name:str, other=None) -> None:
+        """実験条件の保存
+        :param f_name: 出力ファイル名
+        :param other: その他の条件を出力する
+        """
+        with open(f_name, "w") as f:
+            f.write("繰り返し回数 : "+str(self.n_round)+"\n")
+            f.write("エージェント数 : "+str(self.n_agent)+"\n")
+            f.write("エッジ数 : "+str(self.G.size())+"\n")
+
+            if self.is_prepared_nwk:
+                f.write("ネットワーク種類 : " + self.nwk_alg + "\n")
+            else:
+                f.write("ネットワーク種類 : "+self.nwk_alg.__name__+"\n")
+
+            f.write("強化学習アルゴリズム : "+self.rl_alg.__name__+"\n")
+            if other is not None:
+                f.write("その他の条件 : "+other)
+
+
+    def save_average_reward(self, f_name: str) -> None:
+        """各ステップでの平均報酬を保存
+        :param f_name: 出力ファイル名
+        :return: None
+        """
+        self.payoff_df.to_csv(f_name, index=False, header=False)
+
+
+    def save_average_coop(self, f_name: str) -> None:
+        """各ステップでの協調行動割合を保存
+        :param f_name: 出力ファイル名
+        :return: None
+        """
+        self.coop_per_df.to_csv(f_name, index=False, header=False)
+
+
+    def save_q_value(self, f_name: str) -> None:
+        """q値を保存
+        :param f_name: 出力ファイル名
+        :return: None
+        """
+        self.q_df.to_csv(f_name, index=False, header=False)
 
 
     def save(self, f_name: str, other=None) -> None:
@@ -142,7 +267,9 @@ class synchro_world_public(synchro_world):
         """
         self.save_average_reward(f_name+"_reward.csv")
         self.save_average_coop(f_name+"_coop.csv")
+        self.save_q_value(f_name+"_q.csv")
         self.save_meta_info(f_name+"_meta.txt", other)
+
 
     def get_result(self, f_name: str, other=None):
         """
@@ -151,4 +278,5 @@ class synchro_world_public(synchro_world):
         :return: q値のテーブル、協調確率のテーブル、獲得報酬のテーブル
         """
         self.save_meta_info(f_name+"_meta.txt", other)
-        return self.coop_per_df, self.payoff_df
+        return self.q_df, self.coop_per_df, self.payoff_df
+

@@ -35,11 +35,12 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 all_after = [[2,2,2,-2], [2,-10,2,10], [10,10,10,-10], [10,-10,10,10]]
 
 # agentの定義
-all_agent = OrderedDict((("q",ql.Q_Learning_Agent),
-                         ("wolf_phc",wpa.WoLF_PHC_Agent),
-                         ("actor_critic",aca.Actor_Critic_Agent),
-                         ("sarsa", sarsa.SARSA_Agent)))
+#all_agent = OrderedDict((("q",ql.Q_Learning_Agent),
+#                         ("wolf_phc",wpa.WoLF_PHC_Agent),
+#                         ("actor_critic",aca.Actor_Critic_Agent),
+#                         ("sarsa", sarsa.SARSA_Agent)))
 
+all_agent = {"wolf_phc":wpa.WoLF_PHC_Agent}
 
 RESULT_DIR = "../results/accident_alg/powerlaw_cluster/"
 for ag in all_agent.keys():

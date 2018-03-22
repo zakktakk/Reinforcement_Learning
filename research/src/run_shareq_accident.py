@@ -21,29 +21,35 @@ from agent import Actor_Critic_Agent as aca
 """payoff matrix"""
 from world.payoff_matrix import *
 
+graph_prefix = "../src/networks/"
+
 
 # graphの定義
+cG = network_utils.graph_generator.complete_graph
+
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 all_after = [[2,2,2,-2], [2,-10,2,10], [10,10,10,-10], [10,-10,10,10]]
 
 
-# share rateの定義
-all_share_rate = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
+                         ("multiple_clustered",graph_prefix+"multiple_clustered.gpickle"),
+                         ("inner_dence_clustered", graph_prefix+"inner_dence_clustered.gpickle"),
+                         ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 
-RESULT_DIR = "../results/share_q_accident/powerlaw_cluster/"
+RESULT_DIR = "../results/share_q_accident_graph/"
 
 for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
-    for asr in all_share_rate:
-        print("         ", asr)
+    for G in all_graph:
+        print("         ", G)
         for ti, aa in zip(["reverse", "kakusa", "big_reverse", "infration"], all_after):
             for k in range(5):
-                RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+ti+"_"+str(asr*100)
+                RESULT_NAME = RESULT_DIR+G+"/"+alg_name+"/"+str(k)+"/nipd_"+ti
                 if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
                     os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
-                W = synchro_world.synchro_world(100, 1000, [2,-2,2,2], pcG, alg,
-                                                share_rate=asr, altered_func=aa)
+                W = synchro_world.synchro_world(100, 1000, [2,-2,2,2], all_graph[G], alg,
+                                                share_rate=0.5, altered_func=aa)
                 W.run()
                 W.save(RESULT_NAME)
 

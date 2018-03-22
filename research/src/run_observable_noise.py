@@ -25,12 +25,12 @@ graph_prefix = "../src/networks/"
 # graphの定義
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+all_p = [0.2, 0.4, 0.6, 0.8, 1]
 
 
 RESULT_DIR = "../results/observable_noise/powerlaw_cluster/"
 
-for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
+for alg_name, alg in zip(["q"], [ql.Q_Learning_Agent]):
     for p in all_p:
         for k in range(3):
             RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(p*100)
@@ -38,7 +38,7 @@ for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                 os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
 
-            W = synchro_world_observable.synchro_world_observable(100, 5000, [2,-2,2,2], pcG, alg,
+            W = synchro_world_observable.synchro_world_observable(100, 10000, [2,-2,2,2], pcG, alg,
                                                                   p_noise=p)
             W.run()
             W.save(RESULT_NAME)

@@ -21,24 +21,31 @@ from world.payoff_matrix import *
 
 graph_prefix = "../src/networks/"
 
-# graphの定義
-pcG = network_utils.graph_generator.powerlaw_cluster_graph
-
 all_p = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
+# graphの定義
+cG = network_utils.graph_generator.complete_graph
+pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
-RESULT_DIR = "../results/share_q_noise/powerlaw_cluster/"
+
+all_graph = OrderedDict((("powerlaw_cluster",pcG), ("complete",cG),
+                         ("multiple_clustered",graph_prefix+"multiple_clustered.gpickle"),
+                         ("inner_dence_clustered", graph_prefix+"inner_dence_clustered.gpickle"),
+                         ("one_dim_regular", graph_prefix+"onedim_regular.gpickle")))
 
 
-for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
+RESULT_DIR = "../results/share_q_noise/"
+
+
+for g in all_graph:
     for p in all_p:
         for k in range(5):
-            RESULT_NAME = RESULT_DIR + alg_name + "/" + str(k) + "/nipd_" + str(p * 100)
+            RESULT_NAME = RESULT_DIR + g + "/q/" + str(k) + "/nipd_" + str(p * 100)
 
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                 os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
 
-            W = synchro_world.synchro_world(100, 1000, [2, -2, 2, 2], pcG, alg, share_rate=p)
+            W = synchro_world.synchro_world(100, 1000, [2, -2, 2, 2], all_graph[g], ql.Q_Learning_Agent, share_rate=p)
             W.run()
             W.save(RESULT_NAME)
 

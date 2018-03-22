@@ -40,7 +40,7 @@ for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_
                 RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+ti+"_"+str(ap*100)
                 if not os.path.exists("/".join(RESULT_NAME.split("/"))[:-1]):
                     os.makedirs("/".join(RESULT_NAME.split("/"))[:-1])
-                W = synchro_world_signal.synchro_world_signal(100, 5000,[2,-2,2,2] , pcG, alg,
+                W = synchro_world_signal.synchro_world_signal(100, 10000,[2,-2,2,2] , pcG, alg,
                                                           p_noise=ap, altered_func=aa)
                 W.run()
                 W.save(RESULT_NAME)

@@ -31,7 +31,7 @@ RESULT_DIR = "../results/signal/powerlaw_cluster/"
 if not os.path.exists(RESULT_DIR):
     os.makedirs(RESULT_DIR)
 
-for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
+for alg_name, alg in zip(["q", "sarsa"], [ql.Q_Learning_Agent, aca.Actor_Critic_Agent]):
     for p in all_p:
         for k in range(3):
             RESULT_NAME = RESULT_DIR+alg_name+"/"+str(k)+"/nipd_"+str(p*100)
@@ -39,7 +39,7 @@ for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
             if not os.path.exists("/".join(RESULT_NAME.split("/")[:-1])):
                 os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
 
-            W = synchro_world_signal.synchro_world_signal(100, 5000, [2,-2,2,2], pcG, alg,
+            W = synchro_world_signal.synchro_world_signal(100, 10000, [2,-2,2,2], pcG, alg,
                                                                   p_noise=p)
             W.run()
             W.save(RESULT_NAME)

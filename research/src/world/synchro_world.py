@@ -16,6 +16,7 @@
 import sys
 sys.path.append("../")
 
+from agent import WoLF_PHC_Agent as wolf
 from agent import Actor_Critic_Agent as aca
 from agent import Actor_Critic_Agent_TD as acaTD
 from agent import SARSA_Agent as sarsa
@@ -54,16 +55,9 @@ class synchro_world(object):
         self.payoff_func = payoff_func
         self.rl_alg = rl_alg
 
-        if rl_alg == aca.Actor_Critic_Agent or rl_alg == acaTD.Actor_Critic_Agent_TD:
-            self.is_aca = True
-        else:
-            self.is_aca = False
-
-        if rl_alg == sarsa.SARSA_Agent or rl_alg == sarsaTD.SARSA_Agent_TD:
-            self.is_sarsa = True
-        else:
-            self.is_sarsa = False
-
+        self.is_aca = (rl_alg == aca.Actor_Critic_Agent or rl_alg == acaTD.Actor_Critic_Agent_TD)
+        self.is_sarsa = (rl_alg == sarsa.SARSA_Agent or rl_alg == sarsaTD.SARSA_Agent_TD)
+        self.is_wolf = (rl_alg == wolf.WoLF_PHC_Agent)
 
         self.nwk_alg = nwk_alg
         self.is_prepared_nwk = isinstance(nwk_alg, str)
@@ -78,6 +72,7 @@ class synchro_world(object):
         self.coop_per_df = pd.DataFrame(np.zeros((n_round, 1)))
         self.q_df = pd.DataFrame(np.zeros((n_round, 2)))
         self.agent_q_df = pd.DataFrame(np.zeros((n_agent, 2)))
+        self.history = pd.DataFrame(np.zeros((n_round, n_agent)))
 
         # create networked simulation envirionment
         nwk_param = {} if nwk_param is None else nwk_param
@@ -127,6 +122,19 @@ class synchro_world(object):
             for i in range(2):
                 self.G.node[n]["agent"].q_df.iloc[i] = self.agent_q_df.iloc[n][i]
 
+    def write_pi_val(self, i):
+        neighbor_num = len(self.G.neighbors(0))
+        pi_val = self.G.node[0]["agent"].pi_df.as_matrix() / neighbor_num
+
+        for n in self.G.nodes()[1:]:
+            neighbor_num = len(self.G.neighbors(n))
+            pi_val += self.G.node[n]["agent"].pi_df.as_matrix() / neighbor_num
+
+        pi_val /= self.n_agent
+
+        for j in range(2):
+            self.q_df.iloc[i][j] = pi_val[j][0]
+
 
     def write_q_val(self, i):
         neighbor_num = len(self.G.neighbors(0))
@@ -173,6 +181,7 @@ class synchro_world(object):
             coop_num = 0
             for n in nodes:
                 self.G.node[n]["action"] = self.G.node[n]["agent"].act(0, random=rand)
+                self.history[n][i] = self.G.node[n]["action"]
 
                 if self.G.node[n]["action"] == "c": coop_num += 1
 
@@ -201,10 +210,12 @@ class synchro_world(object):
                     self.G.node[n]["agent"].update(0, n_reward)
 
             # save average q value of each round
-            if not self.is_aca:
-                self.write_q_val(i)
-            else:
+            if self.is_aca:
                 self.write_p_val(i)
+            elif self.is_wolf:
+                self.write_pi_val(i)
+            else:
+                self.write_q_val(i)
 
             if self.share_rate is not None:
                 self.update_q()
@@ -277,4 +288,3 @@ class synchro_world(object):
         """
         self.save_meta_info(f_name+"_meta.txt", other)
         return self.q_df, self.coop_per_df, self.payoff_df
-

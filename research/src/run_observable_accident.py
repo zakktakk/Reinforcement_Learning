@@ -29,13 +29,12 @@ pcG = network_utils.graph_generator.powerlaw_cluster_graph
 all_after = [[2,2,2,-2], [2,-10,2,10], [10,10,10,-10], [10,-10,10,10]]
 
 
-all_p = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+all_p = [0.2, 0.4, 0.6, 0.8, 1]
 
 
 RESULT_DIR = "../results/observable_accident/random/"
 
-for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
-
+for alg_name, alg in zip(["q"], [ql.Q_Learning_Agent]):
     for ti, aa in zip(["reverse", "kakusa", "big_reverse", "infration"], all_after):
 
         for ap in all_p:
@@ -45,7 +44,7 @@ for alg_name, alg in zip(["sarsa"], [aca.Actor_Critic_Agent]):
                     os.makedirs("/".join(RESULT_NAME.split("/")[:-1]))
 
                 print(aa)
-                W = synchro_world_observable.synchro_world_observable(100, 5000, [2,-2,2,2], pcG, alg,
+                W = synchro_world_observable.synchro_world_observable(100, 10000, [2,-2,2,2], pcG, alg,
                                                 altered_func=aa, p_noise=ap)
                 W.run()
                 W.save(RESULT_NAME)
