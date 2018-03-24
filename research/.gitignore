@@ -3,3 +3,4 @@
 /datas/*
 /results*/*
 /past_results/*
+/.gitignore
