@@ -18,7 +18,7 @@ class WoLF_PHC_Agent(Agent):
         len_s = len(states)
         len_a = len(actions)
         self.__gamma = gamma
-        #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする -> これ実装する？
+        #indexが縦，columnsは横, 楽観的初期値の時はnp.onesにする
         self.q_df = pd.DataFrame(np.zeros((len_a, len_s)),index=actions, columns=states, dtype=np.float64)
 
         self.T = 0

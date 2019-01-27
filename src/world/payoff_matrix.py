@@ -2,11 +2,6 @@
 # author : Takuro Yamazaki
 # description : 利得行列の定義
 
-# TODO
-# payoff matrixはnormarizeされる必要ある？
-# Q learningの収束性の必要条件に含まれるっぽいことが"Lenient frequency adjusted Q-Learningに書いてある"
-
-
 import numpy as np
 import pandas as pd
 

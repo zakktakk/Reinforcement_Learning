@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 # author : Takuro Yamazaki
-# description : アルゴリズムごとの協調行動の違い
 
 import os
 from collections import OrderedDict
@@ -12,7 +11,6 @@ from world import synchro_world
 from networks import network_utils
 
 """agent"""
-# defaultはこの4種類にしよう
 from agent import WoLF_PHC_Agent as wpa
 from agent import Q_Learning_Agent as ql
 from agent import Actor_Critic_Agent as aca
@@ -27,11 +25,10 @@ graph_prefix = "../src/networks/"
 pcG = network_utils.graph_generator.powerlaw_cluster_graph
 
 # agentの定義
-#algs = OrderedDict((("q",ql.Q_Learning_Agent),
-#                         ("wolf_phc",wpa.WoLF_PHC_Agent),
-#                         ("actor_critic",aca.Actor_Critic_Agent),
-#                         ("sarsa", sarsa.SARSA_Agent)))
-algs={"wolf_phc":wpa.WoLF_PHC_Agent}
+algs = OrderedDict((("q",ql.Q_Learning_Agent),
+                         ("wolf_phc",wpa.WoLF_PHC_Agent),
+                         ("actor_critic",aca.Actor_Critic_Agent),
+                         ("sarsa", sarsa.SARSA_Agent)))
 
 RESULT_DIR = "../results/alg/powerlaw_cluster/"
 
